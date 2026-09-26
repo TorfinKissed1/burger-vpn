@@ -72,6 +72,41 @@
     step(1);
   });
 
+  // Свайп по телефону листает разделы: влево — следующий, вправо — предыдущий
+  const device = section.querySelector('[data-mini-app-device]');
+  const SWIPE_DISTANCE = 40;
+  let swipe = null;
+
+  device.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0) return;
+    swipe = { id: event.pointerId, x: event.clientX, y: event.clientY, dx: 0 };
+    device.setPointerCapture(event.pointerId);
+    device.classList.add('mini-app__device_dragging');
+  });
+
+  device.addEventListener('pointermove', (event) => {
+    if (!swipe || event.pointerId !== swipe.id) return;
+    swipe.dx = event.clientX - swipe.x;
+    // Телефон немного следует за пальцем, чтобы жест ощущался
+    device.style.setProperty('--drag', `${Math.round(swipe.dx * 0.25)}px`);
+  });
+
+  function endSwipe(event) {
+    if (!swipe || event.pointerId !== swipe.id) return;
+    const { dx } = swipe;
+    const dy = event.clientY - swipe.y;
+    swipe = null;
+    device.classList.remove('mini-app__device_dragging');
+    device.style.setProperty('--drag', '0px');
+    if (event.type === 'pointerup' && Math.abs(dx) > SWIPE_DISTANCE && Math.abs(dx) > Math.abs(dy)) {
+      markTouched();
+      step(dx < 0 ? 1 : -1);
+    }
+  }
+
+  device.addEventListener('pointerup', endSwipe);
+  device.addEventListener('pointercancel', endSwipe);
+
   whileVisible(section, (visible) => (visible ? startAuto() : stopAuto()), { threshold: 0.45 });
 
   show(tabs.querySelector('.tabs__tab_active').dataset.spot);

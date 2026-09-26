@@ -48,9 +48,26 @@
   margin-top: clamp(18px, calc(25 * var(--u)), 28px);
 }
 
+/* Телефон листают пальцем вбок; вертикальная прокрутка страницы при этом работает */
 .mini-app__device {
   position: relative;
   width: 77.5%;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  translate: var(--drag, 0px) 0;
+  transition: translate 0.45s var(--ease-back);
+}
+
+.mini-app__device_dragging {
+  cursor: grabbing;
+  transition: none;
+}
+
+.mini-app__device img {
+  -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 .mini-app__phone {
