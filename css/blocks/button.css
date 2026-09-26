@@ -1,0 +1,61 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition:
+    transform var(--dur-fast) var(--ease-back),
+    box-shadow var(--dur) var(--ease-out),
+    filter var(--dur-fast) ease;
+}
+
+/* Блик, пробегающий по кнопке при наведении */
+.button::after {
+  content: "";
+  position: absolute;
+  inset: -20% auto -20% -60%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.28), transparent);
+  transform: translateX(0) skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+  }
+
+  .button:hover::after {
+    opacity: 1;
+    transform: translateX(420%) skewX(-18deg);
+    transition: transform 0.9s var(--ease-out), opacity 0.2s;
+  }
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.button_size_l {
+  min-height: clamp(62px, calc(86 * var(--u)), 104px);
+  padding-inline: 1.1em;
+  font-size: var(--fs-button);
+}
+
+.button_size_m {
+  min-height: clamp(58px, calc(85 * var(--u)), 100px);
+  padding-inline: 1.1em;
+  font-size: clamp(20px, calc(28 * var(--u)), 36px);
+}

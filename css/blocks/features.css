@@ -1,0 +1,177 @@
+.features {
+  position: relative;
+  z-index: 2;
+  padding: 0 0 clamp(40px, calc(58 * var(--u)), 64px);
+  background: var(--color-bg);
+}
+
+.features__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(36px, calc(50 * var(--u)), 64px);
+  padding-inline: 20px;
+}
+
+.features__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 440px;
+  text-align: center;
+}
+
+.features__badge {
+  display: flex;
+  align-items: center;
+}
+
+.features__number,
+.features__icon {
+  display: grid;
+  place-items: center;
+  width: clamp(74px, calc(96 * var(--u)), 128px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.features__number {
+  position: relative;
+  z-index: 1;
+  border: clamp(5px, calc(7 * var(--u)), 9px) solid var(--color-black);
+  font-size: clamp(50px, calc(70 * var(--u)), 92px);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  background: var(--color-bg);
+}
+
+.features__icon {
+  margin-left: calc(clamp(74px, calc(96 * var(--u)), 128px) * -0.24);
+  background: var(--color-black);
+  font-family: var(--font-display);
+  font-size: clamp(52px, calc(70 * var(--u)), 94px);
+  line-height: 1;
+  color: var(--color-white);
+}
+
+.features__icon img {
+  width: 76%;
+}
+
+.features__icon_wifi img {
+  width: 71%;
+  margin-top: 4%;
+}
+
+.features__icon_speed img {
+  width: 75%;
+  margin-top: 6%;
+}
+
+.features__icon_incognito img {
+  width: 66%;
+}
+
+.features__icon_currency {
+  padding-top: 0.04em;
+}
+
+.features__title {
+  margin-top: clamp(18px, calc(25 * var(--u)), 32px);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.features__text {
+  max-width: min(100%, calc(330 * var(--u)));
+  margin-top: clamp(14px, calc(18 * var(--u)), 22px);
+  font-size: var(--fs-body);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-40);
+}
+
+/* Иконка выезжает из-за кольца с цифрой, когда пункт попадает в экран */
+.features__item .features__icon {
+  transform: translateX(-45%) rotate(-90deg);
+  transition: transform 0.9s var(--ease-back) 0.15s;
+}
+
+.features__item .features__number {
+  transition: transform 0.9s var(--ease-back);
+}
+
+.features__item.is-visible .features__icon {
+  transform: none;
+}
+
+.features__item.is-visible .features__number {
+  transform: rotate(-8deg);
+}
+
+.no-js .features__item .features__icon {
+  transform: none;
+}
+
+@media (hover: hover) {
+  .features__item:hover .features__number {
+    transform: rotate(0deg) scale(1.05);
+  }
+
+  .features__item:hover .features__icon {
+    transform: rotate(12deg);
+  }
+}
+
+@media (max-width: 767px) {
+  .features {
+    border-radius: 0 0 calc(105 * var(--u)) calc(105 * var(--u));
+  }
+}
+
+@media (min-width: 768px) {
+  .features {
+    padding: 56px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .features__list {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding-inline: clamp(24px, 3vw, 48px);
+  }
+
+  .features__item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .features__number,
+  .features__icon {
+    width: clamp(64px, 5.6vw, 92px);
+  }
+
+  .features__number {
+    border-width: clamp(5px, 0.45vw, 7px);
+    font-size: clamp(40px, 4vw, 64px);
+  }
+
+  .features__icon {
+    margin-left: calc(clamp(64px, 5.6vw, 92px) * -0.24);
+    font-size: clamp(40px, 4vw, 64px);
+  }
+
+  .features__title {
+    font-size: clamp(19px, 1.65vw, 27px);
+  }
+
+  .features__text {
+    font-size: clamp(13px, 1.05vw, 16px);
+  }
+}

@@ -1,0 +1,315 @@
+.cashback {
+  --cashback-accent: #ff8b4d;
+  --cashback-shadow: rgb(170 69 16 / 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(48px, calc(70 * var(--u)), 72px) 0 0;
+}
+
+.cashback_level_1 {
+  --cashback-accent: var(--color-dark-soft);
+  --cashback-shadow: rgb(83 83 83 / 0.45);
+}
+
+.cashback_level_2 {
+  --cashback-accent: var(--color-lime);
+  --cashback-shadow: rgb(168 188 13 / 0.6);
+}
+
+.cashback_level_4 {
+  --cashback-accent: var(--color-magenta);
+}
+
+.cashback__subtitle {
+  margin-top: clamp(14px, calc(20 * var(--u)), 22px);
+}
+
+.cashback__stage {
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  max-width: 600px;
+  margin-top: clamp(4px, calc(7 * var(--u)), 10px);
+  aspect-ratio: 440 / 372;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cashback__stage:active {
+  cursor: grabbing;
+}
+
+.cashback__stage:focus-visible {
+  outline-offset: -6px;
+  border-radius: 40px;
+}
+
+.cashback__gauge {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cashback__tick {
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  transition: stroke 0.25s ease;
+}
+
+.cashback__marker-pill {
+  transition: fill 0.35s ease;
+}
+
+.cashback__marker-text {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 500;
+  fill: var(--color-bg);
+}
+
+.cashback__hero {
+  position: absolute;
+  object-fit: cover;
+  opacity: 0;
+  transform: translateY(6%) scale(0.86);
+  -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 94%);
+  mask-image: linear-gradient(180deg, #000 62%, transparent 94%);
+  transition:
+    opacity 0.45s ease,
+    transform 0.7s var(--ease-back);
+  pointer-events: none;
+}
+
+.cashback__hero_level_1 { top: 15.32%; left: 16.14%; width: 67.5%; height: 91.13%; }
+.cashback__hero_level_2 { top: 11.56%; left: 16.82%; width: 66.36%; height: 83.06%; }
+.cashback__hero_level_3 { top: 12.1%; left: 14.77%; width: 70.23%; height: 94.89%; }
+.cashback__hero_level_4 { top: 10.22%; left: 8.64%; width: 77.5%; height: 92.2%; }
+
+.cashback_level_1 .cashback__hero_level_1,
+.cashback_level_2 .cashback__hero_level_2,
+.cashback_level_3 .cashback__hero_level_3,
+.cashback_level_4 .cashback__hero_level_4 {
+  opacity: 1;
+  transform: none;
+}
+
+.cashback__fade {
+  position: absolute;
+  top: 93.28%;
+  left: 0;
+  width: 100%;
+  height: 23.66%;
+  background: linear-gradient(180deg, rgb(245 245 245 / 0), var(--color-bg));
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.cashback__name {
+  position: absolute;
+  overflow: visible;
+  opacity: 0;
+  transform: scale(0.7) rotate(-6deg);
+  transition:
+    opacity 0.3s ease,
+    transform 0.6s var(--ease-back);
+  pointer-events: none;
+}
+
+.cashback__name text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-anchor: middle;
+  stroke-width: 24px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+}
+
+.cashback__name_level_1 { top: 76.88%; left: 17.73%; width: 64.32%; }
+.cashback__name_level_2 { top: 71.51%; left: 22.5%; width: 54.77%; }
+.cashback__name_level_3 { top: 71.24%; left: 19.09%; width: 61.36%; }
+.cashback__name_level_4 { top: 71.24%; left: 20.45%; width: 58.86%; }
+
+.cashback__name_level_1 text { font-size: 37px; fill: rgb(70 34 6 / 0.3); }
+.cashback__name_level_2 text { font-size: 60px; fill: rgb(86 81 32 / 0.5); }
+.cashback__name_level_3 text,
+.cashback__name_level_4 text { font-size: 40px; fill: rgb(0 0 0 / 0.15); }
+
+.cashback_level_1 .cashback__name_level_1,
+.cashback_level_2 .cashback__name_level_2,
+.cashback_level_3 .cashback__name_level_3,
+.cashback_level_4 .cashback__name_level_4 {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ручка на дуге показывает, что шкалу можно тянуть */
+.cashback__thumb {
+  transition: fill 0.3s ease;
+}
+
+.cashback__thumb-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cashback-halo 1.8s var(--ease-in-out) infinite;
+}
+
+.cashback_touched .cashback__thumb-halo {
+  animation: none;
+  opacity: 0;
+}
+
+.cashback__level {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  height: clamp(30px, calc(35 * var(--u)), 42px);
+  margin-top: calc(clamp(8px, calc(11 * var(--u)), 13px) * -1);
+  padding: 0 13px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 0 0.5px rgb(255 255 255 / 0.15);
+  font-family: var(--font-display);
+  font-size: clamp(16px, calc(20 * var(--u)), 25px);
+  line-height: 1;
+  color: var(--color-ink-80);
+}
+
+.cashback__level-total {
+  color: var(--color-ink-30);
+}
+
+.cashback__cards {
+  display: flex;
+  gap: clamp(8px, calc(10 * var(--u)), 14px);
+  width: 100%;
+  max-width: 520px;
+  margin-top: clamp(12px, calc(16 * var(--u)), 20px);
+  padding-inline: clamp(20px, calc(44 * var(--u)), 44px);
+}
+
+.cashback__card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  aspect-ratio: 171 / 145;
+  padding-bottom: 12%;
+  border-radius: clamp(28px, calc(40 * var(--u)), 44px);
+  text-align: center;
+}
+
+.cashback__card_reward {
+  background: var(--cashback-accent);
+  color: var(--color-bg);
+  box-shadow:
+    0 30px 22px -28.7px var(--cashback-shadow),
+    inset 2.4px 2.4px 15.8px -2.4px rgb(255 255 255 / 0.7),
+    inset 1.2px 1.2px 28.7px -2.4px var(--color-white);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.cashback__card_reward::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2.87px;
+  border-radius: inherit;
+  background: var(--gradient-glass-stroke);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.cashback__card_friends {
+  box-shadow: 0 30px 23px -23px rgb(9 9 9 / 0.35);
+}
+
+.cashback__card-unit,
+.cashback__card-icon {
+  margin-bottom: 4%;
+}
+
+.cashback__card-unit {
+  font-family: var(--font-display);
+  font-size: clamp(20px, calc(26 * var(--u)), 32px);
+  line-height: 0.7;
+}
+
+.cashback__card-icon {
+  width: 17%;
+}
+
+.cashback_level_1 .cashback__card-unit,
+.cashback__card_reward .cashback__card-icon {
+  display: none;
+}
+
+.cashback_level_1 .cashback__card_reward .cashback__card-icon {
+  display: block;
+}
+
+.cashback__card-value {
+  font-family: var(--font-display);
+  font-size: clamp(46px, calc(65 * var(--u)), 80px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.cashback__card-label {
+  margin-top: 8%;
+  font-size: var(--fs-body);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.cashback__bump {
+  animation: cashback-bump 0.5s var(--ease-back);
+}
+
+.cashback__text {
+  margin-top: clamp(18px, calc(25 * var(--u)), 28px);
+  padding-inline: 20px;
+}
+
+@keyframes cashback-halo {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.6);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+@keyframes cashback-bump {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .cashback {
+    justify-content: center;
+    padding: 48px 0;
+  }
+}

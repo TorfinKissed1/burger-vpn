@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="ru" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Burger VPN — просто работает</title>
+  <meta name="description" content="Burger VPN: 3 дня бесплатно без ввода карты, до 100 устройств в подписке, 30+ сервисов и 10+ стран. Далее от 4 ₽ в день.">
+  <meta name="theme-color" content="#f5f5f5">
+  <meta property="og:title" content="Burger VPN — просто работает">
+  <meta property="og:description" content="Верните себе интернет: 3 дня бесплатно, до 100 устройств в подписке.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.className = 'js';</script>
+
+  <link rel="preload" href="fonts/asgard-wide-medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="img/hero/flower.webp" as="image" type="image/webp">
+
+  <link rel="stylesheet" href="css/vendor/keen-slider.min.css">
+  <link rel="stylesheet" href="css/base/fonts.css">
+  <link rel="stylesheet" href="css/base/variables.css">
+  <link rel="stylesheet" href="css/base/reset.css">
+  <link rel="stylesheet" href="css/base/base.css">
+  <link rel="stylesheet" href="css/blocks/glass.css">
+  <link rel="stylesheet" href="css/blocks/button.css">
+  <link rel="stylesheet" href="css/blocks/tabs.css">
+  <link rel="stylesheet" href="css/blocks/heading.css">
+  <link rel="stylesheet" href="css/blocks/header.css">
+  <link rel="stylesheet" href="css/blocks/menu.css">
+  <link rel="stylesheet" href="css/blocks/hero.css">
+  <link rel="stylesheet" href="css/blocks/features.css">
+  <link rel="stylesheet" href="css/blocks/services.css">
+  <link rel="stylesheet" href="css/blocks/devices.css">
+  <link rel="stylesheet" href="css/blocks/steps.css">
+  <link rel="stylesheet" href="css/blocks/tariffs.css">
+  <link rel="stylesheet" href="css/blocks/mini-app.css">
+  <link rel="stylesheet" href="css/blocks/cashback.css">
+  <link rel="stylesheet" href="css/blocks/reviews.css">
+  <link rel="stylesheet" href="css/blocks/launch.css">
+  <link rel="stylesheet" href="css/blocks/faq.css">
+  <link rel="stylesheet" href="css/blocks/support.css">
+  <link rel="stylesheet" href="css/blocks/footer.css">
+  <link rel="stylesheet" href="css/blocks/modal.css">
+  <link rel="stylesheet" href="css/blocks/activation.css">
+  <link rel="stylesheet" href="css/blocks/payment.css">
+</head>
+<body>
+  <header class="header" data-header>
+    <div class="header__bar">
+      <button class="header__brand" type="button" aria-expanded="false" aria-controls="site-menu" data-menu-toggle>
+        <span class="header__logo">Burger</span>
+        <img class="header__chevron" src="img/icons/chevron.svg" width="10" height="6" alt="">
+        <span class="visually-hidden">Открыть меню разделов</span>
+      </button>
+      <div class="header__links">
+        <a class="header__icon-link" href="https://t.me/VpnBurger_bot" target="_blank" rel="noopener noreferrer" aria-label="Burger VPN в Telegram">
+          <img src="img/icons/telegram.svg" width="24" height="21" alt="">
+        </a>
+        <a class="header__icon-link" href="#faq" aria-label="Частые вопросы">
+          <img src="img/icons/question.svg" width="28" height="23" alt="">
+        </a>
+      </div>
+      <button class="header__cta glass glass_theme_pink" type="button" data-activation-open>
+        <img class="header__cta-icon" src="img/icons/power.svg" width="54" height="46" alt="">
+        <span class="header__cta-text">Free<br>VPN</span>
+      </button>
+    </div>
+    <p class="header__note">28 августа: Burger VPN работает в РФ</p>
+  </header>
+
+  <div class="menu" id="site-menu" hidden data-menu>
+    <div class="menu__backdrop" data-menu-close></div>
+    <nav class="menu__panel" aria-label="Разделы сайта">
+      <ul class="menu__list">
+        <li class="menu__item" style="--menu-x: 44%; --menu-tilt: -2deg;">
+          <a class="menu__link" href="#services" data-menu-link><span class="menu__label">Сервисы</span><span class="menu__arrow" aria-hidden="true"></span></a>
+        </li>
+        <li class="menu__item" style="--menu-x: 11.6%; --menu-tilt: 1deg;">
+          <a class="menu__link" href="#devices" data-menu-link><span class="menu__label">Устройства</span><span class="menu__arrow" aria-hidden="true"></span></a>
+        </li>
+        <li class="menu__item" style="--menu-x: 19.3%; --menu-tilt: -3deg;">
+          <a class="menu__link" href="#connect" data-menu-link><span class="menu__label">Подключение</span><span class="menu__arrow" aria-hidden="true"></span></a>
+        </li>
+        <li class="menu__item" style="--menu-x: 8.6%; --menu-tilt: 6deg;">
+          <a class="menu__link" href="#tariffs" data-menu-link><span class="menu__label">Тарифы</span><span class="menu__arrow" aria-hidden="true"></span></a>
+        </li>
+        <li class="menu__item" style="--menu-x: 45%; --menu-tilt: 0deg;">
+          <a class="menu__link" href="#mini-app" data-menu-link><span class="menu__label">Mini-App</span><span class="menu__arrow" aria-hidden="true"></span></a>
+        </li>
+        <li class="menu__item" style="--menu-x: 14.8%; --menu-tilt: -3deg;">
+          <a class="menu__link" href="#reviews" data-menu-link><span class="menu__label">Отзывы</span><span class="menu__arrow" aria-hidden="true"></span></a>
+        </li>
+        <li class="menu__item" style="--menu-x: 35.9%; --menu-tilt: 5deg;">
+          <a class="menu__link" href="#support" data-menu-link><span class="menu__label">Поддержка</span><span class="menu__arrow" aria-hidden="true"></span></a>
+        </li>
+      </ul>
+      <button class="menu__handle" type="button" aria-label="Закрыть меню" data-menu-close></button>
+    </nav>
+  </div>
+
+  <main class="page" id="main">
+    <section class="hero page__tile page__tile_area_hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__content">
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__line"><span class="hero__word">Просто.</span></span>
+          <span class="hero__line"><span class="hero__word">Работает.</span></span>
+        </h1>
+        <p class="hero__lead">Верните себе интернет</p>
+      </div>
+      <button class="hero__power" type="button" data-activation-open aria-label="Включить VPN бесплатно на 3 дня">
+        <img class="hero__power-glow" src="img/hero/flower.webp" width="755" height="744" alt="">
+        <img class="hero__power-image" src="img/hero/flower.webp" width="755" height="744" alt="" fetchpriority="high">
+      </button>
+      <div class="hero__offer">
+        <p class="hero__offer-title">Заберите 3&nbsp;дня<br>бесплатно</p>
+        <p class="hero__offer-note">Без ввода карты и реквизитов<br>Далее от 4 руб / день</p>
+      </div>
+    </section>
+
+    <section class="features page__tile page__tile_area_features" aria-labelledby="features-title">
+      <h2 class="visually-hidden" id="features-title">Почему Burger VPN</h2>
+      <ol class="features__list">
+        <li class="features__item" data-reveal>
+          <div class="features__badge" aria-hidden="true">
+            <span class="features__number">1</span>
+            <span class="features__icon"><img src="img/icons/globe.svg" width="73" height="73" alt="" loading="lazy"></span>
+          </div>
+          <h3 class="features__title">Включайте<br>в любой точке</h3>
+          <p class="features__text">VPN будет работать везде: центр Москвы, село в Дагестане, Нью-Йорк, Африка, Таиланд, Владивосток.</p>
+        </li>
+        <li class="features__item" data-reveal>
+          <div class="features__badge" aria-hidden="true">
+            <span class="features__number">2</span>
+            <span class="features__icon features__icon_wifi"><img src="img/icons/wifi.svg" width="68" height="42" alt="" loading="lazy"></span>
+          </div>
+          <h3 class="features__title">Обходите<br>ограничения</h3>
+          <p class="features__text">Пользуйтесь вне зависимости от заглушек и перебоев связи. Для этого у нас есть отдельный трафик</p>
+        </li>
+        <li class="features__item" data-reveal>
+          <div class="features__badge" aria-hidden="true">
+            <span class="features__number">3</span>
+            <span class="features__icon features__icon_speed"><img src="img/icons/speed.svg" width="72" height="75" alt="" loading="lazy"></span>
+          </div>
+          <h3 class="features__title features__title_numeric">до 300&nbsp;mb/s</h3>
+          <p class="features__text">Наслаждайтесь высокой скоростью. Её ежедневно поддерживает наша команда.</p>
+        </li>
+        <li class="features__item" data-reveal>
+          <div class="features__badge" aria-hidden="true">
+            <span class="features__number">4</span>
+            <span class="features__icon features__icon_incognito"><img src="img/icons/incognito.svg" width="64" height="54" alt="" loading="lazy"></span>
+          </div>
+          <h3 class="features__title">Полная<br>анонимность</h3>
+          <p class="features__text">Ваши действия при включённом Burger VPN не видны никому. Нет скрытых журналов конфиденциальности</p>
+        </li>
+        <li class="features__item" data-reveal>
+          <div class="features__badge" aria-hidden="true">
+            <span class="features__number">5</span>
+            <span class="features__icon features__icon_currency">$</span>
+          </div>
+          <h3 class="features__title">Платите<br>чем хотите</h3>
+          <p class="features__text">Картой МИР, СБП, Telegram Stars, USDT, Crypto Bot.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="services page__tile page__tile_area_services" id="services" aria-labelledby="services-title" data-services>
+      <div class="services__stage">
+        <div class="services__cloud" aria-hidden="true">
+          <img class="services__icon" src="img/services/whatsapp.webp" width="164" height="167" alt="" loading="lazy" decoding="async" style="--x: 36.14%; --y: 13.7%; --w: 18.64%; --i: 0;">
+          <img class="services__icon" src="img/services/facebook.webp" width="182" height="185" alt="" loading="lazy" decoding="async" style="--x: 37.27%; --y: 16.74%; --w: 20.68%; --i: 1;">
+          <img class="services__icon" src="img/services/finland.webp" width="119" height="120" alt="" loading="lazy" decoding="async" style="--x: 49.55%; --y: 28.26%; --w: 13.41%; --i: 2;">
+          <img class="services__icon" src="img/services/france.webp" width="182" height="185" alt="" loading="lazy" decoding="async" style="--x: 20.91%; --y: 39.13%; --w: 20.68%; --i: 3;">
+          <img class="services__icon" src="img/services/reddit.webp" width="141" height="142" alt="" loading="lazy" decoding="async" style="--x: 17.73%; --y: 35.87%; --w: 15.91%; --i: 4;">
+          <img class="services__icon" src="img/services/notion.webp" width="149" height="151" alt="" loading="lazy" decoding="async" style="--x: 45%; --y: 33.04%; --w: 16.82%; --i: 5;">
+          <img class="services__icon" src="img/services/uk.webp" width="50" height="51" alt="" loading="lazy" decoding="async" style="--x: 31.14%; --y: 59.35%; --w: 5.68%; --i: 6;">
+          <img class="services__icon" src="img/services/usa.webp" width="72" height="74" alt="" loading="lazy" decoding="async" style="--x: 26.59%; --y: 38.26%; --w: 8.18%; --i: 7;">
+          <img class="services__icon" src="img/services/adobe.webp" width="170" height="173" alt="" loading="lazy" decoding="async" style="--x: 24.32%; --y: -4.35%; --w: 19.32%; --i: 8;">
+          <img class="services__icon" src="img/services/discord.webp" width="156" height="159" alt="" loading="lazy" decoding="async" style="--x: 65%; --y: 24.57%; --w: 17.73%; --i: 9;">
+          <img class="services__icon" src="img/services/discord-small.webp" width="73" height="74" alt="" loading="lazy" decoding="async" style="--x: 28.86%; --y: 45%; --w: 8.18%; --i: 10;">
+          <img class="services__icon" src="img/services/spotify.webp" width="125" height="126" alt="" loading="lazy" decoding="async" style="--x: 16.59%; --y: 39.78%; --w: 14.09%; --i: 11;">
+          <img class="services__icon" src="img/services/etsy.webp" width="58" height="59" alt="" loading="lazy" decoding="async" style="--x: 45.91%; --y: 76.3%; --w: 6.59%; --i: 12;">
+          <img class="services__icon" src="img/services/kazakhstan.webp" width="52" height="53" alt="" loading="lazy" decoding="async" style="--x: 55.45%; --y: 52.39%; --w: 5.91%; --i: 13;">
+          <img class="services__icon" src="img/services/uae.webp" width="98" height="99" alt="" loading="lazy" decoding="async" style="--x: 65.68%; --y: 47.83%; --w: 11.14%; --i: 14;">
+          <img class="services__icon" src="img/services/sweden.webp" width="140" height="142" alt="" loading="lazy" decoding="async" style="--x: 72.5%; --y: 12.83%; --w: 15.91%; --i: 15;">
+          <img class="services__icon" src="img/services/poland.webp" width="28" height="28" alt="" loading="lazy" decoding="async" style="--x: 46.36%; --y: 68.26%; --w: 3.18%; --i: 16;">
+          <img class="services__icon" src="img/services/instagram.webp" width="150" height="153" alt="" loading="lazy" decoding="async" style="--x: 40.45%; --y: 50.87%; --w: 17.05%; --i: 17;">
+          <img class="services__icon" src="img/services/germany.webp" width="24" height="25" alt="" loading="lazy" decoding="async" style="--x: 62.5%; --y: 61.3%; --w: 2.73%; --i: 18;">
+          <img class="services__icon" src="img/services/medium.webp" width="54" height="55" alt="" loading="lazy" decoding="async" style="--x: 32.95%; --y: 66.09%; --w: 6.14%; --i: 19;">
+          <img class="services__icon" src="img/services/dribbble.webp" width="78" height="80" alt="" loading="lazy" decoding="async" style="--x: 35.91%; --y: 68.7%; --w: 8.86%; --i: 20;">
+          <img class="services__icon" src="img/services/dribbble-alt.webp" width="78" height="80" alt="" loading="lazy" decoding="async" style="--x: 61.82%; --y: 70.43%; --w: 8.86%; --i: 21;">
+          <img class="services__icon" src="img/services/youtube.webp" width="168" height="171" alt="" loading="lazy" decoding="async" style="--x: 22.27%; --y: 14.57%; --w: 19.09%; --i: 22;">
+          <img class="services__icon" src="img/services/notion-small.webp" width="46" height="46" alt="" loading="lazy" decoding="async" style="--x: 64.09%; --y: 49.35%; --w: 5.23%; --i: 23;">
+          <img class="services__icon" src="img/services/soundcloud.webp" width="24" height="24" alt="" loading="lazy" decoding="async" style="--x: 56.36%; --y: 64.13%; --w: 2.73%; --i: 24;">
+          <img class="services__icon" src="img/services/chatgpt.webp" width="135" height="136" alt="" loading="lazy" decoding="async" style="--x: 73.18%; --y: 33.7%; --w: 15.23%; --i: 25;">
+          <img class="services__icon" src="img/services/signal.webp" width="36" height="37" alt="" loading="lazy" decoding="async" style="--x: 65.23%; --y: 39.57%; --w: 4.09%; --i: 26;">
+          <img class="services__icon" src="img/services/telegram.webp" width="123" height="125" alt="" loading="lazy" decoding="async" style="--x: 38.64%; --y: 35.43%; --w: 14.09%; --i: 27;">
+          <img class="services__icon" src="img/services/tiktok.webp" width="44" height="44" alt="" loading="lazy" decoding="async" style="--x: 53.18%; --y: 69.57%; --w: 5%; --i: 28;">
+          <img class="services__icon" src="img/services/whatsapp-small.webp" width="48" height="49" alt="" loading="lazy" decoding="async" style="--x: 12.05%; --y: 38.26%; --w: 5.45%; --i: 29;">
+        </div>
+        <h2 class="services__title" id="services-title">
+          <span class="services__count" data-count-to="30" data-count-suffix="+">30+</span>
+          <span class="services__label">Сервисов</span>
+        </h2>
+      </div>
+      <p class="services__text" data-reveal>Социальные сети, мессенджеры,<br>стриминги, музыка, 10+ стран</p>
+    </section>
+
+    <section class="devices page__tile page__tile_area_devices" id="devices" aria-labelledby="devices-title" data-devices>
+      <h2 class="devices__title" id="devices-title" data-reveal>
+        <span class="devices__prefix">до</span>
+        <span class="devices__count" data-count-to="100">100</span>
+        <span class="devices__caption">устройств в подписке</span>
+      </h2>
+      <p class="devices__text" data-reveal>Работает на любом устройстве<br>и операционной системе</p>
+      <div class="devices__tabs tabs" role="tablist" aria-label="Что показать" data-tabs>
+        <span class="tabs__indicator glass glass_theme_light" aria-hidden="true"></span>
+        <button class="tabs__tab tabs__tab_active" type="button" role="tab" id="devices-tab-hardware" aria-selected="true" aria-controls="devices-panel-hardware">Устройства</button>
+        <button class="tabs__tab" type="button" role="tab" id="devices-tab-os" aria-selected="false" aria-controls="devices-panel-os" tabindex="-1">OS</button>
+      </div>
+      <div class="devices__panels">
+        <ul class="devices__grid devices__grid_active" id="devices-panel-hardware" role="tabpanel" aria-labelledby="devices-tab-hardware" data-devices-panel>
+          <li class="devices__item" style="--i: 0;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__image devices__image_tall" src="img/devices/iphone.webp" width="260" height="300" alt="" loading="lazy"></div>
+            <p class="devices__name">iPhone</p>
+            <img class="devices__system" src="img/icons/os-ios-label.svg" width="31" height="12" alt="iOS" loading="lazy">
+          </li>
+          <li class="devices__item" style="--i: 1;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/android.webp" width="300" height="207" alt="" loading="lazy"></div>
+            <p class="devices__name">Android</p>
+            <img class="devices__system" src="img/icons/os-android-label.svg" width="73" height="11" alt="Android" loading="lazy">
+          </li>
+          <li class="devices__item" style="--i: 2;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__image devices__image_wide" src="img/devices/macbook.webp" width="300" height="183" alt="" loading="lazy"></div>
+            <p class="devices__name">Macbook</p>
+            <img class="devices__system" src="img/icons/os-macos-label.svg" width="37" height="9" alt="macOS" loading="lazy">
+          </li>
+          <li class="devices__item" style="--i: 3;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__image devices__image_wide" src="img/devices/laptop.webp" width="300" height="256" alt="" loading="lazy"></div>
+            <p class="devices__name">Ноутбук</p>
+            <img class="devices__system" src="img/icons/os-windows-label.svg" width="56" height="12" alt="Windows" loading="lazy">
+          </li>
+          <li class="devices__item" style="--i: 4;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/pc-tower.webp" width="300" height="271" alt="" loading="lazy"></div>
+            <p class="devices__name">ПК</p>
+            <img class="devices__system" src="img/icons/os-windows-label.svg" width="56" height="12" alt="Windows" loading="lazy">
+          </li>
+          <li class="devices__item" style="--i: 5;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__image devices__image_tall" src="img/devices/pc.webp" width="259" height="300" alt="" loading="lazy"></div>
+            <p class="devices__name">ПК</p>
+            <img class="devices__system" src="img/icons/os-linux-label.svg" width="40" height="10" alt="Linux" loading="lazy">
+          </li>
+          <li class="devices__item" style="--i: 6;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/apple-tv.webp" width="270" height="300" alt="" loading="lazy"></div>
+            <p class="devices__name">Apple TV</p>
+            <img class="devices__system" src="img/icons/os-tv-label.svg" width="18" height="9" alt="tvOS" loading="lazy">
+          </li>
+          <li class="devices__item" style="--i: 7;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/android-tv.webp" width="300" height="247" alt="" loading="lazy"></div>
+            <p class="devices__name">Android TV</p>
+            <img class="devices__system" src="img/icons/os-androidtv-label.svg" width="65" height="11" alt="Android TV" loading="lazy">
+          </li>
+          <li class="devices__item" style="--i: 8;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/router.webp" width="300" height="262" alt="" loading="lazy"></div>
+            <p class="devices__name">Роутер</p>
+            <p class="devices__system devices__system_text">Wi-Fi</p>
+          </li>
+        </ul>
+        <ul class="devices__grid devices__grid_os" id="devices-panel-os" role="tabpanel" aria-labelledby="devices-tab-os" hidden data-devices-panel>
+          <li class="devices__item" style="--i: 0;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-ios.svg" width="67" height="26" alt="iOS" loading="lazy"></div>
+            <div class="devices__thumbs" aria-hidden="true">
+              <img class="devices__thumb" src="img/devices/iphone.webp" width="260" height="300" alt="" loading="lazy">
+              <img class="devices__thumb" src="img/devices/ipad.webp" width="240" height="300" alt="" loading="lazy">
+            </div>
+          </li>
+          <li class="devices__item" style="--i: 1;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-android.svg" width="60" height="52" alt="Android" loading="lazy"></div>
+            <div class="devices__thumbs" aria-hidden="true">
+              <img class="devices__thumb" src="img/devices/android.webp" width="300" height="207" alt="" loading="lazy">
+              <img class="devices__thumb" src="img/devices/android-tv.webp" width="300" height="247" alt="" loading="lazy">
+            </div>
+          </li>
+          <li class="devices__item" style="--i: 2;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-windows.svg" width="58" height="51" alt="Windows" loading="lazy"></div>
+            <div class="devices__thumbs" aria-hidden="true">
+              <img class="devices__thumb" src="img/devices/laptop.webp" width="300" height="256" alt="" loading="lazy">
+              <img class="devices__thumb" src="img/devices/pc-tower.webp" width="300" height="271" alt="" loading="lazy">
+              <img class="devices__thumb" src="img/devices/pc.webp" width="259" height="300" alt="" loading="lazy">
+            </div>
+          </li>
+          <li class="devices__item" style="--i: 3;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-macos.svg" width="74" height="37" alt="macOS" loading="lazy"></div>
+            <div class="devices__thumbs" aria-hidden="true">
+              <img class="devices__thumb" src="img/devices/macbook.webp" width="300" height="183" alt="" loading="lazy">
+              <img class="devices__thumb" src="img/devices/pc.webp" width="259" height="300" alt="" loading="lazy">
+            </div>
+          </li>
+          <li class="devices__item" style="--i: 4;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo devices__logo_raster" src="img/devices/linux.webp" width="220" height="98" alt="Linux" loading="lazy"></div>
+            <div class="devices__thumbs" aria-hidden="true">
+              <img class="devices__thumb" src="img/devices/pc-tower.webp" width="300" height="271" alt="" loading="lazy">
+              <img class="devices__thumb" src="img/devices/laptop.webp" width="300" height="256" alt="" loading="lazy">
+            </div>
+          </li>
+          <li class="devices__item" style="--i: 5;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-wifi.svg" width="82" height="51" alt="Wi-Fi" loading="lazy"></div>
+            <div class="devices__thumbs" aria-hidden="true">
+              <img class="devices__thumb" src="img/devices/router.webp" width="300" height="262" alt="" loading="lazy">
+            </div>
+          </li>
+          <li class="devices__item" style="--i: 6;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-tv.svg" width="73" height="17" alt="Apple TV" loading="lazy"></div>
+            <div class="devices__thumbs" aria-hidden="true">
+              <img class="devices__thumb" src="img/devices/apple-tv.webp" width="270" height="300" alt="" loading="lazy">
+            </div>
+          </li>
+          <li class="devices__item" style="--i: 7;">
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-androidtv.svg" width="83" height="14" alt="Android TV" loading="lazy"></div>
+            <div class="devices__thumbs" aria-hidden="true">
+              <img class="devices__thumb" src="img/devices/android-tv.webp" width="300" height="247" alt="" loading="lazy">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="steps page__tile page__tile_area_steps" id="connect" aria-labelledby="steps-title" data-steps>
+      <h2 class="steps__title heading" id="steps-title" data-reveal>3 шага<br>за 3 мин</h2>
+      <p class="steps__subtitle heading-note" data-reveal>Подключитесь без проблем</p>
+      <ol class="steps__list">
+        <li class="steps__item steps__item_active" data-step>
+          <span class="steps__icon" aria-hidden="true"><img src="img/icons/step-profile.svg" width="41" height="26" alt="" loading="lazy"></span>
+          <span class="steps__index">Шаг 01</span>
+          <h3 class="steps__name">Создайте<br>профиль</h3>
+          <p class="steps__text">Достаточно подтвердить e-mail</p>
+        </li>
+        <li class="steps__item" data-step>
+          <span class="steps__icon" aria-hidden="true"><img src="img/icons/step-download.svg" width="31" height="31" alt="" loading="lazy"></span>
+          <span class="steps__index">Шаг 02</span>
+          <h3 class="steps__name">Скачайте<br>приложение</h3>
+          <p class="steps__text">Даём прямые ссылки на прокси</p>
+        </li>
+        <li class="steps__item" data-step>
+          <span class="steps__icon steps__icon_check" aria-hidden="true"><img src="img/icons/step-check.svg" width="31" height="27" alt="" loading="lazy"></span>
+          <span class="steps__index">Шаг 03</span>
+          <h3 class="steps__name">Нажмите<br>одну кнопку</h3>
+          <p class="steps__text">Нажмите «Подключиться» — и всё</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="tariffs page__tile page__tile_area_tariffs" id="tariffs" aria-labelledby="tariffs-title" data-tariffs>
+      <div class="tariffs__card">
+        <div class="tariffs__backdrops" aria-hidden="true">
+          <span class="tariffs__backdrop tariffs__backdrop_personal"></span>
+          <span class="tariffs__backdrop tariffs__backdrop_advanced tariffs__backdrop_active"></span>
+          <span class="tariffs__backdrop tariffs__backdrop_family"></span>
+          <span class="tariffs__backdrop tariffs__backdrop_constructor"></span>
+        </div>
+        <p class="tariffs__gift">3 дня<br><span class="tariffs__gift-small">в подарок</span></p>
+
+        <button class="tariffs__power" type="button" data-activation-open aria-label="Включить VPN бесплатно на 3 дня">
+          <svg class="tariffs__flower" viewBox="0 0 400 400" aria-hidden="true">
+            <defs>
+              <radialGradient id="tariff-flower-body" cx="50%" cy="46%" r="52%">
+                <stop offset="0.5" stop-color="#fff" stop-opacity="0.03"/>
+                <stop offset="0.82" stop-color="#fff" stop-opacity="0.2"/>
+                <stop offset="1" stop-color="#fff" stop-opacity="0.55"/>
+              </radialGradient>
+              <filter id="tariff-flower-glow" x="-5%" y="-5%" width="110%" height="110%">
+                <feFlood flood-color="#fff"/>
+                <feComposite in2="SourceAlpha" operator="out"/>
+                <feGaussianBlur stdDeviation="9"/>
+                <feComposite in2="SourceAlpha" operator="in"/>
+              </filter>
+              <mask id="tariff-flower-hole">
+                <path d="M351.6 200.0C349.9 202.2 348.0 204.3 345.9 206.4C343.9 208.4 341.7 210.4 339.5 212.2C337.2 214.0 334.8 215.8 332.6 217.5C330.3 219.1 326.4 220.3 326.1 222.2C325.7 224.1 329.0 226.6 330.5 228.9C332.1 231.3 333.8 233.7 335.2 236.2C336.7 238.7 338.1 241.3 339.3 243.9C340.5 246.5 341.6 249.2 342.4 251.8C343.3 254.5 343.9 257.2 344.3 259.8C344.6 262.4 344.8 265.0 344.7 267.5C344.5 269.9 344.1 272.4 343.5 274.7C342.8 277.0 341.9 279.2 340.7 281.2C339.6 283.3 338.1 285.2 336.4 286.9C334.8 288.6 332.8 290.2 330.8 291.6C328.7 292.9 326.3 294.1 323.9 295.1C321.4 296.0 318.8 296.8 316.1 297.4C313.4 298.0 310.5 298.4 307.7 298.7C304.8 298.9 301.9 299.0 299.0 299.0C296.1 299.0 293.1 298.7 290.3 298.6C287.6 298.4 283.8 296.8 282.3 298.1C280.8 299.3 281.7 303.3 281.4 306.1C281.1 308.9 280.8 311.8 280.3 314.7C279.8 317.5 279.2 320.4 278.5 323.2C277.7 326.0 276.8 328.7 275.8 331.3C274.7 333.8 273.5 336.3 272.1 338.5C270.7 340.8 269.2 342.8 267.5 344.7C265.8 346.5 263.9 348.1 261.9 349.5C259.9 350.8 257.8 351.9 255.6 352.7C253.4 353.5 251.0 354.0 248.6 354.3C246.3 354.5 243.8 354.5 241.3 354.2C238.8 353.9 236.3 353.3 233.8 352.5C231.3 351.6 228.8 350.5 226.3 349.3C223.9 348.0 221.4 346.5 219.1 344.8C216.7 343.2 214.4 341.3 212.2 339.5C210.0 337.6 207.9 335.5 205.8 333.6C203.8 331.7 201.9 328.0 200.0 328.0C198.1 328.0 196.2 331.7 194.2 333.6C192.1 335.5 190.0 337.6 187.8 339.5C185.6 341.3 183.3 343.2 180.9 344.8C178.6 346.5 176.1 348.0 173.7 349.3C171.2 350.5 168.7 351.6 166.2 352.5C163.7 353.3 161.2 353.9 158.7 354.2C156.2 354.5 153.7 354.5 151.4 354.3C149.0 354.0 146.6 353.5 144.4 352.7C142.2 351.9 140.1 350.8 138.1 349.5C136.1 348.1 134.2 346.5 132.5 344.7C130.8 342.8 129.3 340.8 127.9 338.5C126.5 336.3 125.3 333.8 124.2 331.3C123.2 328.7 122.3 326.0 121.5 323.2C120.8 320.4 120.2 317.5 119.7 314.7C119.2 311.8 118.9 308.9 118.6 306.1C118.3 303.3 119.2 299.3 117.7 298.1C116.2 296.8 112.4 298.4 109.7 298.6C106.9 298.7 103.9 299.0 101.0 299.0C98.1 299.0 95.2 298.9 92.3 298.7C89.5 298.4 86.6 298.0 83.9 297.4C81.2 296.8 78.6 296.0 76.1 295.1C73.7 294.1 71.3 292.9 69.2 291.6C67.2 290.2 65.2 288.6 63.6 286.9C61.9 285.2 60.4 283.3 59.3 281.3C58.1 279.2 57.2 277.0 56.5 274.7C55.9 272.4 55.5 269.9 55.3 267.5C55.2 265.0 55.4 262.4 55.7 259.8C56.1 257.2 56.7 254.5 57.6 251.8C58.4 249.2 59.5 246.5 60.7 243.9C61.9 241.3 63.3 238.7 64.8 236.2C66.2 233.7 67.9 231.3 69.5 228.9C71.0 226.6 74.3 224.1 73.9 222.2C73.6 220.3 69.7 219.1 67.4 217.5C65.2 215.8 62.8 214.0 60.5 212.2C58.3 210.4 56.1 208.4 54.1 206.4C52.0 204.3 50.1 202.2 48.4 200.0C46.8 197.8 45.2 195.5 44.0 193.2C42.7 190.9 41.7 188.5 41.0 186.1C40.3 183.7 39.8 181.3 39.6 178.9C39.4 176.5 39.6 174.1 40.0 171.8C40.4 169.5 41.1 167.2 42.1 165.0C43.0 162.8 44.3 160.7 45.8 158.7C47.3 156.7 49.1 154.8 51.1 153.0C53.0 151.3 55.2 149.7 57.6 148.2C59.9 146.7 62.5 145.3 65.0 144.1C67.6 142.9 70.4 141.8 73.1 140.8C75.8 139.9 78.7 139.1 81.4 138.3C84.1 137.5 88.2 137.7 89.1 136.0C90.1 134.3 87.9 130.9 87.2 128.2C86.6 125.4 85.8 122.5 85.3 119.7C84.8 116.9 84.4 113.9 84.1 111.1C83.9 108.2 83.8 105.3 83.9 102.6C84.0 99.8 84.3 97.1 84.9 94.5C85.4 91.9 86.2 89.4 87.1 87.1C88.1 84.8 89.3 82.7 90.7 80.7C92.1 78.8 93.7 77.0 95.5 75.5C97.3 74.0 99.4 72.7 101.5 71.7C103.7 70.6 106.0 69.8 108.4 69.2C110.9 68.7 113.5 68.4 116.1 68.3C118.7 68.2 121.5 68.4 124.2 68.7C127.0 69.1 129.8 69.7 132.6 70.4C135.3 71.2 138.1 72.1 140.8 73.1C143.5 74.1 146.3 75.4 148.8 76.5C151.4 77.6 154.4 80.4 156.2 79.7C158.0 79.1 158.5 75.0 159.8 72.5C161.0 70.0 162.3 67.3 163.8 64.8C165.2 62.3 166.7 59.7 168.4 57.4C170.0 55.0 171.8 52.8 173.7 50.7C175.6 48.7 177.5 46.8 179.6 45.2C181.7 43.5 183.9 42.1 186.1 41.0C188.3 39.9 190.6 39.0 192.9 38.4C195.3 37.8 197.6 37.5 200.0 37.5C202.4 37.5 204.7 37.8 207.1 38.4C209.4 39.0 211.7 39.9 213.9 41.0C216.1 42.1 218.3 43.5 220.4 45.2C222.5 46.8 224.4 48.7 226.3 50.7C228.2 52.8 230.0 55.0 231.6 57.4C233.3 59.7 234.8 62.3 236.2 64.8C237.7 67.3 239.0 70.0 240.2 72.5C241.5 75.0 242.0 79.1 243.8 79.7C245.6 80.4 248.6 77.6 251.2 76.5C253.7 75.4 256.5 74.1 259.2 73.1C261.9 72.1 264.7 71.2 267.4 70.4C270.2 69.7 273.0 69.1 275.8 68.7C278.5 68.4 281.3 68.2 283.9 68.3C286.5 68.4 289.1 68.7 291.6 69.2C294.0 69.8 296.3 70.6 298.5 71.7C300.6 72.7 302.7 74.0 304.5 75.5C306.3 77.0 307.9 78.8 309.3 80.7C310.7 82.7 311.9 84.8 312.9 87.1C313.8 89.4 314.6 91.9 315.1 94.5C315.7 97.1 316.0 99.8 316.1 102.6C316.2 105.3 316.1 108.2 315.9 111.1C315.6 113.9 315.2 116.9 314.7 119.7C314.2 122.5 313.4 125.4 312.8 128.2C312.1 130.9 309.9 134.3 310.9 136.0C311.8 137.7 315.9 137.5 318.6 138.3C321.3 139.1 324.2 139.9 326.9 140.8C329.6 141.8 332.4 142.9 335.0 144.1C337.5 145.3 340.1 146.7 342.4 148.2C344.8 149.7 347.0 151.3 348.9 153.0C350.9 154.8 352.7 156.7 354.2 158.7C355.7 160.7 357.0 162.8 357.9 165.0C358.9 167.2 359.6 169.5 360.0 171.8C360.4 174.1 360.6 176.5 360.4 178.9C360.2 181.3 359.7 183.7 359.0 186.1C358.3 188.5 357.3 190.9 356.0 193.2C354.8 195.5 353.2 197.8 351.6 200.0Z" fill="#fff"/>
+                <g transform="translate(53.1 73.4) scale(5.48)" fill="#000"><path d="M29.258 10L28.2169 20.8269H24.8856L23.8445 10L29.258 10Z"/><path d="M22.1211 14.2673C20.3893 14.6845 18.9338 15.3621 17.7549 16.3014C15.6009 17.9583 14.5235 20.328 14.5234 23.4098C14.5234 26.4586 15.6009 28.8282 17.7549 30.5182C19.8753 32.2079 22.8898 33.052 26.7988 33.0524C30.7092 33.0524 33.7248 32.2074 35.8457 30.5173C37.9997 28.8272 39.0771 26.4576 39.0771 23.4089C39.0771 20.3271 37.9997 17.9574 35.8457 16.3005C34.6869 15.3771 33.2604 14.7076 31.5674 14.2887L31.957 11.0915C34.8743 11.5966 37.2804 12.5713 39.1758 14.0143C42.1251 16.2346 43.6005 19.366 43.6006 23.4089C43.6006 27.485 42.1252 30.6339 39.1758 32.8542C36.2601 35.0738 32.1354 36.1829 26.8018 36.1833V36.1852C21.4664 36.1852 17.3401 35.0754 14.4238 32.8552C11.4745 30.6348 10 27.4859 10 23.4098C10.0001 19.3671 11.4747 16.2356 14.4238 14.0153C16.3383 12.5577 18.7743 11.5785 21.7314 11.0778L22.1211 14.2673Z"/></g>
+              </mask>
+              <mask id="tariff-flower-outside">
+                <rect width="400" height="400" fill="#fff"/>
+                <path d="M351.6 200.0C349.9 202.2 348.0 204.3 345.9 206.4C343.9 208.4 341.7 210.4 339.5 212.2C337.2 214.0 334.8 215.8 332.6 217.5C330.3 219.1 326.4 220.3 326.1 222.2C325.7 224.1 329.0 226.6 330.5 228.9C332.1 231.3 333.8 233.7 335.2 236.2C336.7 238.7 338.1 241.3 339.3 243.9C340.5 246.5 341.6 249.2 342.4 251.8C343.3 254.5 343.9 257.2 344.3 259.8C344.6 262.4 344.8 265.0 344.7 267.5C344.5 269.9 344.1 272.4 343.5 274.7C342.8 277.0 341.9 279.2 340.7 281.2C339.6 283.3 338.1 285.2 336.4 286.9C334.8 288.6 332.8 290.2 330.8 291.6C328.7 292.9 326.3 294.1 323.9 295.1C321.4 296.0 318.8 296.8 316.1 297.4C313.4 298.0 310.5 298.4 307.7 298.7C304.8 298.9 301.9 299.0 299.0 299.0C296.1 299.0 293.1 298.7 290.3 298.6C287.6 298.4 283.8 296.8 282.3 298.1C280.8 299.3 281.7 303.3 281.4 306.1C281.1 308.9 280.8 311.8 280.3 314.7C279.8 317.5 279.2 320.4 278.5 323.2C277.7 326.0 276.8 328.7 275.8 331.3C274.7 333.8 273.5 336.3 272.1 338.5C270.7 340.8 269.2 342.8 267.5 344.7C265.8 346.5 263.9 348.1 261.9 349.5C259.9 350.8 257.8 351.9 255.6 352.7C253.4 353.5 251.0 354.0 248.6 354.3C246.3 354.5 243.8 354.5 241.3 354.2C238.8 353.9 236.3 353.3 233.8 352.5C231.3 351.6 228.8 350.5 226.3 349.3C223.9 348.0 221.4 346.5 219.1 344.8C216.7 343.2 214.4 341.3 212.2 339.5C210.0 337.6 207.9 335.5 205.8 333.6C203.8 331.7 201.9 328.0 200.0 328.0C198.1 328.0 196.2 331.7 194.2 333.6C192.1 335.5 190.0 337.6 187.8 339.5C185.6 341.3 183.3 343.2 180.9 344.8C178.6 346.5 176.1 348.0 173.7 349.3C171.2 350.5 168.7 351.6 166.2 352.5C163.7 353.3 161.2 353.9 158.7 354.2C156.2 354.5 153.7 354.5 151.4 354.3C149.0 354.0 146.6 353.5 144.4 352.7C142.2 351.9 140.1 350.8 138.1 349.5C136.1 348.1 134.2 346.5 132.5 344.7C130.8 342.8 129.3 340.8 127.9 338.5C126.5 336.3 125.3 333.8 124.2 331.3C123.2 328.7 122.3 326.0 121.5 323.2C120.8 320.4 120.2 317.5 119.7 314.7C119.2 311.8 118.9 308.9 118.6 306.1C118.3 303.3 119.2 299.3 117.7 298.1C116.2 296.8 112.4 298.4 109.7 298.6C106.9 298.7 103.9 299.0 101.0 299.0C98.1 299.0 95.2 298.9 92.3 298.7C89.5 298.4 86.6 298.0 83.9 297.4C81.2 296.8 78.6 296.0 76.1 295.1C73.7 294.1 71.3 292.9 69.2 291.6C67.2 290.2 65.2 288.6 63.6 286.9C61.9 285.2 60.4 283.3 59.3 281.3C58.1 279.2 57.2 277.0 56.5 274.7C55.9 272.4 55.5 269.9 55.3 267.5C55.2 265.0 55.4 262.4 55.7 259.8C56.1 257.2 56.7 254.5 57.6 251.8C58.4 249.2 59.5 246.5 60.7 243.9C61.9 241.3 63.3 238.7 64.8 236.2C66.2 233.7 67.9 231.3 69.5 228.9C71.0 226.6 74.3 224.1 73.9 222.2C73.6 220.3 69.7 219.1 67.4 217.5C65.2 215.8 62.8 214.0 60.5 212.2C58.3 210.4 56.1 208.4 54.1 206.4C52.0 204.3 50.1 202.2 48.4 200.0C46.8 197.8 45.2 195.5 44.0 193.2C42.7 190.9 41.7 188.5 41.0 186.1C40.3 183.7 39.8 181.3 39.6 178.9C39.4 176.5 39.6 174.1 40.0 171.8C40.4 169.5 41.1 167.2 42.1 165.0C43.0 162.8 44.3 160.7 45.8 158.7C47.3 156.7 49.1 154.8 51.1 153.0C53.0 151.3 55.2 149.7 57.6 148.2C59.9 146.7 62.5 145.3 65.0 144.1C67.6 142.9 70.4 141.8 73.1 140.8C75.8 139.9 78.7 139.1 81.4 138.3C84.1 137.5 88.2 137.7 89.1 136.0C90.1 134.3 87.9 130.9 87.2 128.2C86.6 125.4 85.8 122.5 85.3 119.7C84.8 116.9 84.4 113.9 84.1 111.1C83.9 108.2 83.8 105.3 83.9 102.6C84.0 99.8 84.3 97.1 84.9 94.5C85.4 91.9 86.2 89.4 87.1 87.1C88.1 84.8 89.3 82.7 90.7 80.7C92.1 78.8 93.7 77.0 95.5 75.5C97.3 74.0 99.4 72.7 101.5 71.7C103.7 70.6 106.0 69.8 108.4 69.2C110.9 68.7 113.5 68.4 116.1 68.3C118.7 68.2 121.5 68.4 124.2 68.7C127.0 69.1 129.8 69.7 132.6 70.4C135.3 71.2 138.1 72.1 140.8 73.1C143.5 74.1 146.3 75.4 148.8 76.5C151.4 77.6 154.4 80.4 156.2 79.7C158.0 79.1 158.5 75.0 159.8 72.5C161.0 70.0 162.3 67.3 163.8 64.8C165.2 62.3 166.7 59.7 168.4 57.4C170.0 55.0 171.8 52.8 173.7 50.7C175.6 48.7 177.5 46.8 179.6 45.2C181.7 43.5 183.9 42.1 186.1 41.0C188.3 39.9 190.6 39.0 192.9 38.4C195.3 37.8 197.6 37.5 200.0 37.5C202.4 37.5 204.7 37.8 207.1 38.4C209.4 39.0 211.7 39.9 213.9 41.0C216.1 42.1 218.3 43.5 220.4 45.2C222.5 46.8 224.4 48.7 226.3 50.7C228.2 52.8 230.0 55.0 231.6 57.4C233.3 59.7 234.8 62.3 236.2 64.8C237.7 67.3 239.0 70.0 240.2 72.5C241.5 75.0 242.0 79.1 243.8 79.7C245.6 80.4 248.6 77.6 251.2 76.5C253.7 75.4 256.5 74.1 259.2 73.1C261.9 72.1 264.7 71.2 267.4 70.4C270.2 69.7 273.0 69.1 275.8 68.7C278.5 68.4 281.3 68.2 283.9 68.3C286.5 68.4 289.1 68.7 291.6 69.2C294.0 69.8 296.3 70.6 298.5 71.7C300.6 72.7 302.7 74.0 304.5 75.5C306.3 77.0 307.9 78.8 309.3 80.7C310.7 82.7 311.9 84.8 312.9 87.1C313.8 89.4 314.6 91.9 315.1 94.5C315.7 97.1 316.0 99.8 316.1 102.6C316.2 105.3 316.1 108.2 315.9 111.1C315.6 113.9 315.2 116.9 314.7 119.7C314.2 122.5 313.4 125.4 312.8 128.2C312.1 130.9 309.9 134.3 310.9 136.0C311.8 137.7 315.9 137.5 318.6 138.3C321.3 139.1 324.2 139.9 326.9 140.8C329.6 141.8 332.4 142.9 335.0 144.1C337.5 145.3 340.1 146.7 342.4 148.2C344.8 149.7 347.0 151.3 348.9 153.0C350.9 154.8 352.7 156.7 354.2 158.7C355.7 160.7 357.0 162.8 357.9 165.0C358.9 167.2 359.6 169.5 360.0 171.8C360.4 174.1 360.6 176.5 360.4 178.9C360.2 181.3 359.7 183.7 359.0 186.1C358.3 188.5 357.3 190.9 356.0 193.2C354.8 195.5 353.2 197.8 351.6 200.0Z" fill="#000"/>
+              </mask>
+            </defs>
+            <path d="M351.6 200.0C349.9 202.2 348.0 204.3 345.9 206.4C343.9 208.4 341.7 210.4 339.5 212.2C337.2 214.0 334.8 215.8 332.6 217.5C330.3 219.1 326.4 220.3 326.1 222.2C325.7 224.1 329.0 226.6 330.5 228.9C332.1 231.3 333.8 233.7 335.2 236.2C336.7 238.7 338.1 241.3 339.3 243.9C340.5 246.5 341.6 249.2 342.4 251.8C343.3 254.5 343.9 257.2 344.3 259.8C344.6 262.4 344.8 265.0 344.7 267.5C344.5 269.9 344.1 272.4 343.5 274.7C342.8 277.0 341.9 279.2 340.7 281.2C339.6 283.3 338.1 285.2 336.4 286.9C334.8 288.6 332.8 290.2 330.8 291.6C328.7 292.9 326.3 294.1 323.9 295.1C321.4 296.0 318.8 296.8 316.1 297.4C313.4 298.0 310.5 298.4 307.7 298.7C304.8 298.9 301.9 299.0 299.0 299.0C296.1 299.0 293.1 298.7 290.3 298.6C287.6 298.4 283.8 296.8 282.3 298.1C280.8 299.3 281.7 303.3 281.4 306.1C281.1 308.9 280.8 311.8 280.3 314.7C279.8 317.5 279.2 320.4 278.5 323.2C277.7 326.0 276.8 328.7 275.8 331.3C274.7 333.8 273.5 336.3 272.1 338.5C270.7 340.8 269.2 342.8 267.5 344.7C265.8 346.5 263.9 348.1 261.9 349.5C259.9 350.8 257.8 351.9 255.6 352.7C253.4 353.5 251.0 354.0 248.6 354.3C246.3 354.5 243.8 354.5 241.3 354.2C238.8 353.9 236.3 353.3 233.8 352.5C231.3 351.6 228.8 350.5 226.3 349.3C223.9 348.0 221.4 346.5 219.1 344.8C216.7 343.2 214.4 341.3 212.2 339.5C210.0 337.6 207.9 335.5 205.8 333.6C203.8 331.7 201.9 328.0 200.0 328.0C198.1 328.0 196.2 331.7 194.2 333.6C192.1 335.5 190.0 337.6 187.8 339.5C185.6 341.3 183.3 343.2 180.9 344.8C178.6 346.5 176.1 348.0 173.7 349.3C171.2 350.5 168.7 351.6 166.2 352.5C163.7 353.3 161.2 353.9 158.7 354.2C156.2 354.5 153.7 354.5 151.4 354.3C149.0 354.0 146.6 353.5 144.4 352.7C142.2 351.9 140.1 350.8 138.1 349.5C136.1 348.1 134.2 346.5 132.5 344.7C130.8 342.8 129.3 340.8 127.9 338.5C126.5 336.3 125.3 333.8 124.2 331.3C123.2 328.7 122.3 326.0 121.5 323.2C120.8 320.4 120.2 317.5 119.7 314.7C119.2 311.8 118.9 308.9 118.6 306.1C118.3 303.3 119.2 299.3 117.7 298.1C116.2 296.8 112.4 298.4 109.7 298.6C106.9 298.7 103.9 299.0 101.0 299.0C98.1 299.0 95.2 298.9 92.3 298.7C89.5 298.4 86.6 298.0 83.9 297.4C81.2 296.8 78.6 296.0 76.1 295.1C73.7 294.1 71.3 292.9 69.2 291.6C67.2 290.2 65.2 288.6 63.6 286.9C61.9 285.2 60.4 283.3 59.3 281.3C58.1 279.2 57.2 277.0 56.5 274.7C55.9 272.4 55.5 269.9 55.3 267.5C55.2 265.0 55.4 262.4 55.7 259.8C56.1 257.2 56.7 254.5 57.6 251.8C58.4 249.2 59.5 246.5 60.7 243.9C61.9 241.3 63.3 238.7 64.8 236.2C66.2 233.7 67.9 231.3 69.5 228.9C71.0 226.6 74.3 224.1 73.9 222.2C73.6 220.3 69.7 219.1 67.4 217.5C65.2 215.8 62.8 214.0 60.5 212.2C58.3 210.4 56.1 208.4 54.1 206.4C52.0 204.3 50.1 202.2 48.4 200.0C46.8 197.8 45.2 195.5 44.0 193.2C42.7 190.9 41.7 188.5 41.0 186.1C40.3 183.7 39.8 181.3 39.6 178.9C39.4 176.5 39.6 174.1 40.0 171.8C40.4 169.5 41.1 167.2 42.1 165.0C43.0 162.8 44.3 160.7 45.8 158.7C47.3 156.7 49.1 154.8 51.1 153.0C53.0 151.3 55.2 149.7 57.6 148.2C59.9 146.7 62.5 145.3 65.0 144.1C67.6 142.9 70.4 141.8 73.1 140.8C75.8 139.9 78.7 139.1 81.4 138.3C84.1 137.5 88.2 137.7 89.1 136.0C90.1 134.3 87.9 130.9 87.2 128.2C86.6 125.4 85.8 122.5 85.3 119.7C84.8 116.9 84.4 113.9 84.1 111.1C83.9 108.2 83.8 105.3 83.9 102.6C84.0 99.8 84.3 97.1 84.9 94.5C85.4 91.9 86.2 89.4 87.1 87.1C88.1 84.8 89.3 82.7 90.7 80.7C92.1 78.8 93.7 77.0 95.5 75.5C97.3 74.0 99.4 72.7 101.5 71.7C103.7 70.6 106.0 69.8 108.4 69.2C110.9 68.7 113.5 68.4 116.1 68.3C118.7 68.2 121.5 68.4 124.2 68.7C127.0 69.1 129.8 69.7 132.6 70.4C135.3 71.2 138.1 72.1 140.8 73.1C143.5 74.1 146.3 75.4 148.8 76.5C151.4 77.6 154.4 80.4 156.2 79.7C158.0 79.1 158.5 75.0 159.8 72.5C161.0 70.0 162.3 67.3 163.8 64.8C165.2 62.3 166.7 59.7 168.4 57.4C170.0 55.0 171.8 52.8 173.7 50.7C175.6 48.7 177.5 46.8 179.6 45.2C181.7 43.5 183.9 42.1 186.1 41.0C188.3 39.9 190.6 39.0 192.9 38.4C195.3 37.8 197.6 37.5 200.0 37.5C202.4 37.5 204.7 37.8 207.1 38.4C209.4 39.0 211.7 39.9 213.9 41.0C216.1 42.1 218.3 43.5 220.4 45.2C222.5 46.8 224.4 48.7 226.3 50.7C228.2 52.8 230.0 55.0 231.6 57.4C233.3 59.7 234.8 62.3 236.2 64.8C237.7 67.3 239.0 70.0 240.2 72.5C241.5 75.0 242.0 79.1 243.8 79.7C245.6 80.4 248.6 77.6 251.2 76.5C253.7 75.4 256.5 74.1 259.2 73.1C261.9 72.1 264.7 71.2 267.4 70.4C270.2 69.7 273.0 69.1 275.8 68.7C278.5 68.4 281.3 68.2 283.9 68.3C286.5 68.4 289.1 68.7 291.6 69.2C294.0 69.8 296.3 70.6 298.5 71.7C300.6 72.7 302.7 74.0 304.5 75.5C306.3 77.0 307.9 78.8 309.3 80.7C310.7 82.7 311.9 84.8 312.9 87.1C313.8 89.4 314.6 91.9 315.1 94.5C315.7 97.1 316.0 99.8 316.1 102.6C316.2 105.3 316.1 108.2 315.9 111.1C315.6 113.9 315.2 116.9 314.7 119.7C314.2 122.5 313.4 125.4 312.8 128.2C312.1 130.9 309.9 134.3 310.9 136.0C311.8 137.7 315.9 137.5 318.6 138.3C321.3 139.1 324.2 139.9 326.9 140.8C329.6 141.8 332.4 142.9 335.0 144.1C337.5 145.3 340.1 146.7 342.4 148.2C344.8 149.7 347.0 151.3 348.9 153.0C350.9 154.8 352.7 156.7 354.2 158.7C355.7 160.7 357.0 162.8 357.9 165.0C358.9 167.2 359.6 169.5 360.0 171.8C360.4 174.1 360.6 176.5 360.4 178.9C360.2 181.3 359.7 183.7 359.0 186.1C358.3 188.5 357.3 190.9 356.0 193.2C354.8 195.5 353.2 197.8 351.6 200.0Z" fill="none" stroke="#fff" stroke-opacity="0.15" stroke-width="40" mask="url(#tariff-flower-outside)"/>
+            <g mask="url(#tariff-flower-hole)">
+              <rect width="400" height="400" fill="url(#tariff-flower-body)"/>
+            </g>
+            <g class="tariffs__flower-glow" filter="url(#tariff-flower-glow)">
+              <rect width="400" height="400" fill="#000" mask="url(#tariff-flower-hole)"/>
+            </g>
+            <ellipse cx="150" cy="118" rx="54" ry="26" fill="#fff" opacity="0.18" transform="rotate(-32 150 118)"/>
+          </svg>
+        </button>
+        <p class="tariffs__free">Включите VPN<br>бесплатно</p>
+        <p class="tariffs__or" aria-hidden="true">
+          <img src="img/icons/arrow-small.svg" width="10" height="15" alt="">
+          <span>или</span>
+          <img class="tariffs__or-down" src="img/icons/arrow-small.svg" width="10" height="15" alt="">
+        </p>
+        <h2 class="tariffs__title" id="tariffs-title">Выберите<br>тариф</h2>
+
+        <div class="tariffs__slider keen-slider" data-tariff-slider>
+          <div class="tariffs__slide keen-slider__slide" data-tariff="personal" role="group" aria-label="Тариф «Личный»">
+            <img class="tariffs__burger" src="img/tariffs/personal.webp" width="526" height="600" alt="Тариф «Личный»" loading="lazy">
+          </div>
+          <div class="tariffs__slide keen-slider__slide" data-tariff="advanced" role="group" aria-label="Тариф «Продвинутый»">
+            <img class="tariffs__burger" src="img/tariffs/advanced.webp" width="600" height="600" alt="Тариф «Продвинутый»" loading="lazy">
+          </div>
+          <div class="tariffs__slide keen-slider__slide" data-tariff="family" role="group" aria-label="Тариф «Семья»">
+            <img class="tariffs__burger" src="img/tariffs/family.webp" width="600" height="600" alt="Тариф «Семья»" loading="lazy">
+          </div>
+          <div class="tariffs__slide keen-slider__slide" data-tariff="constructor" role="group" aria-label="Тариф «Конструктор»">
+            <img class="tariffs__burger" src="img/tariffs/constructor.webp" width="577" height="600" alt="Тариф «Конструктор»" loading="lazy">
+          </div>
+        </div>
+        <div class="tariffs__nav">
+          <button class="tariffs__arrow tariffs__arrow_prev" type="button" aria-label="Предыдущий тариф" data-tariff-prev></button>
+          <button class="tariffs__arrow tariffs__arrow_next" type="button" aria-label="Следующий тариф" data-tariff-next></button>
+        </div>
+
+        <div class="tariffs__info" aria-live="polite">
+          <div class="tariffs__pills">
+            <span class="tariffs__devices">
+              <span class="tariffs__devices-count" data-tariff-devices>03</span>
+              <span class="tariffs__devices-thumbs" aria-hidden="true" data-tariff-thumbs></span>
+            </span>
+            <span class="tariffs__price" data-tariff-price>220 ₽</span>
+          </div>
+          <p class="tariffs__name" data-tariff-name>Продвинутый</p>
+          <p class="tariffs__traffic"><span class="tariffs__traffic-accent">+ 50gb</span>&nbsp; Белого трафика</p>
+
+          <div class="tariffs__periods tabs tabs_theme_dark" role="tablist" aria-label="Период оплаты" data-tabs data-tariff-periods>
+            <span class="tabs__indicator" aria-hidden="true"></span>
+            <button class="tabs__tab tabs__tab_active" type="button" role="tab" aria-selected="true" data-period="1">1 мес</button>
+            <button class="tabs__tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-period="3">3 мес</button>
+            <button class="tabs__tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-period="12">Год</button>
+          </div>
+
+          <div class="tariffs__stepper" data-tariff-stepper hidden>
+            <button class="tariffs__step-button tariffs__step-button_minus" type="button" aria-label="Меньше устройств" data-stepper-minus>−</button>
+            <p class="tariffs__step-value">
+              <img src="img/icons/pay-device-a.svg" width="10" height="14" alt="">
+              <span data-stepper-value>05</span>
+              <span class="visually-hidden">устройств</span>
+            </p>
+            <button class="tariffs__step-button tariffs__step-button_plus" type="button" aria-label="Больше устройств" data-stepper-plus>+</button>
+          </div>
+
+          <div class="tariffs__action">
+            <button class="tariffs__connect button button_size_l glass glass_theme_clear" type="button" data-tariff-connect>Подключить</button>
+            <img class="tariffs__discount" src="img/tariffs/sticker-31.webp" width="98" height="56" alt="Скидка до 31%" loading="lazy">
+          </div>
+          <p class="tariffs__note">Автоматически создадим профиль<br>и добавим VPN</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mini-app page__tile page__tile_area_mini-app" id="mini-app" aria-labelledby="mini-app-title" data-mini-app>
+      <h2 class="mini-app__title heading" id="mini-app-title" data-reveal>У нас есть<br>Mini-App</h2>
+      <p class="mini-app__text heading-note" data-reveal>Тут можно управлять VPN. И ещё зарабатывать на друзьях =)</p>
+      <div class="mini-app__tabs tabs" role="tablist" aria-label="Разделы Mini-App" data-tabs>
+        <span class="tabs__indicator glass glass_theme_light" aria-hidden="true"></span>
+        <button class="tabs__tab" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="mini-app-stage" data-spot="control">Управление</button>
+        <button class="tabs__tab tabs__tab_active" type="button" role="tab" aria-selected="true" aria-controls="mini-app-stage" data-spot="friends">Друзья</button>
+        <button class="tabs__tab" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="mini-app-stage" data-spot="gifts">Подарки</button>
+      </div>
+      <div class="mini-app__stage" id="mini-app-stage" role="tabpanel" data-mini-app-stage>
+        <button class="mini-app__arrow mini-app__arrow_prev" type="button" aria-label="Предыдущий раздел" data-mini-app-prev>
+          <img src="img/icons/arrow-mini.svg" width="11" height="17" alt="">
+        </button>
+        <div class="mini-app__device">
+          <img class="mini-app__phone" src="img/mini-app/phone.webp" width="474" height="512" alt="Экран Mini-App Burger VPN: приглашённые друзья и кнопка «Подарить VPN»" loading="lazy">
+          <span class="mini-app__spot" aria-hidden="true"></span>
+        </div>
+        <button class="mini-app__arrow mini-app__arrow_next" type="button" aria-label="Следующий раздел" data-mini-app-next>
+          <img src="img/icons/arrow-mini.svg" width="11" height="17" alt="">
+        </button>
+        <p class="mini-app__caption" aria-live="polite" data-mini-app-caption>Приглашайте друзей и дарите им VPN</p>
+      </div>
+      <a class="mini-app__button button button_size_m glass glass_theme_dark" href="https://t.me/VpnBurger_bot" target="_blank" rel="noopener noreferrer">Сразу в Mini-app</a>
+      <p class="mini-app__note">Можно так долго не листать</p>
+    </section>
+
+    <section class="cashback cashback_level_3 page__tile page__tile_area_cashback" id="referral" aria-labelledby="cashback-title" data-cashback>
+      <h2 class="cashback__title heading" id="cashback-title" data-reveal>Кешбэк<br>от друзей</h2>
+      <p class="cashback__subtitle heading-note" data-reveal>Уровни реферальной системы</p>
+      <div class="cashback__stage" role="slider" tabindex="0" aria-label="Количество приглашённых друзей" aria-valuemin="0" aria-valuemax="31" aria-valuenow="15" aria-valuetext="15 друзей, уровень 3 из 4" data-cashback-stage>
+        <svg class="cashback__gauge" viewBox="0 0 440 372" aria-hidden="true" data-cashback-gauge></svg>
+        <img class="cashback__hero cashback__hero_level_1" src="img/cashback/potato.webp" width="760" height="760" alt="" loading="lazy">
+        <img class="cashback__hero cashback__hero_level_2" src="img/cashback/chef.webp" width="760" height="760" alt="" loading="lazy">
+        <img class="cashback__hero cashback__hero_level_3" src="img/cashback/boss.webp" width="697" height="760" alt="" loading="lazy">
+        <img class="cashback__hero cashback__hero_level_4" src="img/cashback/king.webp" width="760" height="760" alt="" loading="lazy">
+        <span class="cashback__fade" aria-hidden="true"></span>
+        <svg class="cashback__name cashback__name_level_1" viewBox="0 0 283 50" aria-hidden="true">
+          <defs>
+            <linearGradient id="cashback-stroke-1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fffaf0"/><stop offset="0.45" stop-color="#fde9b0"/><stop offset="0.8" stop-color="#f0d5b8"/><stop offset="1" stop-color="#ffffff"/>
+            </linearGradient>
+          </defs>
+          <text x="141.5" y="38" stroke="url(#cashback-stroke-1)">Кунжутик</text>
+        </svg>
+        <svg class="cashback__name cashback__name_level_2" viewBox="0 0 241 66" aria-hidden="true">
+          <defs>
+            <linearGradient id="cashback-stroke-2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#eaffd0"/><stop offset="0.45" stop-color="#8dd82b"/><stop offset="0.85" stop-color="#e9f47a"/><stop offset="1" stop-color="#f4f4f4"/>
+            </linearGradient>
+          </defs>
+          <text x="120.5" y="54" stroke="url(#cashback-stroke-2)">Шеф</text>
+        </svg>
+        <svg class="cashback__name cashback__name_level_3" viewBox="0 0 270 84" aria-hidden="true">
+          <defs>
+            <linearGradient id="cashback-stroke-3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff"/><stop offset="0.4" stop-color="#ff8b4d"/><stop offset="0.7" stop-color="#ff6bbf"/><stop offset="1" stop-color="#f4f4f4"/>
+            </linearGradient>
+          </defs>
+          <text x="135" y="40" stroke="url(#cashback-stroke-3)"><tspan x="135">Босс—</tspan><tspan x="135" dy="32">котлетос</tspan></text>
+        </svg>
+        <svg class="cashback__name cashback__name_level_4" viewBox="0 0 259 84" aria-hidden="true">
+          <defs>
+            <linearGradient id="cashback-stroke-4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff"/><stop offset="0.4" stop-color="#fe2dea"/><stop offset="0.7" stop-color="#da6bff"/><stop offset="1" stop-color="#f4f4f4"/>
+            </linearGradient>
+          </defs>
+          <text x="129.5" y="40" stroke="url(#cashback-stroke-4)"><tspan x="129.5">Бургер—</tspan><tspan x="129.5" dy="32">король</tspan></text>
+        </svg>
+      </div>
+      <p class="cashback__level"><span data-cashback-level>3</span> уровень <span class="cashback__level-total">из 4</span></p>
+      <div class="cashback__cards">
+        <div class="cashback__card cashback__card_reward">
+          <span class="cashback__card-unit" data-cashback-unit>%</span>
+          <img class="cashback__card-icon" src="img/icons/wifi-small.svg" width="29" height="18" alt="" data-cashback-icon>
+          <span class="cashback__card-value" data-cashback-reward>40</span>
+          <span class="cashback__card-label" data-cashback-reward-label>Кешбэк ₽</span>
+        </div>
+        <div class="cashback__card cashback__card_friends glass glass_theme_light">
+          <img class="cashback__card-icon cashback__card-icon_person" src="img/icons/person.svg" width="27" height="18" alt="">
+          <span class="cashback__card-value" data-cashback-friends>15+</span>
+          <span class="cashback__card-label">Друзей</span>
+        </div>
+      </div>
+      <p class="cashback__text heading-note">Приглашайте друзей и зарабатывайте<br>проценты от их оплат.</p>
+    </section>
+
+    <section class="reviews page__tile page__tile_area_reviews" id="reviews" aria-labelledby="reviews-title">
+      <h2 class="reviews__title heading" id="reviews-title" data-reveal>Что говорят<br>пользователи</h2>
+      <p class="reviews__rating" data-reveal>
+        <span class="reviews__score">4.8</span>
+        <span class="reviews__scale">из 5.0</span>
+        <span class="reviews__stars" role="img" aria-label="Рейтинг 4,8 из 5">
+          <img src="img/icons/star-pink.svg" width="28" height="28" alt="">
+          <img src="img/icons/star-pink.svg" width="28" height="28" alt="">
+          <img src="img/icons/star-pink.svg" width="28" height="28" alt="">
+          <img src="img/icons/star-pink.svg" width="28" height="28" alt="">
+          <img src="img/icons/star-half.svg" width="28" height="28" alt="">
+        </span>
+      </p>
+      <div class="reviews__collage">
+        <figure class="reviews__item">
+          <div class="reviews__photo" style="--x: 5.68%; --y: 1.18%; --w: 28.18%; --i: 0;">
+            <img class="reviews__image" src="img/reviews/misha.webp" width="254" height="254" alt="" loading="lazy">
+            <svg class="reviews__name" viewBox="0 0 100 100" aria-hidden="true"><path id="review-path-1" d="M9,50 a41,41 0 1,1 82,0 a41,41 0 1,1 -82,0" fill="none"/><text><textPath href="#review-path-1" startOffset="2%">Миша, 23 · Владикавказ</textPath></text></svg>
+          </div>
+          <span class="reviews__badge" style="--x: 22.05%; --y: 15.95%;">4<img src="img/icons/star-badge.svg" width="25" height="25" alt=""></span>
+          <figcaption class="visually-hidden">Миша, 23 года, Владикавказ. Оценка 4 из 5</figcaption>
+          <blockquote class="reviews__quote" style="--x: 7.5%; --y: 19.61%; --w: 39.09%;">
+            <p>В&nbsp;центре интернет почти перестал работать — одни банки. <strong>Поставил — всё вернулось</strong></p>
+          </blockquote>
+        </figure>
+        <figure class="reviews__item">
+          <div class="reviews__photo" style="--x: 47.95%; --y: 2.61%; --w: 42.73%; --i: 1;">
+            <img class="reviews__image" src="img/reviews/nikita.webp" width="391" height="391" alt="" loading="lazy">
+            <svg class="reviews__name" viewBox="0 0 100 100" aria-hidden="true"><path id="review-path-2" d="M9,50 a41,41 0 1,1 82,0 a41,41 0 1,1 -82,0" fill="none"/><text><textPath href="#review-path-2" startOffset="4%">Никита, 31 · Москва</textPath></text></svg>
+          </div>
+          <span class="reviews__badge" style="--x: 51.14%; --y: 22.88%;">5<img src="img/icons/star-badge.svg" width="25" height="25" alt=""></span>
+          <figcaption class="visually-hidden">Никита, 31 год, Москва. Оценка 5 из 5</figcaption>
+          <blockquote class="reviews__quote" style="--x: 50.23%; --y: 29.41%; --w: 46.36%;">
+            <p>Месяц не мог созвониться с дочкой в Тель-Авиве. <strong>Поставил сам за 5 минут. WhatsApp снова работает.</strong></p>
+          </blockquote>
+        </figure>
+        <figure class="reviews__item">
+          <div class="reviews__photo" style="--x: 5.68%; --y: 39.48%; --w: 28.18%; --i: 2;">
+            <img class="reviews__image" src="img/reviews/ekaterina.webp" width="254" height="254" alt="" loading="lazy">
+            <svg class="reviews__name" viewBox="0 0 100 100" aria-hidden="true"><path id="review-path-3" d="M9,50 a41,41 0 1,1 82,0 a41,41 0 1,1 -82,0" fill="none"/><text><textPath href="#review-path-3" startOffset="0%">Екатерина, 21 · Благовещенск</textPath></text></svg>
+          </div>
+          <span class="reviews__badge" style="--x: 9.55%; --y: 53.86%;">4<img src="img/icons/star-badge.svg" width="25" height="25" alt=""></span>
+          <figcaption class="visually-hidden">Екатерина, 21 год, Благовещенск. Оценка 4 из 5</figcaption>
+          <blockquote class="reviews__quote" style="--x: 6.82%; --y: 58.82%; --w: 30.68%;">
+            <p>Оплатила картой, пришло письмо — и&nbsp;всё. YouTube на планшете, Telegram на телефоне.</p>
+          </blockquote>
+        </figure>
+        <figure class="reviews__item">
+          <div class="reviews__photo" style="--x: 34.09%; --y: 48.63%; --w: 30.45%; --i: 3;">
+            <img class="reviews__image" src="img/reviews/georgiy.webp" width="275" height="275" alt="" loading="lazy">
+            <svg class="reviews__name" viewBox="0 0 100 100" aria-hidden="true"><path id="review-path-4" d="M9,50 a41,41 0 1,1 82,0 a41,41 0 1,1 -82,0" fill="none"/><text><textPath href="#review-path-4" startOffset="2%">Георгий, 19 · Кисловодск</textPath></text></svg>
+          </div>
+          <span class="reviews__badge" style="--x: 53.64%; --y: 64.71%;">5<img src="img/icons/star-badge.svg" width="25" height="25" alt=""></span>
+          <figcaption class="visually-hidden">Георгий, 19 лет, Кисловодск. Оценка 5 из 5</figcaption>
+          <blockquote class="reviews__quote" style="--x: 37.05%; --y: 68.76%; --w: 46.36%;">
+            <p>Месяц не мог созвониться с дочкой в Тель-Авиве. <strong>Поставил сам за 5 минут. WhatsApp снова работает.</strong></p>
+          </blockquote>
+        </figure>
+        <figure class="reviews__item reviews__item_video">
+          <div class="reviews__photo reviews__photo_video" style="--x: 70.45%; --y: 47.19%; --w: 24.55%; --i: 4;">
+            <img class="reviews__image" src="img/reviews/tikhon.webp" width="190" height="190" alt="" loading="lazy">
+            <svg class="reviews__name" viewBox="0 0 100 100" aria-hidden="true"><path id="review-path-5" d="M9,50 a41,41 0 1,1 82,0 a41,41 0 1,1 -82,0" fill="none"/><text><textPath href="#review-path-5" startOffset="4%">Тихон, 17 · Москва</textPath></text></svg>
+            <img class="reviews__play" src="img/icons/play.svg" width="21" height="19" alt="">
+          </div>
+          <span class="reviews__badge" style="--x: 79.32%; --y: 58.56%;">5<img src="img/icons/star-badge.svg" width="25" height="25" alt=""></span>
+          <figcaption class="reviews__label" style="--x: 76.36%; --y: 61.05%;">Видео<br>отзыв<span class="visually-hidden">: Тихон, 17 лет, Москва, оценка 5 из 5</span></figcaption>
+        </figure>
+        <figure class="reviews__item reviews__item_video">
+          <div class="reviews__photo reviews__photo_video" style="--x: 70.45%; --y: 82.35%; --w: 24.55%; --i: 5;">
+            <img class="reviews__image" src="img/reviews/misha-video.webp" width="190" height="190" alt="" loading="lazy">
+            <svg class="reviews__name" viewBox="0 0 100 100" aria-hidden="true"><path id="review-path-6" d="M9,50 a41,41 0 1,1 82,0 a41,41 0 1,1 -82,0" fill="none"/><text><textPath href="#review-path-6" startOffset="2%">Миша, 23 · Владикавказ</textPath></text></svg>
+            <img class="reviews__play" src="img/icons/play.svg" width="21" height="19" alt="">
+          </div>
+          <span class="reviews__badge" style="--x: 79.55%; --y: 93.73%;">5<img src="img/icons/star-badge.svg" width="25" height="25" alt=""></span>
+          <figcaption class="reviews__label" style="--x: 76.36%; --y: 96.21%;">Видео<br>отзыв<span class="visually-hidden">: Миша, 23 года, Владикавказ, оценка 5 из 5</span></figcaption>
+        </figure>
+        <figure class="reviews__item reviews__item_video">
+          <div class="reviews__photo reviews__photo_video" style="--x: 7.05%; --y: 82.35%; --w: 24.55%; --i: 6;">
+            <img class="reviews__image" src="img/reviews/misha.webp" width="254" height="254" alt="" loading="lazy">
+            <svg class="reviews__name" viewBox="0 0 100 100" aria-hidden="true"><path id="review-path-7" d="M9,50 a41,41 0 1,1 82,0 a41,41 0 1,1 -82,0" fill="none"/><text><textPath href="#review-path-7" startOffset="2%">Миша, 23 · Владикавказ</textPath></text></svg>
+            <img class="reviews__play" src="img/icons/play.svg" width="21" height="19" alt="">
+          </div>
+          <span class="reviews__badge" style="--x: 16.36%; --y: 93.73%;">5<img src="img/icons/star-badge.svg" width="25" height="25" alt=""></span>
+          <figcaption class="reviews__label" style="--x: 12.95%; --y: 96.21%;">Видео<br>отзыв<span class="visually-hidden">: Миша, 23 года, Владикавказ, оценка 5 из 5</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="launch page__tile page__tile_area_launch" aria-labelledby="launch-title" data-launch>
+      <div class="launch__card">
+        <p class="launch__counter" id="launch-title">
+          <img class="launch__counter-icon" src="img/icons/person-counter.svg" width="57" height="42" alt="">
+          <span class="launch__count" data-count-to="21325" data-launch-count>21 325</span>
+          <span class="launch__count-label">Уже включили Burger VPN</span>
+        </p>
+        <div class="launch__switch" data-swipe>
+          <button class="launch__knob" type="button" aria-label="Потяните вправо или нажмите, чтобы включить VPN на 3 дня бесплатно" data-swipe-knob>
+            <span class="launch__knob-text">VPN</span>
+          </button>
+          <span class="launch__track-arrow" aria-hidden="true"><img src="img/icons/arrow-toggle.svg" width="14" height="21" alt=""></span>
+          <span class="launch__track-text" aria-hidden="true">Free<br>3 дня</span>
+        </div>
+        <p class="launch__text">Вы тоже можете включить<br>VPN прямо сейчас</p>
+      </div>
+    </section>
+
+    <section class="faq page__tile page__tile_area_faq" id="faq" aria-labelledby="faq-title" data-faq>
+      <h2 class="faq__title heading" id="faq-title" data-reveal>Частые<br>вопросы</h2>
+      <div class="faq__tabs tabs" role="tablist" aria-label="Тема вопросов" data-tabs>
+        <span class="tabs__indicator glass glass_theme_light" aria-hidden="true"></span>
+        <button class="tabs__tab tabs__tab_active" type="button" role="tab" aria-selected="true" aria-controls="faq-list" data-topic="vpn">VPN</button>
+        <button class="tabs__tab" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="faq-list" data-topic="privacy">Приватность</button>
+        <button class="tabs__tab" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="faq-list" data-topic="payment">Оплата</button>
+      </div>
+      <div class="faq__list" id="faq-list" role="tabpanel" data-faq-list>
+        <div class="faq__item faq__item_open" data-faq-item data-topics="vpn">
+          <h3 class="faq__heading">
+            <button class="faq__toggle" type="button" id="faq-q1" aria-expanded="true" aria-controls="faq-a1">
+              <span class="faq__icon" aria-hidden="true"></span>
+              <span class="faq__question">Сервер перестал работать</span>
+            </button>
+          </h3>
+          <div class="faq__answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="faq__answer-inner">
+              <p>У нас несколько независимых серверов и протоколов.</p>
+              <p>Если один недоступен — переключаемся на резервный автоматически, вы не заметите разрыва.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item" data-faq-item data-topics="vpn payment">
+          <h3 class="faq__heading">
+            <button class="faq__toggle" type="button" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+              <span class="faq__icon" aria-hidden="true"></span>
+              <span class="faq__question">Что если не получится?</span>
+            </button>
+          </h3>
+          <div class="faq__answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="faq__answer-inner">
+              <p>Напишите нам в Telegram — поддержка поможет подключиться за пару минут.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item" data-faq-item data-topics="vpn privacy">
+          <h3 class="faq__heading">
+            <button class="faq__toggle" type="button" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+              <span class="faq__icon" aria-hidden="true"></span>
+              <span class="faq__question">Это законно?</span>
+            </button>
+          </h3>
+          <div class="faq__answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="faq__answer-inner">
+              <p>Burger VPN защищает соединение и шифрует трафик. Условия использования описаны в пользовательском соглашении.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item faq__item_open" data-faq-item data-topics="vpn">
+          <h3 class="faq__heading">
+            <button class="faq__toggle" type="button" id="faq-q4" aria-expanded="true" aria-controls="faq-a4">
+              <span class="faq__icon" aria-hidden="true"></span>
+              <span class="faq__question">Мне нужно что-то настраивать?</span>
+            </button>
+          </h3>
+          <div class="faq__answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <div class="faq__answer-inner">
+              <p>Ничего.</p>
+              <p>Вводите почту, придумываете PIN для входа — и всё готово.</p>
+              <p>Скачиваете приложение (одно на все устройства), жмёте одну кнопку — и всё работает.</p>
+              <p>Не нужно копировать серверы, разбираться с протоколами или звонить программисту. Справится и школьник, и бабушка.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item" data-faq-item data-topics="vpn payment privacy">
+          <h3 class="faq__heading">
+            <button class="faq__toggle" type="button" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+              <span class="faq__icon" aria-hidden="true"></span>
+              <span class="faq__question">Не украдут деньги?</span>
+            </button>
+          </h3>
+          <div class="faq__answer" id="faq-a5" role="region" aria-labelledby="faq-q5">
+            <div class="faq__answer-inner">
+              <p>Оплата проходит через платёжные сервисы: картой МИР, по СБП, в Telegram Stars или криптовалютой. Данные карты мы не видим.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item" data-faq-item data-topics="vpn privacy">
+          <h3 class="faq__heading">
+            <button class="faq__toggle" type="button" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
+              <span class="faq__icon" aria-hidden="true"></span>
+              <span class="faq__question">Будут ли следить?</span>
+            </button>
+          </h3>
+          <div class="faq__answer" id="faq-a6" role="region" aria-labelledby="faq-q6">
+            <div class="faq__answer-inner">
+              <p>Нет. Ваши действия при включённом Burger VPN не видны никому, скрытых журналов нет.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq__item" data-faq-item data-topics="vpn payment">
+          <h3 class="faq__heading">
+            <button class="faq__toggle" type="button" id="faq-q7" aria-expanded="false" aria-controls="faq-a7">
+              <span class="faq__icon" aria-hidden="true"></span>
+              <span class="faq__question">Как вернуть деньги?</span>
+            </button>
+          </h3>
+          <div class="faq__answer" id="faq-a7" role="region" aria-labelledby="faq-q7">
+            <div class="faq__answer-inner">
+              <p>Напишите в поддержку в Telegram, и мы разберёмся с возвратом.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="support page__tile page__tile_area_support" id="support" aria-labelledby="support-title">
+      <a class="support__link" href="https://t.me/VpnBurger_bot" target="_blank" rel="noopener noreferrer" data-reveal>
+        <span class="support__avatars" aria-hidden="true">
+          <img class="support__avatar" src="img/support/avatar.webp" width="150" height="150" alt="" loading="lazy">
+          <img class="support__avatar support__avatar_telegram" src="img/support/telegram.webp" width="150" height="150" alt="" loading="lazy">
+        </span>
+        <span class="support__title" id="support-title">Напишите нам<br>в телеграме</span>
+      </a>
+      <p class="support__text">Решим любой вопрос</p>
+    </section>
+
+    <footer class="footer page__tile page__tile_area_footer">
+      <p class="footer__logo">Burger<span class="footer__logo-mark">©&nbsp;VPN</span></p>
+      <nav class="footer__nav" aria-label="Разделы сайта">
+        <ul class="footer__list">
+          <li class="footer__list-item"><a class="footer__link" href="#devices">Устройства</a></li>
+          <li class="footer__list-item"><a class="footer__link" href="#tariffs">Тарифы</a></li>
+          <li class="footer__list-item"><a class="footer__link" href="#services">Сервисы</a></li>
+          <li class="footer__list-item"><a class="footer__link" href="#referral">Рефералы</a></li>
+          <li class="footer__list-item"><a class="footer__link" href="#connect">Подключение</a></li>
+          <li class="footer__list-item"><a class="footer__link" href="#reviews">Отзывы</a></li>
+          <li class="footer__list-item"><a class="footer__link" href="#mini-app">Mini-App</a></li>
+          <li class="footer__list-item"><a class="footer__link" href="#support">Поддержка</a></li>
+        </ul>
+      </nav>
+      <div class="footer__actions">
+        <button class="footer__action footer__action_primary glass glass_theme_pink" type="button" data-activation-open>
+          <img class="footer__action-icon" src="img/icons/footer-signup.svg" width="72" height="24" alt="">
+          <span class="footer__action-text">Создать<br>профиль</span>
+        </button>
+        <a class="footer__action glass glass_theme_light" href="https://t.me/VpnBurger_bot" target="_blank" rel="noopener noreferrer">
+          <img class="footer__action-icon" src="img/icons/footer-login.svg" width="65" height="23" alt="">
+          <span class="footer__action-text">Войти в<br>профиль</span>
+        </a>
+      </div>
+      <div class="footer__bottom">
+        <svg class="footer__ring" viewBox="0 0 400 400" aria-hidden="true">
+          <path id="footer-ring-path" d="M200,200 m-192,0 a192,192 0 1,1 384,0 a192,192 0 1,1 -384,0" fill="none"/>
+          <text><textPath href="#footer-ring-path" startOffset="12.5%">2026 · © · Burger VPN · Все права защищены</textPath></text>
+        </svg>
+        <div class="footer__burger" aria-hidden="true">
+          <img class="footer__burger-image" src="img/footer/burger.webp" width="900" height="900" alt="" loading="lazy">
+          <img class="footer__burger-image footer__burger-image_blur" src="img/footer/burger.webp" width="900" height="900" alt="" loading="lazy">
+        </div>
+        <ul class="footer__legal">
+          <li><a class="footer__legal-link" href="#">Пользовательское соглашение</a></li>
+          <li><a class="footer__legal-link" href="#">Политика конфиденциальности</a></li>
+        </ul>
+        <p class="visually-hidden">© 2026 Burger VPN. Все права защищены.</p>
+      </div>
+    </footer>
+  </main>
+
+  <div class="modal modal_type_activation" id="activation" role="dialog" aria-modal="true" aria-labelledby="activation-title" hidden data-modal>
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__dialog activation" data-activation>
+      <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close></button>
+      <p class="activation__counter">
+        <img class="activation__counter-icon" src="img/icons/person-counter.svg" width="57" height="42" alt="">
+        <span class="activation__count" data-activation-count>21 326</span>
+        <span class="activation__count-label">Ваше включение по счёту</span>
+      </p>
+      <div class="activation__switch" aria-hidden="true">
+        <span class="activation__knob"><span class="activation__knob-text">VPN</span></span>
+        <span class="activation__burst" data-activation-burst></span>
+      </div>
+      <div class="activation__media">
+        <img class="activation__gif" src="img/activation/tony.webp" width="640" height="383" alt="" loading="lazy" data-activation-gif>
+        <h2 class="activation__title" id="activation-title">Ура! Вы получили<br>VPN бесплатно!</h2>
+      </div>
+      <form class="activation__form" novalidate data-activation-form>
+        <label class="visually-hidden" for="activation-contact">Username в Telegram или e-mail</label>
+        <input class="activation__input glass glass_theme_light" id="activation-contact" name="contact" type="text" inputmode="email" autocomplete="email" placeholder="@username или e-mail" required>
+        <button class="activation__submit" type="submit" aria-label="Отправить"><img src="img/icons/arrow-toggle.svg" width="14" height="21" alt=""></button>
+        <p class="activation__error" role="alert" data-activation-error></p>
+      </form>
+      <p class="activation__text" data-activation-text>Осталось ввести данные, чтобы<br>управлять серверами.</p>
+      <div class="activation__done" hidden data-activation-done>
+        <p class="activation__done-title">Готово!</p>
+        <p class="activation__done-text">Поздравляем! Вы подключили VPN на 3 дня бесплатно. Инструкции отправили на <b data-activation-contact></b></p>
+        <button class="activation__done-button button button_size_m glass glass_theme_dark" type="button" data-modal-close>Отлично</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal modal_type_payment" id="payment" role="dialog" aria-modal="true" aria-labelledby="payment-title" hidden data-modal>
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__dialog payment" data-payment>
+      <div class="payment__screen">
+        <div class="payment__top">
+          <button class="payment__back" type="button" aria-label="Закрыть" data-modal-close><img src="img/icons/pay-back.svg" width="7" height="11" alt=""></button>
+          <h2 class="payment__title" id="payment-title"><span class="payment__title-icon" aria-hidden="true"><img src="img/icons/pay-device-a.svg" width="10" height="14" alt=""></span>Выберите тариф</h2>
+        </div>
+        <ul class="payment__plans" role="radiogroup" aria-label="Тариф" data-payment-plans>
+          <li><button class="payment__plan" type="button" role="radio" aria-checked="false" data-plan="personal"><span class="payment__plan-name">Личный</span><span class="payment__plan-devices">1 устройство</span><span class="payment__plan-price"><b>84 ₽</b> / нед</span></button></li>
+          <li><button class="payment__plan" type="button" role="radio" aria-checked="true" data-plan="advanced"><img class="payment__plan-hit" src="img/payment/sticker-hit.webp" width="128" height="63" alt="Хит"><span class="payment__plan-name">Продвинутый</span><span class="payment__plan-devices">3 устройства</span><span class="payment__plan-price"><b>252 ₽</b> / нед</span></button></li>
+          <li><button class="payment__plan" type="button" role="radio" aria-checked="false" data-plan="family"><span class="payment__plan-name">Семья</span><span class="payment__plan-devices">6 устройств</span><span class="payment__plan-price"><b>504 ₽</b> / нед</span></button></li>
+          <li><button class="payment__plan" type="button" role="radio" aria-checked="false" data-plan="constructor"><span class="payment__plan-name">Конструктор</span><span class="payment__plan-devices">от 2 до 100 устройств</span><span class="payment__plan-price"><b>168 ₽</b> / нед</span></button></li>
+        </ul>
+        <p class="payment__subtitle"><span class="payment__title-icon" aria-hidden="true"><img src="img/icons/pay-period.svg" width="15" height="12" alt=""></span>Период подписки</p>
+        <div class="payment__periods" role="radiogroup" aria-label="Период подписки" data-payment-periods>
+          <button class="payment__period" type="button" role="radio" aria-checked="true" data-weeks="1" data-discount="0">Неделя</button>
+          <button class="payment__period" type="button" role="radio" aria-checked="false" data-weeks="4" data-discount="0">Месяц</button>
+          <button class="payment__period" type="button" role="radio" aria-checked="false" data-weeks="13" data-discount="0.31">3 месяца<img class="payment__period-sticker" src="img/tariffs/sticker-31.webp" width="98" height="56" alt="−31%"></button>
+          <button class="payment__period" type="button" role="radio" aria-checked="false" data-weeks="52" data-discount="0.36">Год<img class="payment__period-sticker" src="img/payment/sticker-36.webp" width="100" height="57" alt="−36%"></button>
+        </div>
+        <button class="payment__pay button glass glass_theme_dark" type="button" data-payment-next>
+          <span class="payment__pay-label">К оплате</span>
+          <span class="payment__pay-sum" data-payment-total>252 ₽</span>
+        </button>
+      </div>
+
+      <div class="payment__sheet" data-payment-sheet hidden>
+        <span class="payment__handle" aria-hidden="true"></span>
+        <img class="payment__sheet-icon" src="img/icons/pay-upload.svg" width="93" height="93" alt="">
+        <p class="payment__sum" data-payment-sum>252 ₽</p>
+        <p class="payment__sum-label">Итоговая сумма</p>
+        <dl class="payment__details">
+          <div class="payment__row"><dt>Тариф</dt><dd data-payment-plan-name>Продвинутый</dd></div>
+          <div class="payment__row"><dt>Получатель подписки</dt><dd>Вы</dd></div>
+          <div class="payment__row"><dt>Период</dt><dd data-payment-period>Неделя</dd></div>
+          <div class="payment__row"><dt>Окончание подписки</dt><dd data-payment-until></dd></div>
+          <div class="payment__row"><dt>Кол-во устройств</dt><dd class="payment__devices" data-payment-devices>3</dd></div>
+        </dl>
+        <button class="payment__confirm button button_size_m glass glass_theme_dark" type="button" data-payment-confirm>Оплатить</button>
+        <button class="payment__sheet-back" type="button" data-payment-back>Изменить тариф</button>
+      </div>
+
+      <div class="payment__success" data-payment-success hidden>
+        <div class="payment__badge">
+          <img class="payment__badge-star" src="img/payment/success-star.webp" width="295" height="297" alt="">
+          <img class="payment__badge-check" src="img/icons/pay-check.svg" width="59" height="53" alt="">
+          <span class="payment__sticker payment__sticker_thanks">Спасибо!</span>
+          <span class="payment__sticker payment__sticker_done">Успешная<br>оплата</span>
+        </div>
+        <p class="payment__sum" data-payment-paid>252 ₽</p>
+        <p class="payment__success-text">Тариф активен!<br>Теперь активируйте его.</p>
+        <button class="payment__confirm button button_size_m glass glass_theme_dark" type="button" data-payment-finish>Создать профиль</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/vendor/keen-slider.min.js" defer></script>
+  <script src="js/core/utils.js" defer></script>
+  <script src="js/core/reveal.js" defer></script>
+  <script src="js/core/tabs.js" defer></script>
+  <script src="js/core/modal.js" defer></script>
+  <script src="js/blocks/header.js" defer></script>
+  <script src="js/blocks/counters.js" defer></script>
+  <script src="js/blocks/services.js" defer></script>
+  <script src="js/blocks/devices.js" defer></script>
+  <script src="js/blocks/steps.js" defer></script>
+  <script src="js/blocks/tariffs.js" defer></script>
+  <script src="js/blocks/mini-app.js" defer></script>
+  <script src="js/blocks/cashback.js" defer></script>
+  <script src="js/blocks/launch.js" defer></script>
+  <script src="js/blocks/faq.js" defer></script>
+  <script src="js/blocks/activation.js" defer></script>
+  <script src="js/blocks/payment.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+/* Сегментный переключатель: подложка ездит под активной вкладкой (js/core/tabs.js) */
+.tabs {
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  align-items: stretch;
+  max-width: 100%;
+}
+
+.tabs__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: var(--tab-width, 0);
+  height: 100%;
+  border-radius: var(--radius-xs);
+  transform: translateX(var(--tab-x, 0));
+  transition:
+    transform 0.55s var(--ease-back),
+    width 0.45s var(--ease-out);
+}
+
+.no-js .tabs__indicator {
+  display: none;
+}
+
+.tabs__tab {
+  position: relative;
+  z-index: 1;
+  min-height: 36px;
+  padding: 3px clamp(9px, calc(13 * var(--u)), 16px);
+  font-family: var(--font-body);
+  font-size: clamp(13px, calc(14 * var(--u)), 16px);
+  font-weight: 500;
+  line-height: 1.15;
+  white-space: nowrap;
+  color: var(--color-ink-20);
+  transition: color var(--dur-fast) ease;
+}
+
+.tabs__tab::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1px;
+  height: 12px;
+  border-radius: 1px;
+  background: rgb(142 142 147 / 0.3);
+  transform: translateY(-50%);
+  transition: opacity var(--dur-fast);
+}
+
+.tabs__tab:first-of-type::before,
+.tabs__tab_active::before,
+.tabs__tab_active + .tabs__tab::before {
+  opacity: 0;
+}
+
+.tabs__tab_active {
+  color: var(--color-ink);
+}
+
+@media (hover: hover) {
+  .tabs__tab:not(.tabs__tab_active):hover {
+    color: var(--color-ink-40);
+  }
+}
+
+.tabs_theme_dark .tabs__tab {
+  font-size: clamp(15px, calc(17 * var(--u)), 19px);
+  color: var(--color-light-40);
+}
+
+.tabs_theme_dark .tabs__tab::before {
+  background: var(--color-light-30);
+}
+
+.tabs_theme_dark .tabs__tab_active {
+  color: var(--color-white);
+}
+
+@media (hover: hover) {
+  .tabs_theme_dark .tabs__tab:not(.tabs__tab_active):hover {
+    color: var(--color-light-70);
+  }
+}
+
+.tabs_theme_dark .tabs__indicator {
+  background: radial-gradient(100% 75% at 50% 50%, rgb(255 255 255 / 0.4) 0%, rgb(255 255 255 / 0.28) 36%, rgb(255 255 255 / 0.12) 100%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18);
+}
