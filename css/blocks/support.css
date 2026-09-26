@@ -14,6 +14,8 @@
 }
 
 .support__avatars {
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: clamp(4px, calc(5 * var(--u)), 6px);
   padding: clamp(4px, calc(5 * var(--u)), 6px);
@@ -30,18 +32,32 @@
   transition: transform 0.5s var(--ease-back);
 }
 
+/* Наклейка — SVG по геометрии макета: голубая внешняя обводка 9,5 px со скруглёнными углами.
+   CSS-обводка текста давала сплошную плашку с прямыми углами. Аватарки заходят на неё сверху */
 .support__title {
-  margin-top: calc(clamp(2px, calc(4 * var(--u)), 6px) * -1);
-  font-family: var(--font-display);
-  font-size: clamp(28px, calc(40 * var(--u)), 50px);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  text-align: center;
-  color: var(--color-white);
-  -webkit-text-stroke: 0.475em var(--color-sky);
-  paint-order: stroke fill;
+  display: block;
+  width: min(calc(372 * var(--u)), 465px);
+  margin-top: calc(-11 * var(--u));
   transition: transform 0.5s var(--ease-back);
+}
+
+.support__sticker {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.support__sticker text {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -1.2px;
+  text-anchor: middle;
+  fill: var(--color-white);
+  stroke: var(--color-sky);
+  stroke-width: 19px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
 }
 
 @media (hover: hover) {
@@ -62,8 +78,9 @@
   }
 }
 
+/* Отступ от нижнего края наклейки: в ней ещё хвосты букв и обводка, до базовой линии в макете 30 px */
 .support__text {
-  margin-top: clamp(22px, calc(30 * var(--u)), 32px);
+  margin-top: clamp(8px, calc(12.5 * var(--u)), 16px);
   font-size: clamp(16px, calc(20 * var(--u)), 24px);
   line-height: 1.15;
   color: var(--color-ink-30);
