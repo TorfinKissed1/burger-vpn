@@ -896,7 +896,7 @@
   <div class="modal modal_type_payment" id="payment" role="dialog" aria-modal="true" aria-labelledby="payment-title" hidden data-modal>
     <div class="modal__backdrop" data-modal-close></div>
     <div class="modal__dialog payment" data-payment>
-      <div class="payment__screen">
+      <div class="payment__screen" data-payment-screen>
         <div class="payment__top">
           <button class="payment__back" type="button" aria-label="Закрыть" data-modal-close><img src="img/icons/pay-back.svg" width="7" height="11" alt=""></button>
           <h2 class="payment__title" id="payment-title"><span class="payment__title-icon" aria-hidden="true"><img src="img/icons/pay-device-a.svg" width="10" height="14" alt=""></span>Выберите тариф</h2>
@@ -921,19 +921,43 @@
       </div>
 
       <div class="payment__sheet" data-payment-sheet hidden>
-        <span class="payment__handle" aria-hidden="true"></span>
+        <button class="payment__handle" type="button" aria-label="Изменить тариф" data-payment-back></button>
         <img class="payment__sheet-icon" src="img/icons/pay-upload.svg" width="93" height="93" alt="">
         <p class="payment__sum" data-payment-sum>252 ₽</p>
         <p class="payment__sum-label">Итоговая сумма</p>
         <dl class="payment__details">
           <div class="payment__row"><dt>Тариф</dt><dd data-payment-plan-name>Продвинутый</dd></div>
-          <div class="payment__row"><dt>Получатель подписки</dt><dd>Вы</dd></div>
-          <div class="payment__row"><dt>Период</dt><dd data-payment-period>Неделя</dd></div>
-          <div class="payment__row"><dt>Окончание подписки</dt><dd data-payment-until></dd></div>
-          <div class="payment__row"><dt>Кол-во устройств</dt><dd class="payment__devices" data-payment-devices>3</dd></div>
+          <div class="payment__row">
+            <dt>Получатель подписки</dt>
+            <dd class="payment__value"><span class="payment__avatar" aria-hidden="true"><img src="img/icons/person.svg" width="27" height="18" alt=""></span>Вы</dd>
+          </div>
+          <div class="payment__row">
+            <dt>Период</dt>
+            <dd class="payment__value">
+              <button class="payment__step payment__step_less" type="button" aria-label="Срок короче" data-payment-shorter></button>
+              <span data-payment-period>Неделя</span>
+              <button class="payment__step" type="button" aria-label="Срок дольше" data-payment-longer></button>
+            </dd>
+          </div>
+          <div class="payment__row">
+            <dt>Окончание подписки</dt>
+            <dd class="payment__value">
+              <button class="payment__step payment__step_less" type="button" aria-label="Закончить раньше" data-payment-shorter></button>
+              <span data-payment-until></span>
+              <button class="payment__step" type="button" aria-label="Закончить позже" data-payment-longer></button>
+            </dd>
+          </div>
+          <div class="payment__row">
+            <dt>Кол-во устройств</dt>
+            <dd class="payment__value"><span class="payment__device" aria-hidden="true"><img src="img/icons/pay-device-b.svg" width="10" height="14" alt=""></span><span class="payment__count" data-payment-devices>3</span></dd>
+          </div>
         </dl>
+        <div class="payment__tariff" data-payment-tariff>
+          <p class="payment__tariff-label">Тариф</p>
+          <p class="payment__tariff-name" data-payment-tariff-name>Продвинутый</p>
+          <span class="payment__tariff-thumb" aria-hidden="true"><img src="img/tariffs/advanced.webp" width="600" height="600" alt="" data-payment-tariff-image></span>
+        </div>
         <button class="payment__confirm button button_size_m glass glass_theme_dark" type="button" data-payment-confirm>Оплатить</button>
-        <button class="payment__sheet-back" type="button" data-payment-back>Изменить тариф</button>
       </div>
 
       <div class="payment__success" data-payment-success hidden>
@@ -945,7 +969,7 @@
         </div>
         <p class="payment__sum" data-payment-paid>252 ₽</p>
         <p class="payment__success-text">Тариф активен!<br>Теперь активируйте его.</p>
-        <button class="payment__confirm button button_size_m glass glass_theme_dark" type="button" data-payment-finish>Создать профиль</button>
+        <a class="payment__confirm button button_size_m glass glass_theme_dark" href="https://t.me/VpnBurger_bot" target="_blank" rel="noopener noreferrer" data-payment-finish>Создать профиль</a>
       </div>
     </div>
   </div>

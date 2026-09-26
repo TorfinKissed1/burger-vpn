@@ -1,9 +1,17 @@
+/* Окно прокручивается само, когда не помещается по высоте. Пока открыт лист итога или экран
+   успеха, прокрутка выключена: они прижаты к низу видимой части и прокручиваются внутри */
 .payment {
   position: relative;
   min-height: min(760px, calc(100dvh - 32px));
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   border-radius: 36px;
   background: var(--color-bg-alt);
+}
+
+.payment_sheet-open,
+.payment_success-open {
+  overflow-y: hidden;
 }
 
 .payment__screen {
@@ -13,8 +21,9 @@
   transition: filter 0.5s ease;
 }
 
-.payment_sheet-open .payment__screen {
-  filter: brightness(0.75);
+.payment_sheet-open .payment__screen,
+.payment_success-open .payment__screen {
+  filter: brightness(0.7);
 }
 
 .payment__top {
@@ -154,8 +163,10 @@
 
 .payment__plan-price {
   grid-area: price;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25em;
   min-width: clamp(104px, 32vw, 144px);
   height: 54px;
   padding-inline: 10px;
@@ -198,21 +209,21 @@
 
 .payment__subtitle {
   justify-content: center;
-  margin-top: 26px;
+  margin-top: clamp(36px, 11vh, 99px);
 }
 
 .payment__periods {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 14px;
 }
 
 .payment__period {
   position: relative;
   height: 40px;
   border-radius: 14px;
-  background: rgb(0 0 0 / 0.05);
+  background: rgb(0 0 0 / 0.1);
   font-family: var(--font-display);
   font-size: clamp(11px, 3vw, 13px);
   line-height: 1;
@@ -226,12 +237,12 @@
   box-shadow: inset 5px 5px 15px -2px rgb(255 255 255 / 0.8), inset -2.5px -2.5px 9px 0 rgb(255 255 255 / 0.7), 0 6px 6px -4px rgb(0 0 0 / 0.3);
 }
 
+/* Стикер скидки лежит на нижней половине кнопки, у левого края, как в макете */
 .payment__period-sticker {
   position: absolute;
-  right: -4px;
-  bottom: -18px;
-  width: 52px;
-  rotate: 11deg;
+  top: 50%;
+  left: 16%;
+  width: 64%;
   pointer-events: none;
 }
 
@@ -239,7 +250,7 @@
   justify-content: space-between;
   width: 100%;
   min-height: 86px;
-  margin-top: 36px;
+  margin-top: 27px;
   padding: 0 16px 0 clamp(20px, 7vw, 30px);
   font-size: clamp(22px, 6.4vw, 28px);
 }
@@ -261,22 +272,23 @@
   color: var(--color-black);
 }
 
+/* Лист итога — плавающая белая карточка, как в кадре 286: поля 20 px, скругление 60 */
 .payment__sheet,
 .payment__success {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  right: clamp(12px, 4.5vw, 20px);
+  bottom: clamp(12px, 4.5vw, 20px);
+  left: clamp(12px, 4.5vw, 20px);
   z-index: 2;
   display: flex;
   flex-direction: column;
-  max-height: 100%;
+  max-height: calc(100% - 2 * clamp(12px, 4.5vw, 20px));
   overflow-y: auto;
   scrollbar-width: none;
-  padding: 16px 24px 28px;
-  border-radius: 48px 48px 36px 36px;
+  padding: 10px clamp(16px, 5.5vw, 24px) 20px;
+  border-radius: clamp(40px, 13.6vw, 60px);
   background: var(--color-white);
-  box-shadow: 0 -24px 40px -24px rgb(0 0 0 / 0.35);
+  box-shadow: 0 24px 40px -24px rgb(0 0 0 / 0.35);
   animation: payment-sheet 0.6s var(--ease-out);
 }
 
@@ -285,23 +297,34 @@
   display: none;
 }
 
+/* Видимая ручка 50 × 6, нажимать можно на полосу 88 × 24 — она возвращает к выбору тарифа */
 .payment__handle {
+  position: relative;
+  flex: none;
   align-self: center;
+  width: 88px;
+  height: 24px;
+}
+
+.payment__handle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 50px;
   height: 6px;
   border-radius: 10px;
   background: rgb(0 0 0 / 0.1);
-  box-shadow: 0 4px 6px -3px rgb(0 0 0 / 0.35);
+  translate: -50% -50%;
 }
 
 .payment__sheet-icon {
-  width: 72px;
-  margin-top: 12px;
-  opacity: 0.8;
+  width: clamp(64px, 20vw, 91px);
+  opacity: 0.1;
 }
 
 .payment__sum {
-  margin-top: 16px;
+  margin-top: clamp(18px, 6.6vw, 29px);
   font-family: var(--font-display);
   font-size: clamp(44px, 13vw, 60px);
   font-weight: 500;
@@ -313,37 +336,63 @@
 }
 
 .payment__sum-label {
-  margin-top: 10px;
+  margin-top: 18px;
   font-family: var(--font-display);
   font-size: 18px;
 }
 
 .payment__details {
   display: grid;
-  gap: 14px;
-  margin-top: 28px;
-  padding-bottom: 22px;
-  border-bottom: 2px solid transparent;
-  border-image: linear-gradient(90deg, rgb(0 0 0 / 0.02), rgb(0 0 0 / 0.14), rgb(0 0 0 / 0.02)) 1;
+  gap: 9px;
+  margin-top: clamp(24px, 9.5vw, 42px);
+  padding-bottom: 17px;
+  border-bottom: 1px solid rgb(0 0 0 / 0.12);
 }
 
 .payment__row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  font-size: clamp(15px, 4.2vw, 18px);
+  gap: 8px;
+  min-height: 24px;
+  font-size: clamp(14px, 4.1vw, 18px);
   color: var(--color-ink-30);
 }
 
 .payment__row dd {
   margin: 0;
-  font-size: clamp(14px, 3.8vw, 16px);
+  font-size: clamp(13px, 3.6vw, 16px);
   text-align: right;
+  white-space: nowrap;
   color: var(--color-ink);
 }
 
-.payment__devices {
+.payment__value {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.payment__avatar,
+.payment__device {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 17px;
+  background: rgb(0 0 0 / 0.1);
+}
+
+.payment__avatar img {
+  width: 15px;
+}
+
+.payment__device img {
+  width: 10px;
+}
+
+.payment__count {
   display: grid;
   place-items: center;
   min-width: 24px;
@@ -351,22 +400,89 @@
   padding-inline: 6px;
   border-radius: 17px;
   background: var(--color-black);
+  font-size: 14px;
   font-weight: 700;
-  color: var(--color-white) !important;
+  color: var(--color-white);
+}
+
+/* Стрелки срока — маленькие треугольники по бокам значения, как в макете */
+.payment__step {
+  position: relative;
+  flex: none;
+  width: 18px;
+  height: 24px;
+}
+
+.payment__step::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-block: 4px solid transparent;
+  border-left: 6px solid var(--color-black);
+  translate: -50% -50%;
+}
+
+.payment__step_less::before {
+  rotate: 180deg;
+}
+
+.payment__step:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.payment__tariff {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "label thumb"
+    "name thumb";
+  align-items: center;
+  row-gap: 9px;
+  padding-block: 12px;
+  border-bottom: 1px solid rgb(0 0 0 / 0.12);
+}
+
+.payment__tariff-label {
+  grid-area: label;
+  align-self: end;
+  font-size: 12px;
+  color: var(--color-ink-40);
+}
+
+.payment__tariff-name {
+  grid-area: name;
+  align-self: start;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--payment-tariff, #8523c6);
+}
+
+.payment__tariff_plan_personal { --payment-tariff: #22a870; }
+.payment__tariff_plan_advanced { --payment-tariff: #6f5699; }
+.payment__tariff_plan_family { --payment-tariff: #f5197b; }
+.payment__tariff_plan_constructor { --payment-tariff: #8523c6; }
+
+.payment__tariff-thumb {
+  grid-area: thumb;
+  display: grid;
+  place-items: center;
+  width: 69px;
+  height: 52px;
+  border-radius: 14px;
+  background: radial-gradient(120% 120% at 50% 20%, #ffffff 30%, #e6e6e6), rgb(255 255 255 / 0.7);
+  box-shadow: 0 4px 8px -6px rgb(9 9 9 / 0.25), inset 0 0 0 1px rgb(255 255 255 / 0.8);
+}
+
+.payment__tariff-thumb img {
+  width: 43px;
 }
 
 .payment__confirm {
+  flex: none;
   width: 100%;
   margin-top: 24px;
-}
-
-.payment__sheet-back {
-  align-self: center;
-  margin-top: 14px;
-  font-size: 14px;
-  color: var(--color-ink-40);
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .payment__success {
@@ -391,11 +507,13 @@
   animation: payment-star 0.9s var(--ease-back) both;
 }
 
+/* Вектор галочки в файле перевёрнут — в макете «√» */
 .payment__badge-check {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 36%;
+  rotate: 180deg;
   translate: -50% -50%;
   animation: payment-check 0.7s var(--ease-back) 0.35s both;
 }
@@ -471,5 +589,24 @@
   .payment {
     min-height: 100dvh;
     border-radius: 32px 32px 0 0;
+  }
+}
+
+/* На узких экранах стикеры «Спасибо!» и «Успешная оплата» не должны уходить за край окна */
+@media (max-width: 400px) {
+  .payment__badge {
+    width: 150px;
+  }
+
+  .payment__sticker {
+    font-size: 14px;
+  }
+
+  .payment__sticker_thanks {
+    left: -44%;
+  }
+
+  .payment__sticker_done {
+    right: -46%;
   }
 }
