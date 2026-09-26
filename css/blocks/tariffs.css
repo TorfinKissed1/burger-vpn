@@ -299,6 +299,16 @@
   padding-inline: calc(44 * var(--u));
 }
 
+/* Кнопка, счётчик «Конструктора» и подпись: на телефоне идут под блоком тарифа,
+   на ПК — отдельной строкой по центру карточки */
+.tariffs__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-inline: calc(44 * var(--u));
+}
+
 .tariffs__pills {
   display: flex;
   align-items: center;
@@ -629,14 +639,19 @@
 @media (min-width: 1024px) {
   .tariffs__card {
     display: grid;
-    grid-template-columns: minmax(0, 3.4fr) auto minmax(0, 8.6fr);
+    grid-template-columns: minmax(0, 3.2fr) auto minmax(0, 8.8fr);
+    grid-template-areas:
+      "intro or choice"
+      "footer footer footer";
     align-items: center;
     column-gap: 2cqi;
+    row-gap: 1.6cqi;
     min-height: min(100svh - var(--header-height) - 48px, 58cqi);
-    padding: 4cqi 3.5cqi;
+    padding: 3cqi 3.5cqi 3.5cqi;
   }
 
   .tariffs__intro {
+    grid-area: intro;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -665,6 +680,7 @@
   }
 
   .tariffs__or {
+    grid-area: or;
     gap: 1cqi;
     margin-top: 0;
   }
@@ -685,8 +701,9 @@
   }
 
   .tariffs__choice {
+    grid-area: choice;
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
     grid-template-areas:
       "title title"
       "slider info";
@@ -768,12 +785,19 @@
     margin-top: 2.2cqi;
   }
 
+  .tariffs__footer {
+    grid-area: footer;
+    padding-inline: 0;
+  }
+
   .tariffs__stepper {
     margin-top: 1.2cqi;
   }
 
   .tariffs__action {
-    margin-top: 1.6cqi;
+    width: min(100%, 34cqi);
+    max-width: none;
+    margin-top: 0;
   }
 
   .tariffs__connect {
