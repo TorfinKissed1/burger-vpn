@@ -216,7 +216,7 @@
   height: auto;
   aspect-ratio: 1;
   object-fit: contain;
-  transform: translateY(calc(var(--distance, 1) * 7%)) scale(calc(1 - var(--distance, 1) * 0.34)) rotate(calc(var(--offset, 0) * 14deg));
+  transform: translateY(calc(var(--distance, 1) * 7%)) scale(calc(1 - var(--distance, 1) * 0.34)) rotate(calc(var(--offset, 0) * 14deg + var(--tilt, 0deg)));
   filter: drop-shadow(0 18px 18px rgb(0 0 0 / 0.35));
   pointer-events: none;
   user-select: none;
@@ -233,8 +233,62 @@
   scroll-snap-align: center;
 }
 
+/* Стрелки лежат поверх низа слайдера: отрицательный отступ равен их высоте, раскладка не сдвигается */
 .tariffs__nav {
-  display: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: -44px;
+  padding-inline: 16px;
+  pointer-events: none;
+}
+
+.tariffs__arrow {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.14);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.25);
+  pointer-events: auto;
+  transition: background-color var(--dur-fast), transform var(--dur-fast) var(--ease-back), opacity var(--dur-fast);
+}
+
+/* Стрелка из img/icons/menu-arrow.svg смотрит вверх, поворачиваем маской. Маска встроена
+   в CSS: внешний файл маски браузер не отдаёт при открытии страницы через file:// */
+.tariffs__arrow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-white);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.97275 15.6715'%3E%3Cpath d='M6.01197 1.54112C6.16819 3.33402 6.85524 4.7358 7.74562 5.7444C8.36102 6.44139 9.10352 6.89778 9.97275 7.11326V4.17629C8.81664 4.17629 7.90975 3.81196 7.25356 3.08357C6.59736 2.33645 6.01197 1.30747 6.01197 0L3.96078 0.0828473C3.96078 1.39032 3.37539 2.33645 2.71919 3.08357C2.063 3.81196 1.15611 4.17629 0 4.17629V7.11326C0.869231 6.89778 1.61173 6.44139 2.22713 5.7444C3.1175 4.7358 3.80456 3.33402 3.96078 1.54112L3.8206 6.10864L3.8206 15.6715H6.15215V6.10864L6.01197 1.54112Z'/%3E%3C/svg%3E") center / 10px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.97275 15.6715'%3E%3Cpath d='M6.01197 1.54112C6.16819 3.33402 6.85524 4.7358 7.74562 5.7444C8.36102 6.44139 9.10352 6.89778 9.97275 7.11326V4.17629C8.81664 4.17629 7.90975 3.81196 7.25356 3.08357C6.59736 2.33645 6.01197 1.30747 6.01197 0L3.96078 0.0828473C3.96078 1.39032 3.37539 2.33645 2.71919 3.08357C2.063 3.81196 1.15611 4.17629 0 4.17629V7.11326C0.869231 6.89778 1.61173 6.44139 2.22713 5.7444C3.1175 4.7358 3.80456 3.33402 3.96078 1.54112L3.8206 6.10864L3.8206 15.6715H6.15215V6.10864L6.01197 1.54112Z'/%3E%3C/svg%3E") center / 10px no-repeat;
+  transform: rotate(-90deg);
+}
+
+.tariffs__arrow_next::before {
+  transform: rotate(90deg);
+}
+
+@media (hover: hover) {
+  .tariffs__arrow:hover {
+    background-color: rgb(255 255 255 / 0.28);
+    transform: scale(1.08);
+  }
+}
+
+.tariffs__arrow[aria-disabled="true"] {
+  opacity: 0.3;
+  transform: none;
+}
+
+/* В макете телефона стрелок нет — тариф листают пальцем. Для клавиатуры стрелки остаются
+   и появляются, когда на них приходит фокус */
+@media (max-width: 767px) {
+  .tariffs__arrow:not(:focus-visible) {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .tariffs__info {
@@ -352,6 +406,11 @@
   margin-top: calc(51 * var(--u));
 }
 
+/* «Конструктор»: бургер в макете наклонён, счётчик устройств под кнопкой «Подключить» */
+.tariffs__slide_tilted {
+  --tilt: 33deg;
+}
+
 .tariffs__stepper {
   display: flex;
   align-items: center;
@@ -364,8 +423,8 @@
 .tariffs__step-button {
   display: grid;
   place-items: center;
-  width: clamp(52px, calc(70 * var(--u)), 88px);
-  height: clamp(32px, calc(40 * var(--u)), 50px);
+  width: clamp(70px, calc(95 * var(--u)), 116px);
+  height: clamp(30px, calc(36 * var(--u)), 44px);
   border-radius: 25px;
   font-size: clamp(22px, calc(26 * var(--u)), 32px);
   line-height: 1;
@@ -435,6 +494,10 @@
   letter-spacing: 0.01em;
   text-align: center;
   color: var(--color-light-70);
+}
+
+.tariffs__stepper:not([hidden]) + .tariffs__note {
+  margin-top: calc(24 * var(--u));
 }
 
 @keyframes tariffs-gift {
@@ -553,51 +616,7 @@
   }
 
   .tariffs__nav {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
     margin-top: -60px;
-    padding-inline: 16px;
-    pointer-events: none;
-  }
-
-  .tariffs__arrow {
-    position: relative;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgb(255 255 255 / 0.14);
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.25);
-    pointer-events: auto;
-    transition: background-color var(--dur-fast), transform var(--dur-fast) var(--ease-back), opacity var(--dur-fast);
-  }
-
-  /* Стрелка из img/icons/menu-arrow.svg смотрит вверх, поворачиваем маской. Маска встроена
-     в CSS: внешний файл маски браузер не отдаёт при открытии страницы через file:// */
-  .tariffs__arrow::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--color-white);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.97275 15.6715'%3E%3Cpath d='M6.01197 1.54112C6.16819 3.33402 6.85524 4.7358 7.74562 5.7444C8.36102 6.44139 9.10352 6.89778 9.97275 7.11326V4.17629C8.81664 4.17629 7.90975 3.81196 7.25356 3.08357C6.59736 2.33645 6.01197 1.30747 6.01197 0L3.96078 0.0828473C3.96078 1.39032 3.37539 2.33645 2.71919 3.08357C2.063 3.81196 1.15611 4.17629 0 4.17629V7.11326C0.869231 6.89778 1.61173 6.44139 2.22713 5.7444C3.1175 4.7358 3.80456 3.33402 3.96078 1.54112L3.8206 6.10864L3.8206 15.6715H6.15215V6.10864L6.01197 1.54112Z'/%3E%3C/svg%3E") center / 10px no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9.97275 15.6715'%3E%3Cpath d='M6.01197 1.54112C6.16819 3.33402 6.85524 4.7358 7.74562 5.7444C8.36102 6.44139 9.10352 6.89778 9.97275 7.11326V4.17629C8.81664 4.17629 7.90975 3.81196 7.25356 3.08357C6.59736 2.33645 6.01197 1.30747 6.01197 0L3.96078 0.0828473C3.96078 1.39032 3.37539 2.33645 2.71919 3.08357C2.063 3.81196 1.15611 4.17629 0 4.17629V7.11326C0.869231 6.89778 1.61173 6.44139 2.22713 5.7444C3.1175 4.7358 3.80456 3.33402 3.96078 1.54112L3.8206 6.10864L3.8206 15.6715H6.15215V6.10864L6.01197 1.54112Z'/%3E%3C/svg%3E") center / 10px no-repeat;
-    transform: rotate(-90deg);
-  }
-
-  .tariffs__arrow_next::before {
-    transform: rotate(90deg);
-  }
-
-  @media (hover: hover) {
-    .tariffs__arrow:hover {
-      background-color: rgb(255 255 255 / 0.28);
-      transform: scale(1.08);
-    }
-  }
-
-  .tariffs__arrow[aria-disabled="true"] {
-    opacity: 0.3;
-    transform: none;
   }
 }
 
