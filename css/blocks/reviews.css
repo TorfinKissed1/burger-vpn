@@ -16,7 +16,7 @@
 }
 
 .reviews__scale {
-  color: var(--color-ink-10);
+  color: var(--color-ink-20);
   -webkit-text-stroke: 6px var(--color-white);
   paint-order: stroke fill;
 }

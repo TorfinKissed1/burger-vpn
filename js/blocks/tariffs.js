@@ -6,7 +6,7 @@
   const section = document.querySelector('[data-tariffs]');
   if (!section || typeof window.KeenSlider !== 'function') return;
 
-  const { clamp, formatNumber, emit, replayClass, pricing } = window.Burger;
+  const { clamp, formatNumber, emit, replayClass, pricing, prefersReducedMotion } = window.Burger;
 
   // Цены и скидки — в общей таблице js/core/pricing.js, здесь только оформление карточки
   const TARIFFS = {
@@ -98,6 +98,7 @@
     initial: keys.indexOf(state.tariff),
     loop: false,
     rubberband: true,
+    defaultAnimation: { duration: prefersReducedMotion() ? 0 : 500 },
     slides: { origin: 'center', perView: 1.93, spacing: 0 },
     // На ПК слайдер занимает половину правой части экрана тарифов — бургеры крупнее
     breakpoints: {

@@ -467,17 +467,21 @@
     animation: none;
   }
 
+  /* Общее правило в base.css обнуляет длительности с !important — спокойное проявление
+     возвращаем более точным селектором */
   .intro_burst .intro__icon,
   .intro_burst .intro__power {
     animation: intro-fade 0.4s ease both;
+    animation-duration: 0.4s !important;
   }
 
   .intro_burst .intro__power::before {
     animation: none;
   }
 
-  .intro__actions,
-  .intro__copyright {
+  .intro .intro__actions,
+  .intro .intro__copyright {
     transition: opacity 0.4s ease;
+    transition-duration: 0.4s !important;
   }
 }
