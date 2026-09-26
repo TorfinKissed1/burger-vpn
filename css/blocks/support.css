@@ -47,17 +47,25 @@
   overflow: visible;
 }
 
-.support__sticker text {
+/* Обводка и заливка — два слоя <use>: Safari красит обводку и заливку SVG-текста по буквам,
+   и обводка следующей буквы закрывает предыдущую. Шрифт задаём самим <use> — копии наследуют его */
+.support__sticker use {
   font-family: var(--font-display);
   font-size: 40px;
   font-weight: 500;
   letter-spacing: -1.2px;
   text-anchor: middle;
-  fill: var(--color-white);
+}
+
+.support__sticker-stroke {
+  fill: var(--color-sky);
   stroke: var(--color-sky);
   stroke-width: 19px;
   stroke-linejoin: round;
-  paint-order: stroke fill;
+}
+
+.support__sticker-fill {
+  fill: var(--color-white);
 }
 
 @media (hover: hover) {

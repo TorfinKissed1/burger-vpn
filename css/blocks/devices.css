@@ -20,20 +20,27 @@
   overflow: visible;
 }
 
-.devices__sticker text {
+/* Обводка и заливка — два слоя <use>: Safari красит обводку и заливку SVG-текста по буквам,
+   и обводка следующей буквы закрывает предыдущую. Шрифт задаём самим <use> — копии наследуют его */
+.devices__sticker use {
   font-family: var(--font-display);
   font-weight: 800;
+  text-anchor: middle;
+}
+
+.devices__sticker-prefix {
+  text-anchor: start;
+}
+
+.devices__sticker-stroke {
+  fill: var(--color-black);
   stroke: var(--color-black);
   stroke-linejoin: round;
-  paint-order: stroke fill;
 }
 
 .devices__sticker-count {
   font-size: 100px;
   letter-spacing: 2px;
-  fill: var(--color-white);
-  stroke-width: 24px;
-  text-anchor: middle;
 }
 
 .devices__sticker-prefix,
@@ -42,15 +49,24 @@
   letter-spacing: -0.64px;
 }
 
-.devices__sticker-prefix {
-  fill: var(--color-bg);
+.devices__sticker-stroke .devices__sticker-count {
+  stroke-width: 24px;
+}
+
+.devices__sticker-stroke .devices__sticker-prefix {
   stroke-width: 12px;
 }
 
-.devices__sticker-caption {
-  fill: var(--color-white);
+.devices__sticker-stroke .devices__sticker-caption {
   stroke-width: 16px;
-  text-anchor: middle;
+}
+
+.devices__sticker-fill {
+  fill: var(--color-white);
+}
+
+.devices__sticker-fill .devices__sticker-prefix {
+  fill: var(--color-bg);
 }
 
 .devices__text {
