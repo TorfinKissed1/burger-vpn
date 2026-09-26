@@ -9,19 +9,27 @@
 
   const { lockScroll, unlockScroll } = window.Burger;
   const HIDE_AFTER = 160;
+  // Мелкие сдвиги прокрутки шапку не трогают: браузер сам подправляет прокрутку,
+  // когда меняется высота блоков (FAQ, вкладки), и шапка от этого дёргалась
+  const DIRECTION_THRESHOLD = 12;
   const MENU_CLOSE_DURATION = 450;
-  let lastY = window.scrollY;
+  let turnY = window.scrollY;
   let ticking = false;
   let menuOpen = false;
   let hideTimer = 0;
 
   function onScroll() {
-    const y = window.scrollY;
-    const goingDown = y > lastY;
-    const hide = goingDown && y > HIDE_AFTER && !menuOpen;
-    header.classList.toggle('header_hidden', hide);
-    lastY = y;
     ticking = false;
+    const y = window.scrollY;
+    if (menuOpen || y <= HIDE_AFTER) {
+      header.classList.remove('header_hidden');
+      turnY = y;
+      return;
+    }
+    const shift = y - turnY;
+    if (Math.abs(shift) < DIRECTION_THRESHOLD) return;
+    header.classList.toggle('header_hidden', shift > 0);
+    turnY = y;
   }
 
   window.addEventListener('scroll', () => {
