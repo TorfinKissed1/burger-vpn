@@ -5,7 +5,7 @@
   const header = document.querySelector('[data-header]');
   const menu = document.querySelector('[data-menu]');
   const toggle = document.querySelector('[data-menu-toggle]');
-  const page = document.querySelector('main');
+  const page = document.querySelector('[data-page]');
   if (!header || !menu || !toggle) return;
 
   const { lockScroll, unlockScroll } = window.Burger;

@@ -70,7 +70,7 @@
 
   <div class="menu" id="site-menu" hidden data-menu>
     <div class="menu__backdrop" data-menu-close></div>
-    <nav class="menu__panel" aria-label="Разделы сайта">
+    <nav class="menu__panel" aria-label="Меню разделов">
       <ul class="menu__list">
         <li class="menu__item" style="--menu-x: 44%; --menu-tilt: 2.5deg;">
           <a class="menu__link" href="#services" data-menu-link><span class="menu__label">Сервисы</span><span class="menu__arrow" aria-hidden="true"></span></a>
@@ -98,7 +98,8 @@
     </nav>
   </div>
 
-  <main class="page" id="main">
+  <div class="page" data-page>
+  <main class="page__main" id="main">
     <section class="hero page__tile page__tile_area_hero" id="top" aria-labelledby="hero-title" data-pause-offscreen>
       <div class="hero__content">
         <h1 class="hero__title" id="hero-title">
@@ -829,6 +830,8 @@
       <p class="support__text">Решим любой вопрос</p>
     </section>
 
+  </main>
+
     <footer class="footer page__tile page__tile_area_footer" data-pause-offscreen>
       <p class="footer__logo">Burger<span class="footer__logo-mark">©&nbsp;VPN</span></p>
       <nav class="footer__nav" aria-label="Разделы сайта">
@@ -869,7 +872,7 @@
         <p class="visually-hidden">© 2026 Burger VPN. Все права защищены.</p>
       </div>
     </footer>
-  </main>
+  </div>
 
   <div class="modal modal_type_activation" id="activation" role="dialog" aria-modal="true" aria-labelledby="activation-title" hidden data-modal>
     <div class="modal__backdrop" data-modal-close></div>
