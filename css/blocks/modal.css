@@ -44,6 +44,10 @@
     transform 0.6s var(--ease-back);
 }
 
+.modal__dialog:focus {
+  outline: none;
+}
+
 .modal__dialog::-webkit-scrollbar {
   display: none;
 }

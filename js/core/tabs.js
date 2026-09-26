@@ -56,6 +56,7 @@
       if (!(event.key in moves)) return;
       event.preventDefault();
       const next = (moves[event.key] + list.length) % list.length;
+      if (next === current) return;
       select(tabs, list[next], { focus: true });
     });
 
