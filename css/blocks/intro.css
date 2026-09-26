@@ -44,10 +44,14 @@
   --title-fs: 41;
   --title-o: 1;
   --lens-o: 0;
+  /* Облако иконок в финале выходит на 110 px выше кадра: сцену вписываем в экран вместе
+     с этим запасом и сдвигаем на него вниз, чтобы иконки не уходили за край */
+  --stage-w: min(100vw, 100vh * 440 / 853);
+  --stage-w: min(100vw, 100svh * 440 / 853);
   position: relative;
   container-type: inline-size;
-  width: min(100vw, 100vh * 440 / 743);
-  width: min(100vw, 100svh * 440 / 743);
+  width: var(--stage-w);
+  margin-top: calc(var(--stage-w) * 110 / 440);
   aspect-ratio: 440 / 743;
 }
 
@@ -507,6 +511,7 @@
     bottom: 0;
     left: 50%;
     width: min(100vw, max(300px, 100svh * 440 / 743));
+    margin-top: 0;
     translate: -50% 0;
   }
 }
