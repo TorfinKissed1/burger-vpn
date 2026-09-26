@@ -29,6 +29,12 @@
   color: var(--color-white);
 }
 
+/* Левая и правая части карточки нужны только ПК-раскладке, до неё их коробок нет */
+.tariffs__intro,
+.tariffs__choice {
+  display: contents;
+}
+
 .tariffs__backdrops {
   position: absolute;
   inset: 0;
@@ -595,9 +601,170 @@
   }
 }
 
-/* На ПК плитка тарифов тянется на высоту двух соседних — содержимое держим по центру */
+/* На ПК тарифы — отдельный экран во всю ширину: слева «Включите VPN бесплатно»,
+   по центру «← или →», справа выбор тарифа — слайдер и цена рядом. Размеры в cqi:
+   композиция одна и та же от 1024 до 1920, меняется только масштаб */
 @media (min-width: 1024px) {
   .tariffs__card {
-    justify-content: center;
+    display: grid;
+    grid-template-columns: minmax(0, 3.4fr) auto minmax(0, 8.6fr);
+    align-items: center;
+    column-gap: 2cqi;
+    min-height: min(100svh - var(--header-height) - 48px, 58cqi);
+    padding: 4cqi 3.5cqi;
+  }
+
+  .tariffs__intro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tariffs__gift {
+    top: -1.5cqi;
+    left: 74%;
+    font-size: 2.2cqi;
+  }
+
+  .tariffs__power {
+    width: min(100%, 23cqi);
+    margin-top: 0;
+  }
+
+  .tariffs__free,
+  .tariffs__title,
+  .tariffs__or {
+    font-size: 2.3cqi;
+  }
+
+  .tariffs__free {
+    white-space: nowrap;
+  }
+
+  .tariffs__or {
+    gap: 1cqi;
+    margin-top: 0;
+  }
+
+  /* Вместо «↑ или ↓» — «← или →»: стрелки смотрят на цветок и на тарифы */
+  .tariffs__or img {
+    width: 0.9cqi;
+  }
+
+  .tariffs__or .tariffs__or-up {
+    rotate: -90deg;
+  }
+
+  .tariffs__or .tariffs__or-down {
+    rotate: 90deg;
+    transform: none;
+    animation-name: tariffs-nudge;
+  }
+
+  .tariffs__choice {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-areas:
+      "title title"
+      "slider info";
+    align-items: center;
+    column-gap: 1.6cqi;
+    row-gap: 1.8cqi;
+  }
+
+  .tariffs__title {
+    grid-area: title;
+    justify-self: center;
+    margin-top: 0;
+  }
+
+  /* Соседние бургеры не обрываются краем слайдера, а тают */
+  .tariffs__slider {
+    grid-area: slider;
+    margin-top: 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+  }
+
+  .tariffs__nav {
+    grid-area: slider;
+    z-index: 2;
+    align-self: center;
+    margin-top: 0;
+    padding-inline: 0;
+  }
+
+  .tariffs__arrow {
+    width: 3.2cqi;
+    height: 3.2cqi;
+  }
+
+  .tariffs__info {
+    grid-area: info;
+    padding-inline: 0;
+  }
+
+  .tariffs__pills {
+    gap: 0.8cqi;
+    margin-top: 0;
+  }
+
+  .tariffs__devices-count,
+  .tariffs__devices-thumbs img {
+    height: 3cqi;
+    min-width: 3cqi;
+  }
+
+  .tariffs__devices-count {
+    font-size: 1.5cqi;
+  }
+
+  .tariffs__devices-thumbs img {
+    width: 3cqi;
+    margin-left: -0.9cqi;
+  }
+
+  .tariffs__price {
+    min-width: 8.6cqi;
+    height: 3cqi;
+    font-size: 1.7cqi;
+  }
+
+  .tariffs__name {
+    margin-top: 1.7cqi;
+    font-size: 2.9cqi;
+  }
+
+  .tariffs__traffic {
+    margin-top: 1.3cqi;
+    font-size: 1.5cqi;
+  }
+
+  .tariffs__periods {
+    width: min(100%, 25cqi);
+    margin-top: 2.2cqi;
+  }
+
+  .tariffs__stepper {
+    margin-top: 1.2cqi;
+  }
+
+  .tariffs__action {
+    margin-top: 1.6cqi;
+  }
+
+  .tariffs__connect {
+    min-height: 5.8cqi;
+    font-size: 2.3cqi;
+  }
+
+  .tariffs__discount {
+    width: 4.4cqi;
+  }
+
+  .tariffs__note {
+    margin-top: 1cqi;
+    font-size: max(12px, 1.1cqi);
   }
 }

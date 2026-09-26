@@ -103,6 +103,10 @@
     loop: false,
     rubberband: true,
     slides: { origin: 'center', perView: 1.93, spacing: 0 },
+    // На ПК слайдер занимает половину правой части экрана тарифов — бургеры крупнее
+    breakpoints: {
+      '(min-width: 1024px)': { slides: { origin: 'center', perView: 1.3, spacing: 0 } },
+    },
     created(instance) {
       updateSlides(instance);
       updateArrows(instance);
