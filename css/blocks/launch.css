@@ -1,4 +1,6 @@
+/* Ширина наклейки со счётчиком: по макету, но не больше 300 px — дальше она наезжает на ручку */
 .launch {
+  --counter-w: min(calc(239 * var(--u)), 300px);
   padding-top: clamp(80px, calc(125 * var(--u)), 130px);
 }
 
@@ -7,7 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: clamp(40px, calc(59 * var(--u)), 64px) clamp(20px, calc(44 * var(--u)), 44px) clamp(40px, calc(55 * var(--u)), 60px);
+  padding: clamp(40px, calc(59 * var(--u)), 80px) clamp(20px, calc(44 * var(--u)), 44px) clamp(40px, calc(55 * var(--u)), 60px);
   border-radius: clamp(64px, calc(105 * var(--u)), 105px);
   background: var(--color-black);
   box-shadow: inset 0 -14px 110px -11px var(--color-white);
@@ -15,12 +17,12 @@
 }
 
 /* Счётчик «21 325» — SVG по геометрии макета: внешняя обводка со скруглёнными углами,
-   CSS-обводка текста давала острые шипы на «2» и «5». Верх наклейки на 69 px выше карточки */
+   CSS-обводка текста давала острые шипы на «2» и «5». Верх наклейки выше карточки на 69 из 117 */
 .launch__counter {
   position: absolute;
-  top: calc(-69 * var(--u));
+  top: calc(var(--counter-w) * -69 / 239);
   left: 50%;
-  width: calc(239 * var(--u));
+  width: var(--counter-w);
   translate: -50% 0;
 }
 
@@ -232,12 +234,11 @@
   .launch__card {
     flex: 1;
     justify-content: center;
-    padding-top: 150px;
+    padding-top: calc(32px + var(--counter-w) * 117 / 239 + 24px);
     border-radius: var(--radius-section);
   }
 
   .launch__counter {
-    top: 36px;
-    translate: -50% 0;
+    top: 32px;
   }
 }
