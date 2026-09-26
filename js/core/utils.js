@@ -71,14 +71,15 @@
     return () => cancelAnimationFrame(frame);
   };
 
-  // Блокировка прокрутки под окнами и меню; счётчик нужен, когда окна открываются поверх друг друга
+  // Блокировка прокрутки под окнами и меню; счётчик нужен, когда окна открываются поверх друг друга.
+  // Ширину пропавшей полосы прокрутки отдаём в CSS: на неё сдвигаются страница и фиксированная шапка.
   let lockCount = 0;
 
   Burger.lockScroll = () => {
     lockCount += 1;
     if (lockCount > 1) return;
-    const scrollbar = window.innerWidth - root.clientWidth;
-    document.body.style.paddingRight = scrollbar > 0 ? `${scrollbar}px` : '';
+    const scrollbar = Math.max(window.innerWidth - root.clientWidth, 0);
+    root.style.setProperty('--scrollbar-compensation', `${scrollbar}px`);
     document.body.classList.add('is-locked');
   };
 
@@ -87,7 +88,7 @@
     lockCount -= 1;
     if (lockCount > 0) return;
     document.body.classList.remove('is-locked');
-    document.body.style.paddingRight = '';
+    root.style.removeProperty('--scrollbar-compensation');
   };
 
   Burger.emit = (name, detail) => document.dispatchEvent(new CustomEvent(name, { detail }));

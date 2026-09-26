@@ -1,15 +1,18 @@
+/* Центруем полями, а не сдвигом на 50%: когда окно прячет полосу прокрутки,
+   правый край уменьшается на её ширину и шапка остаётся на месте */
 .header {
   position: fixed;
   top: max(10px, env(safe-area-inset-top));
-  left: 50%;
+  left: 0;
+  right: var(--scrollbar-compensation, 0px);
   z-index: 50;
-  width: min(100% - 2 * clamp(12px, 4.3vw, 19px), 1000px);
-  transform: translate(-50%, 0);
+  width: min(100% - var(--scrollbar-compensation, 0px) - 2 * clamp(12px, 4.3vw, 19px), 1000px);
+  margin-inline: auto;
   transition: transform var(--dur) var(--ease-out);
 }
 
 .header_hidden {
-  transform: translate(-50%, calc(-100% - 24px));
+  transform: translateY(calc(-100% - 24px));
 }
 
 .header__bar {
@@ -171,7 +174,7 @@
 
 @media (min-width: 768px) {
   .header {
-    width: min(100% - 2 * var(--page-gutter), var(--page-max) - 2 * var(--page-gutter));
+    width: min(100% - var(--scrollbar-compensation, 0px) - 2 * var(--page-gutter), var(--page-max) - 2 * var(--page-gutter));
   }
 
   .header__bar {

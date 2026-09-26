@@ -18,6 +18,7 @@ body {
 
 body.is-locked {
   overflow: hidden;
+  padding-right: var(--scrollbar-compensation, 0px);
 }
 
 /* В макете у текстов включена обрезка по высоте заглавных: отступы в Figma считаются
