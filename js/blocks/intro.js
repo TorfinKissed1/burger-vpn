@@ -93,13 +93,28 @@
     };
   }
 
+  // Переменные пишем прямо тем элементам, которые их читают. Запись на всю сцену заставляла
+  // пересчитывать стили всех её потомков, включая тридцать иконок облака, на каждом кадре
+  const TARGETS = {
+    logo: ['.intro__logo'],
+    hint: ['[data-intro-trigger]'],
+    blob: ['.intro__blob'],
+    touch: ['.intro__blob'],
+    bubble: ['.intro__bubble'],
+    glow: ['.intro__bubble'],
+    title: ['[data-intro-title]', '.intro__bubble'],
+    lens: ['.intro__bubble'],
+  };
+
   const channels = [];
   Object.entries(TRACKS).forEach(([name, frames]) => {
     const times = frames.map(([time]) => time);
+    const targets = TARGETS[name].map((selector) => stage.querySelector(selector));
     Object.keys(frames[0][1]).forEach((key) => {
       channels.push({
         property: `--${name}-${key}`,
         opacity: key === 'o',
+        targets,
         sample: curve(times, frames.map(([, values]) => values[key])),
       });
     });
@@ -116,7 +131,8 @@
     time = value;
     channels.forEach((channel) => {
       const sampled = channel.sample(time);
-      stage.style.setProperty(channel.property, (channel.opacity ? clamp(sampled, 0, 1) : sampled).toFixed(3));
+      const value = (channel.opacity ? clamp(sampled, 0, 1) : sampled).toFixed(3);
+      channel.targets.forEach((element) => element.style.setProperty(channel.property, value));
     });
     if (!burst && time >= BURST_AT) {
       burst = true;

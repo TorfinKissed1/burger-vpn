@@ -8,7 +8,7 @@
   place-items: center;
   overflow: hidden;
   background: var(--color-bg-alt);
-  touch-action: none;
+  touch-action: pinch-zoom;
   user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -63,11 +63,13 @@
   --title-o: 0;
 }
 
+/* Всё, что двигается по кадрам, двигается трансформацией: раскладка при анимации не пересчитывается */
 .intro__logo {
   position: absolute;
-  top: calc(var(--logo-y) * var(--u));
+  top: calc(329 * var(--u));
   left: 0;
   right: 0;
+  translate: 0 calc((var(--logo-y) - 329) * var(--u));
   z-index: 5;
   display: flex;
   justify-content: center;
@@ -85,21 +87,6 @@
   letter-spacing: -0.03em;
 }
 
-/* Розовое пятно под каплей в момент касания (кадр 260) */
-.intro__touch {
-  position: absolute;
-  top: calc(624 * var(--u));
-  left: calc(74 * var(--u));
-  z-index: 1;
-  width: calc(291 * var(--u));
-  height: calc(114 * var(--u));
-  border-radius: 50%;
-  background: radial-gradient(closest-side, #eb1976 45%, rgb(146 155 255 / 0.85) 82%, rgb(146 155 255 / 0));
-  filter: blur(calc(30 * var(--u)));
-  opacity: var(--touch-o);
-  pointer-events: none;
-}
-
 .intro__blob {
   position: absolute;
   top: calc(565 * var(--u));
@@ -107,20 +94,30 @@
   z-index: 2;
   width: calc(580.7 * var(--u));
   max-width: none;
+  overflow: visible;
   opacity: var(--blob-o);
   scale: var(--blob-s);
   transform-origin: 50% 25%;
   pointer-events: none;
 }
 
+/* Розовое пятно в капле в момент касания (кадр 260) */
+.intro__touch {
+  opacity: var(--touch-o);
+}
+
+/* Заголовок набран финальным размером 41 и масштабируется вокруг точки cy = 415,
+   от которой в макете считается его положение */
 .intro__title {
   position: absolute;
-  top: calc((var(--title-cy) - var(--title-fs) * 0.875) * var(--u));
+  top: calc((415 - 41 * 0.875) * var(--u));
   left: 0;
   right: 0;
   z-index: 3;
+  transform-origin: 50% calc(41 * 0.875 * var(--u));
+  transform: translateY(calc((var(--title-cy) - 415) * var(--u))) scale(calc(var(--title-fs) / 41));
   font-family: var(--font-display);
-  font-size: calc(var(--title-fs) * var(--u));
+  font-size: calc(41 * var(--u));
   font-weight: 500;
   line-height: 1.05;
   text-align: center;
@@ -132,21 +129,26 @@
 }
 
 /* Купол, потом шар-линза. Непрозрачный: под ним прячется заголовок,
-   а внутри виден его увеличенный двойник — так выглядит преломление */
+   а внутри виден его увеличенный двойник — так выглядит преломление.
+   Шар всегда наибольшего размера 601 и уменьшается трансформацией; тени делим на масштаб,
+   чтобы на экране они оставались размером из макета */
 .intro__bubble {
+  --bubble-k: calc(601 / var(--bubble-d));
   position: absolute;
-  top: calc(var(--bubble-y) * var(--u));
-  left: calc(var(--bubble-x) * var(--u));
+  top: 0;
+  left: 0;
   z-index: 4;
-  width: calc(var(--bubble-d) * var(--u));
+  width: calc(601 * var(--u));
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 50%;
   background: #fafafa;
   box-shadow:
-    0 0 0 calc(0.8 * var(--u)) rgb(0 0 0 / 0.04),
-    0 calc(4 * var(--u)) calc(20 * var(--u)) calc(-4 * var(--u)) rgb(0 0 0 / 0.2);
+    0 0 0 calc(0.8 * var(--u) * var(--bubble-k)) rgb(0 0 0 / 0.04),
+    0 calc(4 * var(--u) * var(--bubble-k)) calc(20 * var(--u) * var(--bubble-k)) calc(-4 * var(--u) * var(--bubble-k)) rgb(0 0 0 / 0.2);
   opacity: var(--bubble-o);
+  transform-origin: 0 0;
+  transform: translate(calc(var(--bubble-x) * var(--u)), calc(var(--bubble-y) * var(--u))) scale(calc(var(--bubble-d) / 601));
   pointer-events: none;
 }
 
@@ -156,33 +158,43 @@
   inset: 0;
   border-radius: inherit;
   box-shadow:
-    inset 0 0 calc(4 * var(--u)) calc(2 * var(--u)) var(--color-white),
-    inset 0 0 calc(20 * var(--u)) calc(6 * var(--u)) rgb(255 255 255 / 0.6);
+    inset 0 0 calc(4 * var(--u) * var(--bubble-k)) calc(2 * var(--u) * var(--bubble-k)) var(--color-white),
+    inset 0 0 calc(20 * var(--u) * var(--bubble-k)) calc(6 * var(--u) * var(--bubble-k)) rgb(255 255 255 / 0.6);
 }
 
 /* Кольцо свечения из макета: прозрачная середина, розовый, фиолетовый и синий край.
    В шаре от кольца остаётся нижняя дуга-улыбка — верх гасит маска */
 .intro__glow {
   position: absolute;
-  top: calc(var(--glow-y) * 1%);
-  left: calc(var(--glow-x) * 1%);
-  width: calc(var(--glow-w) * 1%);
-  height: calc(var(--glow-h) * 1%);
+  inset: 0;
   border-radius: 50%;
+  transform-origin: 0 0;
+  transform: translate(calc(var(--glow-x) * 1%), calc(var(--glow-y) * 1%)) scale(calc(var(--glow-w) / 100), calc(var(--glow-h) / 100));
   background: radial-gradient(61% 61% at 50% 47%, rgb(255 90 200 / 0) 20%, #ff3fb8 60%, rgb(205 95 240 / 0.75) 70%, rgb(160 150 250 / 0.45) 82%);
-  filter: blur(calc(9 * var(--u)));
+  filter: blur(calc(14 * var(--u)));
   opacity: var(--glow-o);
   -webkit-mask-image: linear-gradient(180deg, rgb(0 0 0 / calc(1 - var(--glow-cut))) 38%, #000 62%);
   mask-image: linear-gradient(180deg, rgb(0 0 0 / calc(1 - var(--glow-cut))) 38%, #000 62%);
 }
 
+/* Копия заголовка в координатах шара: переводим её в координаты сцены, увеличиваем в 1,28 раза
+   вокруг центра шара и повторяем трансформацию самого заголовка */
 .intro__lens {
   position: absolute;
-  top: calc((var(--title-cy) - var(--bubble-y) - var(--title-fs) * 0.875) * var(--u));
-  left: calc(var(--bubble-x) * var(--u) * -1);
+  top: 0;
+  left: 0;
   width: calc(440 * var(--u));
+  transform-origin: 0 0;
+  transform:
+    scale(var(--bubble-k))
+    translate(calc(var(--bubble-d) / 2 * var(--u)), calc(var(--bubble-d) / 2 * var(--u)))
+    scale(1.28)
+    translate(calc((var(--bubble-x) + var(--bubble-d) / 2) * var(--u) * -1), calc((var(--title-cy) - 41 * 0.875 - var(--bubble-y) - var(--bubble-d) / 2) * var(--u)))
+    translate(calc(220 * var(--u)), calc(41 * 0.875 * var(--u)))
+    scale(calc(var(--title-fs) / 41))
+    translate(calc(-220 * var(--u)), calc(-41 * 0.875 * var(--u)));
   font-family: var(--font-display);
-  font-size: calc(var(--title-fs) * var(--u));
+  font-size: calc(41 * var(--u));
   font-weight: 500;
   line-height: 1.05;
   text-align: center;
@@ -190,10 +202,6 @@
   text-shadow:
     calc(-2 * var(--u)) 0 rgb(255 0 90 / 0.45),
     calc(2 * var(--u)) 0 rgb(0 140 255 / 0.45);
-  transform-origin:
-    calc((var(--bubble-x) + var(--bubble-d) / 2) * var(--u))
-    calc((var(--bubble-y) + var(--bubble-d) / 2 - var(--title-cy) + var(--title-fs) * 0.875) * var(--u));
-  scale: 1.28;
   opacity: var(--lens-o);
 }
 
@@ -216,6 +224,11 @@
 
 .intro__trigger:focus-visible {
   outline-offset: calc(-8 * var(--u));
+}
+
+/* Без скриптов показан финальный экран — подсказке с жестом там не место */
+.no-js .intro__trigger {
+  display: none;
 }
 
 /* Векторная стрелка в макете повёрнута на 90°: коробка 26 × 20, на экране 20 × 26 */
@@ -483,5 +496,17 @@
   .intro .intro__copyright {
     transition: opacity 0.4s ease;
     transition-duration: 0.4s !important;
+  }
+}
+
+/* Телефон боком: сцена не мельче 300 px и прижата к низу — подсказка с каплей видны,
+   а иконки облака сверху могут уйти за край */
+@media (orientation: landscape) and (max-height: 560px) {
+  .intro__stage {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: min(100vw, max(300px, 100svh * 440 / 743));
+    translate: -50% 0;
   }
 }
