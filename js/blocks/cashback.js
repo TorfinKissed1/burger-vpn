@@ -41,6 +41,15 @@
 
   const hexToRgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
 
+  // «1 друг», «3 друга», «5 друзей», «21 друг»
+  function plural(value, forms) {
+    const mod10 = value % 10;
+    const mod100 = value % 100;
+    if (mod10 === 1 && mod100 !== 11) return forms[0];
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return forms[1];
+    return forms[2];
+  }
+
   function mix(colorA, colorB, t) {
     const a = hexToRgb(colorA);
     const b = hexToRgb(colorB);
@@ -139,7 +148,7 @@
 
     const friends = friendsFor(progress);
     stage.setAttribute('aria-valuenow', String(friends));
-    stage.setAttribute('aria-valuetext', `${friends} друзей, уровень ${index + 1} из ${LEVELS.length}`);
+    stage.setAttribute('aria-valuetext', `${friends} ${plural(friends, ['друг', 'друга', 'друзей'])}, уровень ${index + 1} из ${LEVELS.length}`);
   }
 
   // Палец ведём слева направо: горизонталь сцены пересчитываем в засечку под пальцем
@@ -152,7 +161,9 @@
     return ((x - arcLeft) / (arcRight - arcLeft)) * TICKS;
   }
 
+  const TOUCH_SLOP = 8;
   let dragging = false;
+  let pending = null;
   let stopDemo = () => {};
 
   function touch() {
@@ -160,20 +171,41 @@
     section.classList.add('cashback_touched');
   }
 
-  stage.addEventListener('pointerdown', (event) => {
-    if (event.button !== 0) return;
+  function startDrag(event) {
     touch();
     dragging = true;
     stage.setPointerCapture(event.pointerId);
     setProgress(progressFromPointer(event));
+  }
+
+  stage.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0) return;
+    if (event.pointerType === 'touch') {
+      pending = { id: event.pointerId, x: event.clientX, y: event.clientY };
+      return;
+    }
+    startDrag(event);
   });
 
   stage.addEventListener('pointermove', (event) => {
-    if (dragging) setProgress(progressFromPointer(event));
+    if (dragging) {
+      setProgress(progressFromPointer(event));
+      return;
+    }
+    if (!pending || event.pointerId !== pending.id) return;
+    const dx = Math.abs(event.clientX - pending.x);
+    const dy = Math.abs(event.clientY - pending.y);
+    if (dx > TOUCH_SLOP && dx > dy) {
+      pending = null;
+      startDrag(event);
+    } else if (dy > TOUCH_SLOP) {
+      pending = null;
+    }
   });
 
   const endDrag = () => {
     dragging = false;
+    pending = null;
   };
 
   stage.addEventListener('pointerup', endDrag);

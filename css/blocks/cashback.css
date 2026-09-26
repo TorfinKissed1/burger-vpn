@@ -120,14 +120,24 @@
   pointer-events: none;
 }
 
-.cashback__name text {
+/* Копии через <use> наследуют стиль только от самого <use>, поэтому шрифт задаём ему.
+   Обводка лежит под маской «всё, кроме букв»: иначе её внутренняя половина закрашивает
+   буквы и сквозь полупрозрачную заливку не видно картинку */
+.cashback__name use {
   font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: -0.03em;
   text-anchor: middle;
+}
+
+.cashback__name-stroke {
+  fill: none;
   stroke-width: 24px;
   stroke-linejoin: round;
-  paint-order: stroke fill;
+}
+
+.cashback__name-fill {
+  stroke: none;
 }
 
 .cashback__name_level_1 { top: 76.88%; left: 17.73%; width: 64.32%; }
@@ -135,10 +145,15 @@
 .cashback__name_level_3 { top: 71.24%; left: 19.09%; width: 61.36%; }
 .cashback__name_level_4 { top: 71.24%; left: 20.45%; width: 58.86%; }
 
-.cashback__name_level_1 text { font-size: 37px; fill: rgb(70 34 6 / 0.3); }
-.cashback__name_level_2 text { font-size: 60px; fill: rgb(86 81 32 / 0.5); }
-.cashback__name_level_3 text,
-.cashback__name_level_4 text { font-size: 40px; fill: rgb(0 0 0 / 0.15); }
+.cashback__name_level_1 { font-size: 37px; }
+.cashback__name_level_2 { font-size: 60px; }
+.cashback__name_level_3,
+.cashback__name_level_4 { font-size: 40px; }
+
+.cashback__name_level_1 .cashback__name-fill { fill: rgb(70 34 6 / 0.3); }
+.cashback__name_level_2 .cashback__name-fill { fill: rgb(86 81 32 / 0.5); }
+.cashback__name_level_3 .cashback__name-fill,
+.cashback__name_level_4 .cashback__name-fill { fill: rgb(0 0 0 / 0.15); }
 
 .cashback_level_1 .cashback__name_level_1,
 .cashback_level_2 .cashback__name_level_2,
@@ -203,7 +218,7 @@
   align-items: center;
   justify-content: flex-end;
   aspect-ratio: 171 / 145;
-  padding-bottom: 12%;
+  padding-bottom: calc(22 * var(--u));
   border-radius: clamp(28px, calc(40 * var(--u)), 44px);
   text-align: center;
 }
@@ -237,7 +252,7 @@
 
 .cashback__card-unit,
 .cashback__card-icon {
-  margin-bottom: 4%;
+  margin-bottom: calc(13 * var(--u));
 }
 
 .cashback__card-unit {
@@ -268,7 +283,7 @@
 }
 
 .cashback__card-label {
-  margin-top: 8%;
+  margin-top: calc(17 * var(--u));
   font-size: var(--fs-body);
   line-height: 0.9;
   letter-spacing: 0.02em;
