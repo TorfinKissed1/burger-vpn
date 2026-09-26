@@ -1,0 +1,100 @@
+:root {
+  /* Цвета */
+  --color-bg: #f5f5f5;
+  --color-bg-alt: #e4e4e4;
+  --color-bg-page: #f5f5f5;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-ink: #000000;
+  --color-ink-80: rgb(0 0 0 / 0.8);
+  --color-ink-40: rgb(0 0 0 / 0.4);
+  --color-ink-30: rgb(0 0 0 / 0.3);
+  --color-ink-20: rgb(0 0 0 / 0.2);
+  --color-ink-10: rgb(0 0 0 / 0.1);
+  --color-light-70: rgb(255 255 255 / 0.7);
+  --color-light-40: rgb(255 255 255 / 0.4);
+  --color-light-30: rgb(255 255 255 / 0.3);
+  --color-light-12: rgb(255 255 255 / 0.12);
+  --color-dark: #0c0c0c;
+  --color-dark-soft: #1d1d1d;
+
+  --color-pink: #ff2486;
+  --color-pink-deep: #eb1976;
+  --color-pink-light: #fe77b4;
+  --color-pink-soft: #f9539d;
+  --color-pink-glow: #fe499a;
+  --color-pink-shadow: #d30460;
+  --color-lime: #c4d82b;
+  --color-orange: #ff8b4d;
+  --color-magenta: #fe2dea;
+  --color-sky: #86dfff;
+  --color-sky-deep: #0786b5;
+
+  /* Градиенты */
+  --gradient-pink: radial-gradient(83% 83% at 50% 17%, #fe77b4 40%, #eb1976 84%), #ff2486;
+  --gradient-holo: linear-gradient(90deg, #f7ded7 8%, #b6c9d7 36%, #b4c2f3 56%, #e2ceea 79%, #f7edee 100%);
+  --gradient-glass-stroke: linear-gradient(135deg, rgb(255 255 255 / 0) 0%, rgb(255 255 255 / 0.7) 25%, rgb(255 255 255 / 0.3) 93%, rgb(255 255 255 / 0.2) 100%);
+  --gradient-light-glass: radial-gradient(227% 185% at 50% 4%, rgb(128 128 128 / 0.01) 22%, rgb(158 158 158 / 0.4) 42%, rgb(158 158 158 / 0.7) 56%), #ffffff;
+
+  /* Тени */
+  --shadow-glass-inset: inset 2.5px 2.5px 16.5px -2.5px rgb(255 255 255 / 0.7),
+    inset 1.25px 1.25px 60px -2.5px rgb(255 255 255 / 0.2),
+    inset -8px -9.25px 15px -2.5px rgb(255 255 255 / 0.2);
+  --shadow-glass-pink: inset -2.5px -6.25px 17.5px -5.5px rgb(255 64 157 / 0.6);
+  --shadow-light-glass: 0 5px 8px -6px rgb(9 9 9 / 0.18);
+  --shadow-card: 0 30px 23px -23px rgb(9 9 9 / 0.35);
+  --shadow-float: 0 32px 22px -30px rgb(0 0 0 / 0.45);
+
+  /* Скругления */
+  --radius-section: 105px;
+  --radius-xl: 46px;
+  --radius-lg: 40px;
+  --radius-md: 25px;
+  --radius-sm: 20px;
+  --radius-pill: 17px;
+  --radius-xs: 12px;
+
+  /* Шрифты */
+  --font-display: "Asgard Wide", "Unbounded", system-ui, sans-serif;
+  --font-body: "Inter", "Neue Haas Unica", "Helvetica Neue", system-ui, sans-serif;
+
+  /* Одна единица = 1px макета шириной 440, считается от ширины ближайшего контейнера */
+  --u: calc(100cqi / 440);
+
+  --fs-display: clamp(40px, calc(60 * var(--u)), 92px);
+  --fs-h2: clamp(29px, calc(40 * var(--u)), 58px);
+  --fs-h3: clamp(24px, calc(33 * var(--u)), 44px);
+  --fs-lead: clamp(17px, calc(22 * var(--u)), 28px);
+  --fs-body: clamp(14px, calc(16 * var(--u)), 20px);
+  --fs-small: clamp(12px, calc(14 * var(--u)), 17px);
+  --fs-button: clamp(22px, calc(32 * var(--u)), 42px);
+
+  /* Сетка страницы */
+  --page-gutter: 20px;
+  --page-max: 1440px;
+  --tile-gap: 16px;
+  --header-height: 70px;
+
+  /* Движение */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.25s;
+  --dur: 0.5s;
+  --dur-slow: 0.9s;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-gutter: 24px;
+    --tile-gap: 20px;
+    --radius-section: 64px;
+  }
+}
+
+@media (min-width: 1240px) {
+  :root {
+    --page-gutter: 32px;
+    --tile-gap: 24px;
+  }
+}

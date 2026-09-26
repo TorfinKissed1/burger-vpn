@@ -1,0 +1,154 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 24px);
+}
+
+body {
+  min-width: 320px;
+  overflow-x: clip;
+  background: var(--color-bg-page);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+/* В макете у текстов включена обрезка по высоте заглавных: отступы в Figma считаются
+   от верха заглавных до базовой линии. Без поддержки (Firefox) отступы чуть шире. */
+:where(h1, h2, h3, p, li, dt, dd, figcaption, button, a, label, span, input) {
+  text-box: trim-both cap alphabetic;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-pink);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Сетка страницы. На телефоне секции идут встык, как в макете,
+   с 768px превращаются в плитки бенто. */
+.page {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  padding-top: calc(var(--header-height) + 10px);
+}
+
+/* На телефоне контейнер — вся страница: cqi считается от ширины без полей секций,
+   и размеры из макета (ширина 440) совпадают один в один */
+.page__tile {
+  position: relative;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --color-bg-page: #e9e9e9;
+  }
+
+  .page {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--tile-gap);
+    width: min(100%, 680px + 2 * var(--page-gutter));
+    margin-inline: auto;
+    padding: calc(var(--header-height) + 40px) var(--page-gutter) var(--page-gutter);
+  }
+
+  .page__tile {
+    container-type: inline-size;
+    border-radius: var(--radius-section);
+    background: var(--color-bg);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9), 0 18px 40px -32px rgb(0 0 0 / 0.35);
+  }
+}
+
+@media (min-width: 1024px) {
+  .page {
+    width: min(100%, var(--page-max));
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+      "hero hero hero hero hero hero hero services services services services services"
+      "features features features features features features features features features features features features"
+      "devices devices devices devices devices devices devices steps steps steps steps steps"
+      "devices devices devices devices devices devices devices launch launch launch launch launch"
+      "tariffs tariffs tariffs tariffs tariffs tariffs mini-app mini-app mini-app mini-app mini-app mini-app"
+      "tariffs tariffs tariffs tariffs tariffs tariffs cashback cashback cashback cashback cashback cashback"
+      "reviews reviews reviews reviews reviews reviews reviews faq faq faq faq faq"
+      "support support support support support support support support support support support support"
+      "footer footer footer footer footer footer footer footer footer footer footer footer";
+  }
+
+  .page__tile_area_hero { grid-area: hero; }
+  .page__tile_area_features { grid-area: features; }
+  .page__tile_area_services { grid-area: services; }
+  .page__tile_area_devices { grid-area: devices; }
+  .page__tile_area_steps { grid-area: steps; }
+  .page__tile_area_tariffs { grid-area: tariffs; }
+  .page__tile_area_mini-app { grid-area: mini-app; }
+  .page__tile_area_cashback { grid-area: cashback; }
+  .page__tile_area_reviews { grid-area: reviews; }
+  .page__tile_area_launch { grid-area: launch; }
+  .page__tile_area_faq { grid-area: faq; }
+  .page__tile_area_support { grid-area: support; }
+  .page__tile_area_footer { grid-area: footer; }
+}
+
+/* Появление при прокрутке: состояние задаёт js/core/reveal.js */
+[data-reveal] {
+  --reveal-shift: 36px;
+  --reveal-delay: 0s;
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-shift), 0) scale(0.98);
+  transition:
+    opacity var(--dur-slow) var(--ease-out) var(--reveal-delay),
+    transform var(--dur-slow) var(--ease-out) var(--reveal-delay);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.no-js [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
