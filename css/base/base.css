@@ -32,6 +32,13 @@ body.is-locked {
   outline-offset: 3px;
 }
 
+/* Пауза для анимаций за экраном (js/core/offscreen.js). Правила блоков задают animation
+   целиком и сбрасывают play-state, поэтому здесь нужен !important */
+.is-offscreen,
+.is-offscreen * {
+  animation-play-state: paused !important;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

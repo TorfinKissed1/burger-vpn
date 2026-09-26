@@ -192,9 +192,10 @@
   }
 }
 
+/* Вращаем через transform: анимация свойства rotate у SVG пересчитывала раскладку каждый кадр */
 @keyframes reviews-spin {
   to {
-    rotate: 360deg;
+    transform: rotate(360deg);
   }
 }
 

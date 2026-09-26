@@ -99,7 +99,7 @@
   </div>
 
   <main class="page" id="main">
-    <section class="hero page__tile page__tile_area_hero" id="top" aria-labelledby="hero-title">
+    <section class="hero page__tile page__tile_area_hero" id="top" aria-labelledby="hero-title" data-pause-offscreen>
       <div class="hero__content">
         <h1 class="hero__title" id="hero-title">
           <span class="hero__line"><span class="hero__word">Просто.</span></span>
@@ -163,7 +163,7 @@
       </ol>
     </section>
 
-    <section class="services page__tile page__tile_area_services" id="services" aria-labelledby="services-title" data-services>
+    <section class="services page__tile page__tile_area_services" id="services" aria-labelledby="services-title" data-services data-pause-offscreen>
       <div class="services__stage">
         <div class="services__cloud" aria-hidden="true">
           <img class="services__icon" src="img/services/whatsapp.webp" width="164" height="167" alt="" loading="lazy" decoding="async" style="--x: 36.14%; --y: 13.7%; --w: 18.64%; --i: 0;">
@@ -374,7 +374,7 @@
       </ol>
     </section>
 
-    <section class="tariffs page__tile page__tile_area_tariffs" id="tariffs" aria-labelledby="tariffs-title" data-tariffs>
+    <section class="tariffs page__tile page__tile_area_tariffs" id="tariffs" aria-labelledby="tariffs-title" data-tariffs data-pause-offscreen>
       <div class="tariffs__card">
         <div class="tariffs__backdrops" aria-hidden="true">
           <span class="tariffs__backdrop tariffs__backdrop_personal"></span>
@@ -511,7 +511,7 @@
       <p class="mini-app__note">Можно так долго не листать</p>
     </section>
 
-    <section class="cashback cashback_level_3 page__tile page__tile_area_cashback" id="referral" aria-labelledby="cashback-title" data-cashback>
+    <section class="cashback cashback_level_3 page__tile page__tile_area_cashback" id="referral" aria-labelledby="cashback-title" data-cashback data-pause-offscreen>
       <h2 class="cashback__title heading" id="cashback-title" data-reveal>Кешбэк<br>от друзей</h2>
       <p class="cashback__subtitle heading-note" data-reveal>Уровни реферальной системы</p>
       <div class="cashback__stage" role="slider" tabindex="0" aria-label="Количество приглашённых друзей" aria-valuemin="0" aria-valuemax="31" aria-valuenow="15" aria-valuetext="15 друзей, уровень 3 из 4" data-cashback-stage>
@@ -595,7 +595,7 @@
       <p class="cashback__text heading-note">Приглашайте друзей и зарабатывайте<br>проценты от их оплат.</p>
     </section>
 
-    <section class="reviews page__tile page__tile_area_reviews" id="reviews" aria-labelledby="reviews-title">
+    <section class="reviews page__tile page__tile_area_reviews" id="reviews" aria-labelledby="reviews-title" data-pause-offscreen>
       <h2 class="reviews__title heading" id="reviews-title" data-reveal>Что говорят<br>пользователи</h2>
       <p class="reviews__rating" data-reveal>
         <span class="reviews__score">4.8</span>
@@ -683,7 +683,7 @@
       </div>
     </section>
 
-    <section class="launch page__tile page__tile_area_launch" aria-labelledby="launch-title" data-launch>
+    <section class="launch page__tile page__tile_area_launch" aria-labelledby="launch-title" data-launch data-pause-offscreen>
       <div class="launch__card">
         <p class="launch__counter" id="launch-title">
           <img class="launch__counter-icon" src="img/icons/person-counter.svg" width="57" height="42" alt="">
@@ -819,7 +819,7 @@
       <p class="support__text">Решим любой вопрос</p>
     </section>
 
-    <footer class="footer page__tile page__tile_area_footer">
+    <footer class="footer page__tile page__tile_area_footer" data-pause-offscreen>
       <p class="footer__logo">Burger<span class="footer__logo-mark">©&nbsp;VPN</span></p>
       <nav class="footer__nav" aria-label="Разделы сайта">
         <ul class="footer__list">
@@ -953,6 +953,7 @@
   <script src="js/vendor/keen-slider.min.js" defer></script>
   <script src="js/core/utils.js" defer></script>
   <script src="js/core/reveal.js" defer></script>
+  <script src="js/core/offscreen.js" defer></script>
   <script src="js/core/tabs.js" defer></script>
   <script src="js/core/modal.js" defer></script>
   <script src="js/blocks/header.js" defer></script>
