@@ -200,7 +200,11 @@
   color: var(--color-ink-30);
 }
 
+/* Карточки — контейнер: всё внутри считается в пикселях макета от ширины пары карточек (352),
+   поэтому на планшете и ПК содержимое не упирается в верх карточки */
 .cashback__cards {
+  --cu: calc(100cqi / 352);
+  container-type: inline-size;
   display: flex;
   gap: clamp(8px, calc(10 * var(--u)), 14px);
   width: 100%;
@@ -218,8 +222,8 @@
   align-items: center;
   justify-content: flex-end;
   aspect-ratio: 171 / 145;
-  padding-bottom: calc(22 * var(--u));
-  border-radius: clamp(28px, calc(40 * var(--u)), 44px);
+  padding: calc(12 * var(--cu)) 0 calc(22 * var(--cu));
+  border-radius: calc(40 * var(--cu));
   text-align: center;
 }
 
@@ -252,12 +256,12 @@
 
 .cashback__card-unit,
 .cashback__card-icon {
-  margin-bottom: calc(13 * var(--u));
+  margin-bottom: calc(13 * var(--cu));
 }
 
 .cashback__card-unit {
   font-family: var(--font-display);
-  font-size: clamp(20px, calc(26 * var(--u)), 32px);
+  font-size: calc(26 * var(--cu));
   line-height: 0.7;
 }
 
@@ -276,15 +280,15 @@
 
 .cashback__card-value {
   font-family: var(--font-display);
-  font-size: clamp(46px, calc(65 * var(--u)), 80px);
+  font-size: calc(65 * var(--cu));
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.03em;
 }
 
 .cashback__card-label {
-  margin-top: calc(17 * var(--u));
-  font-size: var(--fs-body);
+  margin-top: calc(17 * var(--cu));
+  font-size: max(12px, calc(16 * var(--cu)));
   line-height: 0.9;
   letter-spacing: 0.02em;
 }
