@@ -5,16 +5,16 @@
   const { onceVisible, animateValue, formatNumber } = window.Burger;
 
   document.querySelectorAll('[data-count-to]').forEach((element) => {
-    const target = Number(element.dataset.countTo);
     const suffix = element.dataset.countSuffix || '';
     // Большие числа начинаем не с нуля, иначе счёт тянется слишком долго
-    const from = target > 1000 ? Math.round(target * 0.92) : 0;
+    const initial = Number(element.dataset.countTo);
+    const from = initial > 1000 ? Math.round(initial * 0.92) : 0;
 
     element.textContent = formatNumber(from) + suffix;
     onceVisible(element.closest('svg') || element, () => {
       animateValue({
         from,
-        to: target,
+        to: Number(element.dataset.countTo),
         duration: 1600,
         onUpdate: (value) => {
           element.textContent = formatNumber(Math.round(value)) + suffix;

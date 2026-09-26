@@ -40,7 +40,7 @@
     completed = true;
     track.classList.add('launch__switch_done');
     setShift(maxShift());
-    window.setTimeout(() => modal.open('activation', { source: 'launch' }), 420);
+    if (modal) window.setTimeout(() => modal.open('activation', { source: 'launch' }), 420);
   }
 
   knob.addEventListener('pointerdown', (event) => {
@@ -80,9 +80,13 @@
     complete();
   });
 
-  document.getElementById('activation').addEventListener('modal:close', () => {
-    if (completed) window.setTimeout(reset, 300);
-  });
+  // Без окна подключения ручка просто остаётся включённой
+  const activation = document.getElementById('activation');
+  if (activation) {
+    activation.addEventListener('modal:close', () => {
+      if (completed) window.setTimeout(reset, 300);
+    });
+  }
 
   window.addEventListener('resize', () => {
     if (completed) setShift(maxShift());

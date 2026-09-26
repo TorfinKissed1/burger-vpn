@@ -14,47 +14,50 @@
   color: var(--color-bg);
 }
 
+/* Счётчик «21 325» — SVG по геометрии макета: внешняя обводка со скруглёнными углами,
+   CSS-обводка текста давала острые шипы на «2» и «5». Верх наклейки на 69 px выше карточки */
 .launch__counter {
   position: absolute;
-  top: clamp(-68px, calc(-61 * var(--u)), -48px);
+  top: calc(-69 * var(--u));
   left: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: var(--font-display);
+  width: calc(239 * var(--u));
   translate: -50% 0;
 }
 
-.launch__counter-icon {
-  position: relative;
-  z-index: 1;
-  width: clamp(44px, calc(57 * var(--u)), 64px);
-  margin-bottom: clamp(8px, calc(13 * var(--u)), 14px);
+.launch__sticker {
+  display: block;
+  width: 100%;
+  overflow: visible;
 }
 
-.launch__count {
-  font-size: clamp(44px, calc(60 * var(--u)), 72px);
-  font-weight: 500;
-  line-height: 0.75;
-  letter-spacing: 0.01em;
-  color: var(--color-bg);
-  -webkit-text-stroke: 0.43em var(--color-black);
+.launch__sticker-neck {
+  fill: var(--color-bg);
+  stroke: var(--color-black);
+  stroke-width: 1px;
+}
+
+.launch__sticker text {
+  fill: var(--color-bg);
+  stroke: var(--color-black);
+  stroke-linejoin: round;
   paint-order: stroke fill;
-  font-variant-numeric: tabular-nums;
+  text-anchor: middle;
 }
 
-.launch__count-label {
-  position: relative;
-  margin-top: 0.35em;
+.launch__sticker-count {
+  font-family: var(--font-display);
+  font-size: 60px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  stroke-width: 26px;
+}
+
+.launch__sticker-label {
   font-family: var(--font-body);
-  font-size: var(--fs-body);
+  font-size: 16px;
   font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  color: var(--color-bg);
-  -webkit-text-stroke: 0.63em var(--color-black);
-  paint-order: stroke fill;
+  letter-spacing: 0.32px;
+  stroke-width: 16px;
 }
 
 .launch__switch {

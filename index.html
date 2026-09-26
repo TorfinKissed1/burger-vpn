@@ -686,9 +686,13 @@
     <section class="launch page__tile page__tile_area_launch" aria-labelledby="launch-title" data-launch data-pause-offscreen>
       <div class="launch__card">
         <p class="launch__counter" id="launch-title">
-          <img class="launch__counter-icon" src="img/icons/person-counter.svg" width="57" height="42" alt="">
-          <span class="launch__count" data-count-to="21325" data-launch-count>21 325</span>
-          <span class="launch__count-label">Уже включили Burger VPN</span>
+          <span class="visually-hidden"><span data-launch-count-text>21 325</span> уже включили Burger VPN</span>
+          <svg class="launch__sticker" viewBox="0 0 239 117" aria-hidden="true">
+            <rect class="launch__sticker-neck" x="105" y="32" width="28" height="28"/>
+            <image href="img/icons/person-counter.svg" x="91" y="0" width="57" height="42"/>
+            <text class="launch__sticker-count" x="119.5" y="89" data-count-to="21325" data-launch-count>21 325</text>
+            <text class="launch__sticker-label" x="119.5" y="109">Уже включили Burger VPN</text>
+          </svg>
         </p>
         <div class="launch__switch" data-swipe>
           <button class="launch__knob" type="button" aria-label="Потяните вправо или нажмите, чтобы включить VPN на 3 дня бесплатно" data-swipe-knob>

@@ -18,12 +18,14 @@
   const done = modalElement.querySelector('[data-activation-done]');
   const contactOutput = modalElement.querySelector('[data-activation-contact]');
   const launchCount = document.querySelector('[data-launch-count]');
+  const launchCountText = document.querySelector('[data-launch-count-text]');
 
   const BURST_ICONS = ['youtube', 'telegram', 'instagram', 'whatsapp', 'spotify', 'chatgpt', 'discord', 'facebook', 'notion', 'tiktok', 'sweden', 'uae'];
   const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const USERNAME = /^@?[a-zA-Z][a-zA-Z0-9_]{4,31}$/;
 
   let activations = 21325;
+  let counted = false;
 
   function showBurst() {
     burst.replaceChildren();
@@ -54,10 +56,19 @@
     input.removeAttribute('aria-invalid');
   }
 
+  // Ваше включение прибавляется к счётчику один раз за визит, а не при каждом открытии окна.
+  // Счёт в блоке запуска идёт к data-count-to, поэтому обновляем и его
   modalElement.addEventListener('modal:open', () => {
-    activations += 1;
+    if (!counted) {
+      counted = true;
+      activations += 1;
+    }
     countElement.textContent = formatNumber(activations);
-    if (launchCount) launchCount.textContent = formatNumber(activations);
+    if (launchCount) {
+      launchCount.dataset.countTo = String(activations);
+      launchCount.textContent = formatNumber(activations);
+    }
+    if (launchCountText) launchCountText.textContent = formatNumber(activations);
     resetForm();
 
     requestAnimationFrame(() => {
