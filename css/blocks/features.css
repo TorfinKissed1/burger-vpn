@@ -30,7 +30,7 @@
 .features__icon {
   display: grid;
   place-items: center;
-  width: clamp(74px, calc(96 * var(--u)), 128px);
+  width: clamp(74px, calc(var(--badge-size, 96) * var(--u)), 128px);
   aspect-ratio: 1;
   border-radius: 50%;
 }
@@ -39,7 +39,7 @@
   position: relative;
   z-index: 1;
   border: clamp(5px, calc(7 * var(--u)), 9px) solid var(--color-black);
-  font-size: clamp(50px, calc(70 * var(--u)), 92px);
+  font-size: clamp(50px, calc(var(--digit-size, 70) * var(--u)), 92px);
   font-weight: 500;
   line-height: 0.9;
   letter-spacing: -0.03em;
@@ -47,7 +47,7 @@
 }
 
 .features__icon {
-  margin-left: calc(clamp(74px, calc(96 * var(--u)), 128px) * -0.24);
+  margin-left: calc(clamp(74px, calc(var(--badge-size, 96) * var(--u)), 128px) * -0.24);
   background: var(--color-black);
   font-family: var(--font-display);
   font-size: clamp(52px, calc(70 * var(--u)), 94px);
@@ -85,8 +85,9 @@
   line-height: 1;
 }
 
+/* Ширина абзаца у каждого пункта своя, как в макете, — от неё зависят переносы строк */
 .features__text {
-  max-width: min(100%, calc(330 * var(--u)));
+  max-width: min(100%, calc(var(--text-width, 330) * var(--u)));
   margin-top: clamp(14px, calc(18 * var(--u)), 22px);
   font-size: var(--fs-body);
   line-height: 1.3;
@@ -100,7 +101,9 @@
   transition: transform 0.9s var(--ease-back) 0.15s;
 }
 
+/* Цифра при появлении распрямляется: в макете кольца стоят ровно */
 .features__item .features__number {
+  transform: rotate(12deg) scale(0.9);
   transition: transform 0.9s var(--ease-back);
 }
 
@@ -109,7 +112,7 @@
 }
 
 .features__item.is-visible .features__number {
-  transform: rotate(-8deg);
+  transform: none;
 }
 
 .no-js .features__item .features__icon {
