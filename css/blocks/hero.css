@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: clamp(24px, calc(39 * var(--u)), 64px) 0 clamp(56px, calc(82 * var(--u)), 72px);
+  padding: clamp(24px, calc(39 * var(--u)), 64px) 0 clamp(56px, calc(82 * var(--u)), 96px);
   text-align: center;
 }
 
@@ -14,10 +14,26 @@
   letter-spacing: -0.02em;
 }
 
+/* Строки обрезаем сами: верх первой — по заглавным, низ последней — по базовой линии.
+   Между строками полный шаг 60 px, как в макете; поле снизу держит хвост «р» внутри обрезки */
+.hero__title {
+  text-box: none;
+}
+
 .hero__line {
   display: block;
-  padding-bottom: 0.06em;
+  margin-bottom: -0.22em;
+  padding-bottom: 0.22em;
   overflow: hidden;
+  text-box: none;
+}
+
+.hero__line:first-child {
+  text-box: trim-start cap alphabetic;
+}
+
+.hero__line:last-child {
+  text-box: trim-end cap alphabetic;
 }
 
 .hero__word {
@@ -42,7 +58,7 @@
   position: relative;
   width: 85.8%;
   max-width: 560px;
-  margin-top: calc(42 * var(--u));
+  margin-top: calc(32 * var(--u));
   aspect-ratio: 755 / 744;
   border-radius: 50%;
   -webkit-tap-highlight-color: transparent;
@@ -99,7 +115,7 @@
 }
 
 .hero__offer-note {
-  margin-top: calc(25 * var(--u));
+  margin-top: calc(18 * var(--u));
   font-size: var(--fs-body);
   line-height: 1.3;
   letter-spacing: 0.02em;
