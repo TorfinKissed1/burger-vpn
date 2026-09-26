@@ -9,11 +9,12 @@
   const { clamp, formatNumber, emit, replayClass, pricing, prefersReducedMotion } = window.Burger;
 
   // Цены и скидки — в общей таблице js/core/pricing.js, здесь только оформление карточки
+  // Миниатюры устройств — как в кадрах тарифов 355–358
   const TARIFFS = {
     personal: { devices: '01', thumbs: ['iphone'] },
-    advanced: { devices: '03', thumbs: ['android-tv', 'ipad'] },
-    family: { devices: '06', thumbs: ['iphone', 'ipad', 'macbook'] },
-    constructor: { devices: 'до 100', thumbs: ['android-tv', 'ipad'] },
+    advanced: { devices: '03', thumbs: ['macbook', 'ipad'] },
+    family: { devices: '06', thumbs: ['iphone', 'macbook', 'ipad'] },
+    constructor: { devices: 'до 100', thumbs: ['macbook', 'ipad'] },
   };
   const { minDevices: DEVICES_MIN, maxDevices: DEVICES_MAX } = pricing.TARIFFS.constructor;
 
