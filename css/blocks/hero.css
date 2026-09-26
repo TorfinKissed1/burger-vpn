@@ -56,6 +56,7 @@
 
 .hero__power {
   position: relative;
+  display: block;
   width: 85.8%;
   max-width: 560px;
   margin-top: calc(32 * var(--u));

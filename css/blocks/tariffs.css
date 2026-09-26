@@ -99,6 +99,7 @@
 
 .tariffs__power {
   position: relative;
+  display: block;
   width: 90.9%;
   max-width: 500px;
   margin-top: calc(26 * var(--u));

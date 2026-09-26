@@ -113,8 +113,11 @@
     input.removeAttribute('aria-invalid');
   });
 
+  // Призывы — ссылки на бота, чтобы работать без скриптов; со скриптом открываем окно
   document.addEventListener('click', (event) => {
-    if (event.target.closest('[data-activation-open]')) modal.open('activation');
+    if (!event.target.closest('[data-activation-open]')) return;
+    event.preventDefault();
+    modal.open('activation');
   });
 
   // «Зарегистрироваться» на заставке intro.html ведёт сюда с #activation
