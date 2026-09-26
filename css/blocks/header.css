@@ -33,6 +33,7 @@
 
 .header__brand {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: flex-end;
   gap: 4px;
   padding: 8px 4px 8px 0;
@@ -86,6 +87,7 @@
 
 .header__cta {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 6px;
   height: 51px;
@@ -149,6 +151,21 @@
   50% {
     opacity: 1;
     transform: scale(1.08);
+  }
+}
+
+/* На самых узких экранах логотип, иконки и кнопка не влезают с обычными отступами */
+@media (max-width: 379px) {
+  .header__bar {
+    gap: 10px;
+  }
+
+  .header__links {
+    gap: 4px;
+  }
+
+  .header__icon-link {
+    width: 28px;
   }
 }
 
