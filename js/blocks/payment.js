@@ -6,10 +6,10 @@
   const modalElement = document.getElementById('payment');
   if (!modalElement) return;
 
-  const { modal, on, formatNumber } = window.Burger;
+  const { modal, on, formatNumber, pricing } = window.Burger;
   const payment = modalElement.querySelector('[data-payment]');
   const plans = Array.from(modalElement.querySelectorAll('[data-plan]'));
-  const periods = Array.from(modalElement.querySelectorAll('[data-weeks]'));
+  const periods = Array.from(modalElement.querySelectorAll('[data-months]'));
   const totalElement = modalElement.querySelector('[data-payment-total]');
   const sheet = modalElement.querySelector('[data-payment-sheet]');
   const success = modalElement.querySelector('[data-payment-success]');
@@ -19,27 +19,14 @@
   const periodName = modalElement.querySelector('[data-payment-period]');
   const untilElement = modalElement.querySelector('[data-payment-until]');
   const devicesElement = modalElement.querySelector('[data-payment-devices]');
-  const constructorPrice = modalElement.querySelector('[data-plan="constructor"] .payment__plan-price b');
   const constructorDevices = modalElement.querySelector('[data-plan="constructor"] .payment__plan-devices');
-
-  // Недельные цены из кадра оплаты; «Конструктор» считается за устройство
-  const PLANS = {
-    personal: { name: 'Личный', weekly: 84, devices: 1 },
-    advanced: { name: 'Продвинутый', weekly: 252, devices: 3 },
-    family: { name: 'Семья', weekly: 504, devices: 6 },
-    constructor: { name: 'Конструктор', perDevice: 24, devices: 5 },
-  };
-  const PERIOD_BY_MONTHS = { 1: '4', 3: '13', 12: '52' };
   const dateFormat = new Intl.DateTimeFormat('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
-  const state = { plan: 'advanced', weeks: 1, discount: 0 };
+  // Цены — из общей таблицы js/core/pricing.js: в списке недельная цена, итог — за выбранный срок
+  const state = { plan: 'advanced', months: 0.25, devices: pricing.TARIFFS.constructor.devices };
 
-  const weeklyPrice = (key) => {
-    const plan = PLANS[key];
-    return plan.perDevice ? plan.perDevice * plan.devices : plan.weekly;
-  };
-
-  const total = () => Math.round(weeklyPrice(state.plan) * state.weeks * (1 - state.discount));
+  const devicesOf = (key) => (pricing.TARIFFS[key].perDevice ? state.devices : pricing.TARIFFS[key].devices);
+  const total = () => pricing.total(state.plan, state.months, devicesOf(state.plan));
 
   // Рубль набираем чуть мельче цифр, как в макете
   function setSum(element, value) {
@@ -58,26 +45,28 @@
   }
 
   function render() {
-    plans.forEach((plan) => plan.setAttribute('aria-checked', String(plan.dataset.plan === state.plan)));
-    periods.forEach((period) => period.setAttribute('aria-checked', String(Number(period.dataset.weeks) === state.weeks)));
-    constructorPrice.textContent = `${formatNumber(weeklyPrice('constructor'))} ₽`;
-    constructorDevices.textContent = `от 2 до 100 устройств · выбрано ${PLANS.constructor.devices}`;
+    plans.forEach((plan) => {
+      const key = plan.dataset.plan;
+      plan.setAttribute('aria-checked', String(key === state.plan));
+      plan.querySelector('.payment__plan-price b').textContent = `${formatNumber(pricing.weekly(key, devicesOf(key)))} ₽`;
+    });
+    periods.forEach((period) => period.setAttribute('aria-checked', String(Number(period.dataset.months) === state.months)));
+    constructorDevices.textContent = `от 2 до 100 устройств · выбрано ${state.devices}`;
     totalElement.textContent = `${formatNumber(total())} ₽`;
   }
 
   function selectPeriod(button) {
-    state.weeks = Number(button.dataset.weeks);
-    state.discount = Number(button.dataset.discount);
+    state.months = Number(button.dataset.months);
   }
 
   function showSheet() {
-    const plan = PLANS[state.plan];
     const until = new Date();
-    until.setDate(until.getDate() + state.weeks * 7);
-    planName.textContent = plan.name;
-    periodName.textContent = periods.find((period) => Number(period.dataset.weeks) === state.weeks).textContent.trim();
+    if (state.months < 1) until.setDate(until.getDate() + 7);
+    else until.setMonth(until.getMonth() + state.months);
+    planName.textContent = pricing.TARIFFS[state.plan].name;
+    periodName.textContent = periods.find((period) => Number(period.dataset.months) === state.months).textContent.trim();
     untilElement.textContent = `до ${dateFormat.format(until)}`;
-    devicesElement.textContent = String(plan.devices);
+    devicesElement.textContent = String(devicesOf(state.plan));
     setSum(sumElement, total());
     sheet.hidden = false;
     payment.classList.add('payment_sheet-open');
@@ -116,11 +105,11 @@
     success.hidden = true;
   });
 
-  // Из блока тарифов приходит выбранный тариф, период и число устройств
+  // Из блока тарифов приходит выбранный тариф, срок в месяцах и число устройств
   on('payment:open', (detail = {}) => {
-    if (PLANS[detail.tariff]) state.plan = detail.tariff;
-    if (detail.devices) PLANS.constructor.devices = detail.devices;
-    const period = periods.find((button) => button.dataset.weeks === PERIOD_BY_MONTHS[detail.period]);
+    if (pricing.TARIFFS[detail.tariff]) state.plan = detail.tariff;
+    if (detail.devices) state.devices = detail.devices;
+    const period = periods.find((button) => Number(button.dataset.months) === Number(detail.period));
     if (period) selectPeriod(period);
     hideSheet();
     success.hidden = true;

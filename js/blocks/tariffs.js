@@ -6,19 +6,16 @@
   const section = document.querySelector('[data-tariffs]');
   if (!section || typeof window.KeenSlider !== 'function') return;
 
-  const { clamp, formatNumber, emit, replayClass } = window.Burger;
+  const { clamp, formatNumber, emit, replayClass, pricing } = window.Burger;
 
-  // Цены в макете не сходятся между кадрами; здесь месячная цена из вариантов тарифов,
-  // скидки за длинный период подставлены условно, их нужно сверить с заказчиком
+  // Цены и скидки — в общей таблице js/core/pricing.js, здесь только оформление карточки
   const TARIFFS = {
-    personal: { name: 'Личный', devices: '01', price: 90, thumbs: ['iphone'] },
-    advanced: { name: 'Продвинутый', devices: '03', price: 220, thumbs: ['android-tv', 'ipad'] },
-    family: { name: 'Семья', devices: '06', price: 620, thumbs: ['iphone', 'ipad', 'macbook'] },
-    constructor: { name: 'Конструктор', devices: 'до 100', price: 20, perDevice: true, thumbs: ['android-tv', 'ipad'] },
+    personal: { devices: '01', thumbs: ['iphone'] },
+    advanced: { devices: '03', thumbs: ['android-tv', 'ipad'] },
+    family: { devices: '06', thumbs: ['iphone', 'ipad', 'macbook'] },
+    constructor: { devices: 'до 100', thumbs: ['android-tv', 'ipad'] },
   };
-  const DISCOUNTS = { 1: 0, 3: 0.1, 12: 0.31 };
-  const DEVICES_MIN = 2;
-  const DEVICES_MAX = 100;
+  const { minDevices: DEVICES_MIN, maxDevices: DEVICES_MAX } = pricing.TARIFFS.constructor;
 
   const sliderElement = section.querySelector('[data-tariff-slider]');
   const slides = Array.from(sliderElement.querySelectorAll('[data-tariff]'));
@@ -39,25 +36,24 @@
   const state = {
     tariff: 'advanced',
     period: 1,
-    devices: 5,
+    devices: pricing.TARIFFS.constructor.devices,
   };
 
-  function priceFor(key, period) {
-    const discount = DISCOUNTS[period] || 0;
-    return Math.round(TARIFFS[key].price * period * (1 - discount));
+  // «Конструктор» считается за выбранное число устройств, остальные — за тариф целиком
+  function renderPrice() {
+    priceElement.textContent = `${formatNumber(pricing.total(state.tariff, state.period, state.devices))} ₽`;
+    replayClass(priceElement, 'tariffs__swap');
   }
 
-  function renderPrice() {
-    const tariff = TARIFFS[state.tariff];
-    const prefix = tariff.perDevice ? 'от ' : '';
-    priceElement.textContent = `${prefix}${formatNumber(priceFor(state.tariff, state.period))} ₽`;
-    replayClass(priceElement, 'tariffs__swap');
+  // Кнопка на краю диапазона не выключается совсем: иначе фокус с неё пропадает
+  function setUnavailable(button, unavailable) {
+    button.setAttribute('aria-disabled', String(unavailable));
   }
 
   function renderStepper() {
     stepperValue.textContent = String(state.devices).padStart(2, '0');
-    minus.disabled = state.devices <= DEVICES_MIN;
-    plus.disabled = state.devices >= DEVICES_MAX;
+    setUnavailable(minus, state.devices <= DEVICES_MIN);
+    setUnavailable(plus, state.devices >= DEVICES_MAX);
   }
 
   function renderTariff() {
@@ -67,7 +63,7 @@
       backdrops[key].classList.toggle('tariffs__backdrop_active', key === state.tariff);
     });
 
-    nameElement.textContent = tariff.name;
+    nameElement.textContent = pricing.TARIFFS[state.tariff].name;
     devicesElement.textContent = tariff.devices;
     thumbsElement.replaceChildren(...tariff.thumbs.map((thumb) => {
       const image = new Image(40, 40);
@@ -76,7 +72,7 @@
       image.decoding = 'async';
       return image;
     }));
-    stepper.hidden = !tariff.perDevice;
+    stepper.hidden = !pricing.TARIFFS[state.tariff].perDevice;
 
     replayClass(nameElement, 'tariffs__swap');
     renderPrice();
@@ -94,8 +90,8 @@
 
   function updateArrows(slider) {
     const index = slider.track.details.rel;
-    prevButton.disabled = index === 0;
-    nextButton.disabled = index === slides.length - 1;
+    setUnavailable(prevButton, index === 0);
+    setUnavailable(nextButton, index === slides.length - 1);
   }
 
   const slider = new window.KeenSlider(sliderElement, {
@@ -134,15 +130,16 @@
     renderPrice();
   });
 
-  minus.addEventListener('click', () => {
-    state.devices = clamp(state.devices - 1, DEVICES_MIN, DEVICES_MAX);
+  function changeDevices(step) {
+    const next = clamp(state.devices + step, DEVICES_MIN, DEVICES_MAX);
+    if (next === state.devices) return;
+    state.devices = next;
     renderStepper();
-  });
+    renderPrice();
+  }
 
-  plus.addEventListener('click', () => {
-    state.devices = clamp(state.devices + 1, DEVICES_MIN, DEVICES_MAX);
-    renderStepper();
-  });
+  minus.addEventListener('click', () => changeDevices(-1));
+  plus.addEventListener('click', () => changeDevices(1));
 
   section.querySelector('[data-tariff-connect]').addEventListener('click', () => {
     emit('payment:open', { ...state });

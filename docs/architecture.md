@@ -28,6 +28,8 @@ GitHub Pages из ветки `main`.
 | `css/vendor/`, `js/vendor/` | Keen Slider v6 (UMD, глобальный `KeenSlider`) для слайдера тарифов | Не правится руками |
 | `js/core/utils.js` | Помощники в `window.Burger`: `clamp`, `lerp`, кривые, `animateValue`, `onceVisible`, `whileVisible`, блокировка прокрутки, `emit`/`on`, `replayClass`. Снимает `no-js`, ставит `js` | Не знает о блоках |
 | `js/core/reveal.js` | Класс `is-visible` элементам с `data-reveal` при появлении в экране | — |
+| `js/core/offscreen.js` | Класс `is-offscreen` блокам с `data-pause-offscreen`, пока они за экраном: их бесконечные CSS-анимации встают на паузу (правило в `base.css`) | Не трогает анимации на JS |
+| `js/core/pricing.js` | Единая таблица цен `Burger.pricing`: тарифы, скидки за срок, недельная цена и сумма за срок. Её берут и карточка тарифов, и окно оплаты — суммы всегда совпадают | Не рисует цены и не знает о разметке |
 | `js/core/tabs.js` | Сегментные переключатели `[data-tabs]`: подложка под активной вкладкой, событие `tabs:change`, `Burger.selectTab` | Не решает, что показать по вкладке — это делают блоки |
 | `js/core/modal.js` | Окна `[data-modal]`: `Burger.modal.open(id)`, `close()`, `isOpen(id)`, Esc, фон, удержание фокуса, события `modal:open`/`modal:close` | Не наполняет окна |
 | `js/blocks/*.js` | Поведение блока. Каждый файл — самовызывающаяся функция: ищет корень блока по data-атрибуту и молча выходит, если его нет | Не лезет в разметку других блоков, общается событиями |
@@ -45,7 +47,7 @@ GitHub Pages из ветки `main`.
 | Сервисы `#services` | `services.css` | `services.js` | Облако иконок «выстреливает» при появлении |
 | Устройства `#devices` | `devices.css` | `devices.js` | Вкладки «Устройства / OS» |
 | Шаги `#connect` | `steps.css` | `steps.js` | Шаги подсвечиваются по очереди, пока блок в экране |
-| Тарифы `#tariffs` | `tariffs.css` | `tariffs.js` | Слайдер на Keen Slider, цены по периодам, счётчик устройств, событие `payment:open` |
+| Тарифы `#tariffs` | `tariffs.css` | `tariffs.js` | Слайдер на Keen Slider, цены из `Burger.pricing`, счётчик устройств, событие `payment:open` |
 | Mini-App `#mini-app` | `mini-app.css` | `mini-app.js` | Вкладки наводят «прожектор» на зоны одного экрана |
 | Кешбэк `#referral` | `cashback.css` | `cashback.js` | Шкала-радуга тянется пальцем, меняет уровень (модификатор `cashback_level_N`) |
 | Отзывы `#reviews` | `reviews.css` | — | Только CSS-анимации |
@@ -54,7 +56,7 @@ GitHub Pages из ветки `main`.
 | Поддержка `#support` | `support.css` | — | Ссылка в Telegram |
 | Подвал | `footer.css` | — | — |
 | Окно подключения `#activation` | `modal.css`, `activation.css` | `activation.js` | Счётчик, разлёт иконок, форма контакта |
-| Окно оплаты `#payment` | `modal.css`, `payment.css` | `payment.js` | Тариф, период, итог, экран успеха |
+| Окно оплаты `#payment` | `modal.css`, `payment.css` | `payment.js` | Тариф, период (в месяцах, неделя — 0,25), итог из `Burger.pricing`, экран успеха |
 
 Общие миксы, которые подмешиваются к элементам других блоков: `glass` (стеклянная
 поверхность, темы `light`, `dark`, `pink`, `clear`), `button`, `tabs`, `heading`,
@@ -76,7 +78,11 @@ GitHub Pages из ветки `main`.
   с 1024px — бенто на 12 колонок через `grid-template-areas` в `base.css`. Новая секция
   получает `page__tile page__tile_area_<имя>` и строку в шаблоне сетки.
 - **Движение.** Анимируются `transform`, `opacity`, отдельные `translate`/`scale`/`rotate`.
-  Под `prefers-reduced-motion: reduce` у каждого блока свой спокойный вариант.
+  Исключение — SVG-элементы: их вращают только через `transform`, свойство `rotate` у SVG
+  пересчитывает раскладку каждый кадр. Блок с бесконечной анимацией получает
+  `data-pause-offscreen`. Под `prefers-reduced-motion: reduce` у каждого блока свой спокойный вариант.
+- **Цены** живут только в `js/core/pricing.js`. Карточка тарифов и окно оплаты ничего не
+  считают сами, поэтому показывают одну и ту же сумму.
 - **Без скриптов страница читается.** Скрытые до анимации состояния пишутся под `.js`,
   без него контент виден сразу.
 - **Связь блоков — событиями:** `tabs:change` на элементе вкладок, `payment:open` и

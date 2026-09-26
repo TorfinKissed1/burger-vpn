@@ -386,7 +386,7 @@
   transform: scale(0.9);
 }
 
-.tariffs__step-button:disabled {
+.tariffs__step-button[aria-disabled="true"] {
   opacity: 0.4;
   cursor: default;
 }
@@ -595,7 +595,7 @@
     }
   }
 
-  .tariffs__arrow:disabled {
+  .tariffs__arrow[aria-disabled="true"] {
     opacity: 0.3;
     transform: none;
   }
