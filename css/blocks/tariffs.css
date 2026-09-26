@@ -50,6 +50,7 @@
   z-index: -1;
   opacity: 0;
   transition: opacity 0.8s ease;
+  will-change: opacity;
 }
 
 .tariffs__backdrop_active {
@@ -90,6 +91,7 @@
   filter: drop-shadow(0 0 1px #ffd3ec) drop-shadow(0 6px 8px rgb(74 0 41 / 0.4));
   transform: translateX(-50%) rotate(-4deg);
   animation: tariffs-gift 4s var(--ease-in-out) infinite;
+  will-change: transform;
 }
 
 .tariffs__gift-small {
@@ -108,17 +110,16 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Цветок с SVG-фильтрами дорого перерисовывать: «дыхание» идёт трансформацией готового слоя */
 .tariffs__flower {
   width: 100%;
   height: 100%;
   overflow: visible;
+  will-change: transform;
   animation: tariffs-breathe 5s var(--ease-in-out) infinite;
   transition: scale 0.45s var(--ease-back), filter 0.45s ease;
 }
 
-.tariffs__flower-glow {
-  animation: tariffs-glow 5s var(--ease-in-out) infinite;
-}
 
 .tariffs__power::after {
   content: "";
@@ -218,6 +219,9 @@
   aspect-ratio: 1;
   object-fit: contain;
   transform: translateY(calc(var(--distance, 1) * 7%)) scale(calc(1 - var(--distance, 1) * 0.34)) rotate(calc(var(--offset, 0) * 14deg + var(--tilt, 0deg)));
+  /* Каждый бургер — отдельный слой: при листании меняется только трансформация, и картинку
+     не нужно перерисовывать на каждом кадре. Без этого iPhone листал рывками */
+  will-change: transform;
   pointer-events: none;
   user-select: none;
 }
@@ -355,8 +359,6 @@
   padding: 1px;
   object-fit: contain;
   background: radial-gradient(80% 80% at 50% 30%, rgb(215 215 215 / 0.2) 0%, rgb(175 175 175 / 0.14) 17%, rgb(89 89 89 / 0.18) 34%, rgb(154 154 154 / 0.02) 49%), rgb(0 0 0 / 0.5);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
   animation: tariffs-thumb 0.5s var(--ease-back) both;
 }
 
@@ -532,17 +534,6 @@
 
   50% {
     transform: scale(1.03) rotate(3deg);
-  }
-}
-
-@keyframes tariffs-glow {
-  0%,
-  100% {
-    opacity: 0.85;
-  }
-
-  50% {
-    opacity: 1;
   }
 }
 
