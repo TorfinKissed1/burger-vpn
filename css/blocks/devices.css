@@ -4,65 +4,57 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: clamp(32px, calc(44 * var(--u)), 56px) 0 0;
+  padding: clamp(26px, calc(38 * var(--u)), 50px) 0 0;
   background: var(--color-bg);
 }
 
 .devices__title {
-  position: relative;
-  isolation: isolate;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+}
+
+/* Наклейка «до 100 устройств в подписке» — SVG по геометрии макета: у текста внешняя
+   обводка со скруглёнными углами, CSS-обводка текста даёт на «1» острые шипы */
+.devices__sticker {
+  width: min(calc(291 * var(--u)), 407px);
+  overflow: visible;
+}
+
+.devices__sticker text {
   font-family: var(--font-display);
   font-weight: 800;
-  line-height: 0.96;
-}
-
-.devices__prefix {
-  align-self: flex-start;
-  position: relative;
-  z-index: 2;
-  margin: 0 0 -0.35em 22%;
-  font-size: clamp(14px, calc(16 * var(--u)), 22px);
-  letter-spacing: -0.04em;
-  color: var(--color-bg);
-  -webkit-text-stroke: 0.75em var(--color-black);
+  stroke: var(--color-black);
+  stroke-linejoin: round;
   paint-order: stroke fill;
 }
 
-.devices__count {
-  position: relative;
-  font-size: clamp(72px, calc(100 * var(--u)), 140px);
-  letter-spacing: 0.02em;
-  color: var(--color-white);
-  -webkit-text-stroke: 0.24em var(--color-black);
-  paint-order: stroke fill;
+.devices__sticker-count {
+  font-size: 100px;
+  letter-spacing: 2px;
+  fill: var(--color-white);
+  stroke-width: 24px;
+  text-anchor: middle;
 }
 
-/* Чёрная подложка закрывает просветы в «нулях», как прямоугольник в макете */
-.devices__count::before {
-  content: "";
-  position: absolute;
-  inset: 18% 10% 22%;
-  z-index: -1;
-  border-radius: 0.25em;
-  background: var(--color-black);
+.devices__sticker-prefix,
+.devices__sticker-caption {
+  font-size: 16px;
+  letter-spacing: -0.64px;
 }
 
-.devices__caption {
-  position: relative;
-  z-index: 2;
-  margin-top: -0.55em;
-  font-size: clamp(14px, calc(16 * var(--u)), 22px);
-  letter-spacing: -0.04em;
-  color: var(--color-white);
-  -webkit-text-stroke: 1em var(--color-black);
-  paint-order: stroke fill;
+.devices__sticker-prefix {
+  fill: var(--color-bg);
+  stroke-width: 12px;
+}
+
+.devices__sticker-caption {
+  fill: var(--color-white);
+  stroke-width: 16px;
+  text-anchor: middle;
 }
 
 .devices__text {
-  margin-top: clamp(34px, calc(47 * var(--u)), 52px);
+  margin-top: clamp(10px, calc(13 * var(--u)), 18px);
   padding-inline: 20px;
   font-size: var(--fs-body);
   line-height: 1.35;
@@ -83,8 +75,12 @@
   padding-inline: clamp(12px, calc(20 * var(--u)), 32px);
 }
 
-.devices__grid {
+.devices__panel {
   grid-area: 1 / 1;
+  min-width: 0;
+}
+
+.devices__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-content: start;
@@ -100,7 +96,7 @@
   text-align: center;
 }
 
-.devices__grid_active .devices__item,
+.devices__panel_active .devices__item,
 .no-js .devices__item {
   animation: devices-in 0.7s var(--ease-back) both;
   animation-delay: calc(var(--i) * 45ms);
@@ -124,26 +120,16 @@
   }
 }
 
-/* Картинка абсолютная: иначе её собственная высота распирает карточку с aspect-ratio */
+/* Картинка абсолютная: иначе её собственная высота распирает карточку с aspect-ratio.
+   Положение и ширина у каждой своя (в разметке): подогнаны под видимый размер устройства в макете */
 .devices__image {
   position: absolute;
-  inset: 0;
-  width: auto;
-  height: 80%;
-  max-width: 94%;
-  margin: auto;
-  object-fit: contain;
+  top: var(--y);
+  left: var(--x);
+  width: var(--w);
+  max-width: none;
+  height: auto;
   filter: drop-shadow(0 6px 6px rgb(0 0 0 / 0.12));
-}
-
-.devices__image_tall {
-  height: 102%;
-  top: -6%;
-}
-
-.devices__image_wide {
-  height: 96%;
-  max-width: 92%;
 }
 
 .devices__name {
@@ -183,24 +169,44 @@
   height: 46%;
 }
 
+.devices__logo_wordmark {
+  height: 19%;
+  max-width: 58%;
+}
+
+/* Во вкладке OS восемь карточек: последний ряд из двух стоит по центру, как в макете */
+.devices__grid_os {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.devices__grid_os .devices__item {
+  grid-column: span 2;
+}
+
+.devices__grid_os .devices__item:nth-child(7) {
+  grid-column: 2 / span 2;
+}
+
 .devices__thumbs {
   display: flex;
   justify-content: center;
   margin-top: clamp(12px, calc(17 * var(--u)), 20px);
 }
 
+/* Светлые стеклянные кружки 35 px, картинка почти во весь круг, соседние заходят друг на друга */
 .devices__thumb {
   width: clamp(28px, calc(35 * var(--u)), 44px);
   aspect-ratio: 1;
-  padding: 12%;
-  border: 1.5px solid var(--color-black);
+  padding: clamp(2px, calc(3 * var(--u)), 4px);
+  border: 1.5px solid rgb(0 0 0 / 0.08);
   border-radius: 50%;
   object-fit: contain;
-  background: radial-gradient(80% 80% at 50% 30%, #d7d7d7 0%, rgb(175 175 175 / 0.7) 17%, rgb(89 89 89 / 0.9) 34%, rgb(154 154 154 / 0.05) 49%), rgb(0 0 0 / 0.5);
+  background: radial-gradient(90% 90% at 50% 25%, #ffffff 0%, #efefef 55%, #e2e2e2 100%);
+  box-shadow: 0 2px 4px -2px rgb(0 0 0 / 0.2);
 }
 
 .devices__thumb + .devices__thumb {
-  margin-left: -9%;
+  margin-left: calc(clamp(28px, calc(35 * var(--u)), 44px) * -0.31);
 }
 
 @keyframes devices-in {

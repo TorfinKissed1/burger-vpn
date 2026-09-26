@@ -207,9 +207,14 @@
 
     <section class="devices page__tile page__tile_area_devices" id="devices" aria-labelledby="devices-title" data-devices>
       <h2 class="devices__title" id="devices-title" data-reveal>
-        <span class="devices__prefix">до</span>
-        <span class="devices__count" data-count-to="100">100</span>
-        <span class="devices__caption">устройств в подписке</span>
+        <span class="visually-hidden">До 100 устройств в подписке</span>
+        <svg class="devices__sticker" viewBox="0 0 291 128" aria-hidden="true">
+          <rect x="47" y="44" width="198" height="66"/>
+          <rect x="160" y="92" width="15" height="10"/>
+          <text class="devices__sticker-count" x="145.5" y="92" data-count-to="100">100</text>
+          <text class="devices__sticker-prefix" x="71" y="17.2">до</text>
+          <text class="devices__sticker-caption" x="145" y="116.2">устройств в подписке</text>
+        </svg>
       </h2>
       <p class="devices__text" data-reveal>Работает на любом устройстве<br>и операционной системе</p>
       <div class="devices__tabs tabs" role="tablist" aria-label="Что показать" data-tabs>
@@ -218,54 +223,57 @@
         <button class="tabs__tab" type="button" role="tab" id="devices-tab-os" aria-selected="false" aria-controls="devices-panel-os" tabindex="-1">OS</button>
       </div>
       <div class="devices__panels">
-        <ul class="devices__grid devices__grid_active" id="devices-panel-hardware" role="tabpanel" aria-labelledby="devices-tab-hardware" data-devices-panel>
+        <div class="devices__panel devices__panel_active" id="devices-panel-hardware" role="tabpanel" aria-labelledby="devices-tab-hardware" data-devices-panel>
+        <ul class="devices__grid">
           <li class="devices__item" style="--i: 0;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__image devices__image_tall" src="img/devices/iphone.webp" width="260" height="300" alt="" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" style="--x: 32.4%; --y: -1.6%; --w: 53.0%;" src="img/devices/iphone.webp" width="260" height="300" alt="" loading="lazy"></div>
             <p class="devices__name">iPhone</p>
             <img class="devices__system" src="img/icons/os-ios-label.svg" width="31" height="12" alt="iOS" loading="lazy">
           </li>
           <li class="devices__item" style="--i: 1;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/android.webp" width="300" height="207" alt="" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" style="--x: 27.2%; --y: 17.8%; --w: 66.2%;" src="img/devices/android.webp" width="300" height="207" alt="" loading="lazy"></div>
             <p class="devices__name">Android</p>
             <img class="devices__system" src="img/icons/os-android-label.svg" width="73" height="11" alt="Android" loading="lazy">
           </li>
           <li class="devices__item" style="--i: 2;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__image devices__image_wide" src="img/devices/macbook.webp" width="300" height="183" alt="" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" style="--x: 14.3%; --y: 20.4%; --w: 71.3%;" src="img/devices/macbook.webp" width="300" height="183" alt="" loading="lazy"></div>
             <p class="devices__name">Macbook</p>
             <img class="devices__system" src="img/icons/os-macos-label.svg" width="37" height="9" alt="macOS" loading="lazy">
           </li>
           <li class="devices__item" style="--i: 3;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__image devices__image_wide" src="img/devices/laptop.webp" width="300" height="256" alt="" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" style="--x: 17.7%; --y: -1.5%; --w: 67.7%;" src="img/devices/laptop.webp" width="300" height="256" alt="" loading="lazy"></div>
             <p class="devices__name">Ноутбук</p>
             <img class="devices__system" src="img/icons/os-windows-label.svg" width="56" height="12" alt="Windows" loading="lazy">
           </li>
           <li class="devices__item" style="--i: 4;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/pc-tower.webp" width="300" height="271" alt="" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" style="--x: 29.5%; --y: 14.4%; --w: 51.4%;" src="img/devices/pc-tower.webp" width="300" height="271" alt="" loading="lazy"></div>
             <p class="devices__name">ПК</p>
             <img class="devices__system" src="img/icons/os-windows-label.svg" width="56" height="12" alt="Windows" loading="lazy">
           </li>
           <li class="devices__item" style="--i: 5;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__image devices__image_tall" src="img/devices/pc.webp" width="259" height="300" alt="" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" style="--x: 33.3%; --y: 7.8%; --w: 47.1%;" src="img/devices/pc.webp" width="259" height="300" alt="" loading="lazy"></div>
             <p class="devices__name">ПК</p>
             <img class="devices__system" src="img/icons/os-linux-label.svg" width="40" height="10" alt="Linux" loading="lazy">
           </li>
           <li class="devices__item" style="--i: 6;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/apple-tv.webp" width="270" height="300" alt="" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" style="--x: 27.8%; --y: -16.9%; --w: 64.1%;" src="img/devices/apple-tv.webp" width="270" height="300" alt="" loading="lazy"></div>
             <p class="devices__name">Apple TV</p>
             <img class="devices__system" src="img/icons/os-tv-label.svg" width="18" height="9" alt="tvOS" loading="lazy">
           </li>
           <li class="devices__item" style="--i: 7;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/android-tv.webp" width="300" height="247" alt="" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" style="--x: 20.0%; --y: -3.5%; --w: 71.2%;" src="img/devices/android-tv.webp" width="300" height="247" alt="" loading="lazy"></div>
             <p class="devices__name">Android TV</p>
             <img class="devices__system" src="img/icons/os-androidtv-label.svg" width="65" height="11" alt="Android TV" loading="lazy">
           </li>
           <li class="devices__item" style="--i: 8;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__image" src="img/devices/router.webp" width="300" height="262" alt="" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__image" style="--x: 25.7%; --y: 20.7%; --w: 48.5%;" src="img/devices/router.webp" width="300" height="262" alt="" loading="lazy"></div>
             <p class="devices__name">Роутер</p>
             <p class="devices__system devices__system_text">Wi-Fi</p>
           </li>
         </ul>
-        <ul class="devices__grid devices__grid_os" id="devices-panel-os" role="tabpanel" aria-labelledby="devices-tab-os" hidden data-devices-panel>
+        </div>
+        <div class="devices__panel" id="devices-panel-os" role="tabpanel" aria-labelledby="devices-tab-os" data-devices-panel>
+        <ul class="devices__grid devices__grid_os">
           <li class="devices__item" style="--i: 0;">
             <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-ios.svg" width="67" height="26" alt="iOS" loading="lazy"></div>
             <div class="devices__thumbs" aria-hidden="true">
@@ -289,7 +297,7 @@
             </div>
           </li>
           <li class="devices__item" style="--i: 3;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-macos.svg" width="74" height="37" alt="macOS" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo devices__logo_wordmark" src="img/icons/os-macos.svg" width="73" height="17" alt="macOS" loading="lazy"></div>
             <div class="devices__thumbs" aria-hidden="true">
               <img class="devices__thumb" src="img/devices/macbook.webp" width="300" height="183" alt="" loading="lazy">
               <img class="devices__thumb" src="img/devices/pc.webp" width="259" height="300" alt="" loading="lazy">
@@ -309,7 +317,7 @@
             </div>
           </li>
           <li class="devices__item" style="--i: 6;">
-            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-tv.svg" width="73" height="17" alt="Apple TV" loading="lazy"></div>
+            <div class="devices__card glass glass_theme_light"><img class="devices__logo" src="img/icons/os-tv.svg" width="74" height="37" alt="Apple TV" loading="lazy"></div>
             <div class="devices__thumbs" aria-hidden="true">
               <img class="devices__thumb" src="img/devices/apple-tv.webp" width="270" height="300" alt="" loading="lazy">
             </div>
@@ -321,6 +329,7 @@
             </div>
           </li>
         </ul>
+        </div>
       </div>
     </section>
 

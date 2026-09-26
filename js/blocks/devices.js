@@ -8,12 +8,16 @@
   const tabs = section.querySelector('[data-tabs]');
   const panels = Array.from(section.querySelectorAll('[data-devices-panel]'));
 
-  tabs.addEventListener('tabs:change', (event) => {
-    const targetId = event.detail.tab.getAttribute('aria-controls');
+  function show(targetId) {
     panels.forEach((panel) => {
       const active = panel.id === targetId;
       panel.hidden = !active;
-      panel.classList.toggle('devices__grid_active', active);
+      panel.classList.toggle('devices__panel_active', active);
     });
-  });
+  }
+
+  // Без скриптов видны обе панели, поэтому неактивную прячем здесь
+  show(tabs.querySelector('[aria-selected="true"]').getAttribute('aria-controls'));
+
+  tabs.addEventListener('tabs:change', (event) => show(event.detail.tab.getAttribute('aria-controls')));
 })();
