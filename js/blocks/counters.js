@@ -11,7 +11,7 @@
     const from = target > 1000 ? Math.round(target * 0.92) : 0;
 
     element.textContent = formatNumber(from) + suffix;
-    onceVisible(element, () => {
+    onceVisible(element.closest('svg') || element, () => {
       animateValue({
         from,
         to: target,

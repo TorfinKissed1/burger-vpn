@@ -42,35 +42,50 @@
   scale: 1;
 }
 
+/* «30+ Сервисов» — SVG по геометрии макета: заливка белая 10 % (сквозь цифры видны иконки)
+   и внешняя белая обводка со скруглёнными углами. Обводка рисуется под маской «всё, кроме букв»,
+   иначе её внутренняя половина закрашивает цифры */
 .services__title {
   position: absolute;
-  top: 72.4%;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: var(--font-display);
-  font-weight: 800;
-  line-height: 0.96;
+  top: 70.65%;
+  left: 20.2%;
+  width: 59.55%;
   pointer-events: none;
 }
 
-/* Внешняя обводка: заливка поверх половины штриха, как OUTSIDE-stroke в Figma */
-.services__count {
-  font-size: 22.7cqi;
-  letter-spacing: 0.02em;
-  color: #1a1a1a;
-  -webkit-text-stroke: 0.24em var(--color-white);
-  paint-order: stroke fill;
+.services__sticker {
+  display: block;
+  width: 100%;
+  overflow: visible;
 }
 
-.services__label {
-  margin-top: 1.3cqi;
-  font-size: 3.64cqi;
-  color: #1a1a1a;
-  -webkit-text-stroke: 1em var(--color-white);
-  paint-order: stroke fill;
+/* Копии через <use> наследуют стиль только от самого <use>, поэтому шрифт задаём ему */
+.services__sticker use {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-anchor: middle;
+}
+
+.services__sticker-count {
+  font-size: 100px;
+  letter-spacing: 2px;
+  stroke-width: 24px;
+}
+
+.services__sticker-label {
+  font-size: 16px;
+  stroke-width: 16px;
+}
+
+.services__sticker-stroke {
+  fill: var(--color-white);
+  stroke: var(--color-white);
+  stroke-linejoin: round;
+}
+
+.services__sticker-fill {
+  fill: rgb(255 255 255 / 0.1);
+  stroke: none;
 }
 
 .services__text {
@@ -93,9 +108,11 @@
   }
 }
 
+/* Белое внутреннее свечение по краям чёрной формы, как в макете; верх и низ прячут соседние блоки */
 @media (max-width: 767px) {
   .services {
     margin-top: calc(-80 * var(--u));
+    box-shadow: inset 0 0 calc(110 * var(--u)) calc(10 * var(--u)) var(--color-white);
   }
 }
 

@@ -198,8 +198,24 @@
           <img class="services__icon" src="img/services/whatsapp-small.webp" width="48" height="49" alt="" loading="lazy" decoding="async" style="--x: 12.05%; --y: 38.26%; --w: 5.45%; --i: 29;">
         </div>
         <h2 class="services__title" id="services-title">
-          <span class="services__count" data-count-to="30" data-count-suffix="+">30+</span>
-          <span class="services__label">Сервисов</span>
+          <span class="visually-hidden">30+ сервисов</span>
+          <svg class="services__sticker" viewBox="0 0 262 113" aria-hidden="true">
+            <defs>
+              <text id="services-count" x="131" y="82" data-count-to="30" data-count-suffix="+">30+</text>
+              <text id="services-label" x="131.5" y="101.2">Сервисов</text>
+              <mask id="services-outside" maskUnits="userSpaceOnUse" x="-20" y="-20" width="302" height="153">
+                <rect x="-20" y="-20" width="302" height="153" fill="#fff"/>
+                <use href="#services-count" class="services__sticker-count" fill="#000"/>
+                <use href="#services-label" class="services__sticker-label" fill="#000"/>
+              </mask>
+            </defs>
+            <g class="services__sticker-stroke" mask="url(#services-outside)">
+              <use href="#services-count" class="services__sticker-count"/>
+              <use href="#services-label" class="services__sticker-label"/>
+            </g>
+            <use href="#services-count" class="services__sticker-count services__sticker-fill"/>
+            <use href="#services-label" class="services__sticker-label services__sticker-fill"/>
+          </svg>
         </h2>
       </div>
       <p class="services__text" data-reveal>Социальные сети, мессенджеры,<br>стриминги, музыка, 10+ стран</p>
