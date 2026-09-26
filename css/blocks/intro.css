@@ -1,0 +1,483 @@
+/* Заставка «Смахните вверх» (intro.html). Сцена — видимая часть кадра из макета:
+   440 × 743 между статус-баром и панелью браузера. Внутри всё задано в пикселях
+   кадра через --u, поэтому раскадровка из Figma переносится один в один. */
+.intro {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.intro_done {
+  touch-action: auto;
+  user-select: auto;
+  -webkit-user-select: auto;
+}
+
+/* Значения ниже — последний кадр: так страница выглядит без скриптов.
+   Со скриптом js/blocks/intro.js переписывает их на каждом кадре анимации. */
+.intro__stage {
+  --logo-y: 282;
+  --logo-o: 0;
+  --hint-y: -20;
+  --hint-o: 0;
+  --blob-o: 0;
+  --blob-s: 1;
+  --touch-o: 0;
+  --bubble-x: 170;
+  --bubble-y: 257;
+  --bubble-d: 100;
+  --bubble-o: 0;
+  --glow-x: 14.2;
+  --glow-y: 52;
+  --glow-w: 71.3;
+  --glow-h: 46.1;
+  --glow-o: 0;
+  --glow-cut: 1;
+  --title-cy: 415;
+  --title-fs: 41;
+  --title-o: 1;
+  --lens-o: 0;
+  position: relative;
+  container-type: inline-size;
+  width: min(100vw, 100vh * 440 / 743);
+  width: min(100vw, 100svh * 440 / 743);
+  aspect-ratio: 440 / 743;
+}
+
+.js .intro__stage {
+  --logo-y: 329;
+  --logo-o: 1;
+  --hint-y: 0;
+  --hint-o: 1;
+  --blob-o: 1;
+  --bubble-x: -80;
+  --bubble-y: 562;
+  --bubble-d: 601;
+  --title-o: 0;
+}
+
+.intro__logo {
+  position: absolute;
+  top: calc(var(--logo-y) * var(--u));
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: calc(5 * var(--u));
+  font-family: var(--font-display);
+  font-size: calc(32 * var(--u));
+  font-weight: 800;
+  line-height: 0.9;
+  opacity: var(--logo-o);
+  pointer-events: none;
+}
+
+.intro__logo-mark {
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+/* Розовое пятно под каплей в момент касания (кадр 260) */
+.intro__touch {
+  position: absolute;
+  top: calc(624 * var(--u));
+  left: calc(74 * var(--u));
+  z-index: 1;
+  width: calc(291 * var(--u));
+  height: calc(114 * var(--u));
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #eb1976 45%, rgb(146 155 255 / 0.85) 82%, rgb(146 155 255 / 0));
+  filter: blur(calc(30 * var(--u)));
+  opacity: var(--touch-o);
+  pointer-events: none;
+}
+
+.intro__blob {
+  position: absolute;
+  top: calc(565 * var(--u));
+  left: calc(-70.9 * var(--u));
+  z-index: 2;
+  width: calc(580.7 * var(--u));
+  max-width: none;
+  opacity: var(--blob-o);
+  scale: var(--blob-s);
+  transform-origin: 50% 25%;
+  pointer-events: none;
+}
+
+.intro__title {
+  position: absolute;
+  top: calc((var(--title-cy) - var(--title-fs) * 0.875) * var(--u));
+  left: 0;
+  right: 0;
+  z-index: 3;
+  font-family: var(--font-display);
+  font-size: calc(var(--title-fs) * var(--u));
+  font-weight: 500;
+  line-height: 1.05;
+  text-align: center;
+  opacity: var(--title-o);
+}
+
+.intro__title:focus {
+  outline: none;
+}
+
+/* Купол, потом шар-линза. Непрозрачный: под ним прячется заголовок,
+   а внутри виден его увеличенный двойник — так выглядит преломление */
+.intro__bubble {
+  position: absolute;
+  top: calc(var(--bubble-y) * var(--u));
+  left: calc(var(--bubble-x) * var(--u));
+  z-index: 4;
+  width: calc(var(--bubble-d) * var(--u));
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #fafafa;
+  box-shadow:
+    0 0 0 calc(0.8 * var(--u)) rgb(0 0 0 / 0.04),
+    0 calc(4 * var(--u)) calc(20 * var(--u)) calc(-4 * var(--u)) rgb(0 0 0 / 0.2);
+  opacity: var(--bubble-o);
+  pointer-events: none;
+}
+
+.intro__bubble::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 calc(4 * var(--u)) calc(2 * var(--u)) var(--color-white),
+    inset 0 0 calc(20 * var(--u)) calc(6 * var(--u)) rgb(255 255 255 / 0.6);
+}
+
+/* Кольцо свечения из макета: прозрачная середина, розовый, фиолетовый и синий край.
+   В шаре от кольца остаётся нижняя дуга-улыбка — верх гасит маска */
+.intro__glow {
+  position: absolute;
+  top: calc(var(--glow-y) * 1%);
+  left: calc(var(--glow-x) * 1%);
+  width: calc(var(--glow-w) * 1%);
+  height: calc(var(--glow-h) * 1%);
+  border-radius: 50%;
+  background: radial-gradient(61% 61% at 50% 47%, rgb(255 90 200 / 0) 20%, #ff3fb8 60%, rgb(205 95 240 / 0.75) 70%, rgb(160 150 250 / 0.45) 82%);
+  filter: blur(calc(9 * var(--u)));
+  opacity: var(--glow-o);
+  -webkit-mask-image: linear-gradient(180deg, rgb(0 0 0 / calc(1 - var(--glow-cut))) 38%, #000 62%);
+  mask-image: linear-gradient(180deg, rgb(0 0 0 / calc(1 - var(--glow-cut))) 38%, #000 62%);
+}
+
+.intro__lens {
+  position: absolute;
+  top: calc((var(--title-cy) - var(--bubble-y) - var(--title-fs) * 0.875) * var(--u));
+  left: calc(var(--bubble-x) * var(--u) * -1);
+  width: calc(440 * var(--u));
+  font-family: var(--font-display);
+  font-size: calc(var(--title-fs) * var(--u));
+  font-weight: 500;
+  line-height: 1.05;
+  text-align: center;
+  color: var(--color-black);
+  text-shadow:
+    calc(-2 * var(--u)) 0 rgb(255 0 90 / 0.45),
+    calc(2 * var(--u)) 0 rgb(0 140 255 / 0.45);
+  transform-origin:
+    calc((var(--bubble-x) + var(--bubble-d) / 2) * var(--u))
+    calc((var(--bubble-y) + var(--bubble-d) / 2 - var(--title-cy) + var(--title-fs) * 0.875) * var(--u));
+  scale: 1.28;
+  opacity: var(--lens-o);
+}
+
+.intro__trigger {
+  position: absolute;
+  top: calc(560 * var(--u));
+  left: 0;
+  right: 0;
+  z-index: 5;
+  height: calc(220 * var(--u));
+  border-radius: calc(60 * var(--u)) calc(60 * var(--u)) 0 0;
+  opacity: var(--hint-o);
+  translate: 0 calc(var(--hint-y) * var(--u));
+  cursor: grab;
+}
+
+.intro__trigger:active {
+  cursor: grabbing;
+}
+
+.intro__trigger:focus-visible {
+  outline-offset: calc(-8 * var(--u));
+}
+
+/* Векторная стрелка в макете повёрнута на 90°: коробка 26 × 20, на экране 20 × 26 */
+.intro__arrow {
+  position: absolute;
+  top: calc(83 * var(--u));
+  left: calc(207 * var(--u));
+  width: calc(26 * var(--u));
+  rotate: 90deg;
+}
+
+.intro__hint {
+  position: absolute;
+  top: calc(122 * var(--u));
+  left: 0;
+  right: 0;
+  font-size: calc(19 * var(--u));
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-ink-30);
+}
+
+.intro_idle .intro__arrow {
+  animation: intro-nudge 1.8s var(--ease-in-out) infinite;
+}
+
+.intro_idle .intro__blob {
+  animation: intro-breathe 3.6s var(--ease-in-out) infinite;
+}
+
+.intro_playing .intro__trigger,
+.intro_done .intro__trigger,
+.intro_done .intro__logo {
+  visibility: hidden;
+}
+
+.intro__cloud {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.intro__icon {
+  position: absolute;
+  top: calc(var(--y) * var(--u));
+  left: calc(var(--x) * var(--u));
+  width: calc(var(--w) * var(--u));
+  max-width: none;
+}
+
+.intro__power {
+  position: absolute;
+  top: calc(257 * var(--u));
+  left: calc(170 * var(--u));
+  width: calc(100 * var(--u));
+  aspect-ratio: 236 / 239;
+  border-radius: 50%;
+  pointer-events: auto;
+  transition: scale 0.45s var(--ease-back);
+}
+
+/* Волна от кнопки в момент, когда шар лопается */
+.intro__power::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: calc(3 * var(--u)) solid rgb(255 255 255 / 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 calc(24 * var(--u)) rgb(255 36 134 / 0.45);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro__power-image {
+  width: 100%;
+}
+
+@media (hover: hover) {
+  .intro__power:hover {
+    scale: 1.06;
+  }
+}
+
+.intro__power:active {
+  scale: 0.94;
+}
+
+.js .intro:not(.intro_burst) .intro__icon,
+.js .intro:not(.intro_burst) .intro__power {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.intro_burst .intro__icon {
+  animation:
+    intro-burst 1.1s cubic-bezier(0.2, 0.85, 0.3, 1.12) calc(var(--i) * 18ms) both,
+    intro-float calc(4.4s + var(--i) * 0.12s) var(--ease-in-out) calc(1.3s + var(--i) * 0.05s) infinite alternate;
+}
+
+.intro_burst .intro__power {
+  animation: intro-pop 0.8s var(--ease-back) both;
+}
+
+.intro_burst .intro__power::before {
+  animation: intro-wave 1s var(--ease-out) 0.05s both;
+}
+
+.intro__actions {
+  position: absolute;
+  top: calc(482 * var(--u));
+  left: calc(54 * var(--u));
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: calc(10 * var(--u));
+  width: calc(332 * var(--u));
+}
+
+.intro__action {
+  min-height: calc(86 * var(--u));
+  border-radius: calc(30 * var(--u));
+  font-size: calc(22 * var(--u));
+}
+
+.intro__copyright {
+  position: absolute;
+  top: calc(695 * var(--u));
+  left: 0;
+  right: 0;
+  z-index: 6;
+  display: flex;
+  justify-content: center;
+  gap: calc(13 * var(--u));
+  font-size: calc(15 * var(--u));
+  line-height: 1;
+}
+
+.intro__actions,
+.intro__copyright {
+  transition:
+    opacity 0.6s ease,
+    translate 0.9s var(--ease-out);
+}
+
+.intro_done .intro__copyright {
+  transition-delay: 0.2s;
+}
+
+.js .intro:not(.intro_done) .intro__actions,
+.js .intro:not(.intro_done) .intro__copyright {
+  visibility: hidden;
+  opacity: 0;
+  translate: 0 calc(28 * var(--u));
+}
+
+@keyframes intro-nudge {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 calc(-7 * var(--u));
+  }
+}
+
+@keyframes intro-breathe {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale(1.015);
+  }
+}
+
+/* Иконки вылетают из центра кнопки питания (220; 307) на свои места */
+@keyframes intro-burst {
+  from {
+    opacity: 0;
+    transform:
+      translate(
+        calc((220 - var(--x) - var(--w) / 2) * var(--u)),
+        calc((307 - var(--y) - var(--w) / 2) * var(--u))
+      )
+      scale(0.15);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes intro-float {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 calc(-5 * var(--u));
+  }
+}
+
+@keyframes intro-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes intro-wave {
+  from {
+    opacity: 0.8;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(3.4);
+  }
+}
+
+@keyframes intro-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro_idle .intro__arrow,
+  .intro_idle .intro__blob {
+    animation: none;
+  }
+
+  .intro_burst .intro__icon,
+  .intro_burst .intro__power {
+    animation: intro-fade 0.4s ease both;
+  }
+
+  .intro_burst .intro__power::before {
+    animation: none;
+  }
+
+  .intro__actions,
+  .intro__copyright {
+    transition: opacity 0.4s ease;
+  }
+}

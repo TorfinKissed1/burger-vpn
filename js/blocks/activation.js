@@ -105,4 +105,7 @@
   document.addEventListener('click', (event) => {
     if (event.target.closest('[data-activation-open]')) modal.open('activation');
   });
+
+  // «Зарегистрироваться» на заставке intro.html ведёт сюда с #activation
+  if (window.location.hash === '#activation') modal.open('activation');
 })();
