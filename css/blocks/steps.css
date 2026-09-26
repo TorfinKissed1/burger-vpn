@@ -156,10 +156,3 @@
     padding: 48px 32px;
   }
 }
-
-/* Без автосмены подсветки неактивные шаги не должны оставаться бледными */
-@media (prefers-reduced-motion: reduce) {
-  .steps__item {
-    opacity: 1;
-  }
-}

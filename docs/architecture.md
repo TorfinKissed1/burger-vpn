@@ -46,9 +46,9 @@
 | Преимущества | `features.css` | `reveal.js` | Иконки выезжают из-за цифр при появлении |
 | Сервисы `#services` | `services.css` | `services.js` | Облако иконок «выстреливает» при появлении |
 | Устройства `#devices` | `devices.css` | `devices.js` | Вкладки «Устройства / OS» |
-| Шаги `#connect` | `steps.css` | `steps.js` | Шаги подсвечиваются по очереди, пока блок в экране |
+| Шаги `#connect` | `steps.css` | `steps.js` | Подсвечен шаг, ближайший к линии чуть ниже середины экрана, — подсветка идёт за прокруткой |
 | Тарифы `#tariffs` | `tariffs.css` | `tariffs.js` | Слайдер на Keen Slider, цены из `Burger.pricing`, счётчик устройств, событие `payment:open` |
-| Mini-App `#mini-app` | `mini-app.css` | `mini-app.js` | Вкладки наводят «прожектор» на зоны одного экрана |
+| Mini-App `#mini-app` | `mini-app.css` | `mini-app.js` | Вкладки, стрелки и свайп по телефону наводят «прожектор» на зоны одного экрана |
 | Кешбэк `#referral` | `cashback.css` | `cashback.js` | Шкала-радуга тянется пальцем, меняет уровень (модификатор `cashback_level_N`) |
 | Отзывы `#reviews` | `reviews.css` | `offscreen.js` | Только CSS-анимации, за экраном на паузе |
 | Запуск | `launch.css` | `launch.js`, `counters.js` | Ручку тянут вправо — открывается окно подключения; счётчик включений |

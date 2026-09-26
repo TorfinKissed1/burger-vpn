@@ -1,57 +1,45 @@
-// Шаги подключения по очереди подсвечиваются, пока блок виден; клик выбирает шаг и
-// останавливает автосмену, наведение мыши ставит её на паузу
+// Шаги подключения подсвечиваются вслед за прокруткой: активен шаг, ближайший к линии
+// чуть ниже середины экрана
 (function () {
   'use strict';
 
   const section = document.querySelector('[data-steps]');
   if (!section) return;
 
-  const { whileVisible, prefersReducedMotion } = window.Burger;
   const steps = Array.from(section.querySelectorAll('[data-step]'));
-  const INTERVAL = 2600;
-  let current = 0;
-  let timer = 0;
-  let visible = false;
-  let paused = false;
-  let touched = false;
+  const FOCUS_LINE = 0.55;
+  let current = -1;
+  let ticking = false;
 
   function activate(index) {
+    if (index === current) return;
     current = index;
     steps.forEach((step, i) => step.classList.toggle('steps__item_active', i === index));
   }
 
-  function stop() {
-    window.clearInterval(timer);
-    timer = 0;
-  }
-
-  function start() {
-    stop();
-    if (!visible || paused || touched || prefersReducedMotion()) return;
-    timer = window.setInterval(() => activate((current + 1) % steps.length), INTERVAL);
-  }
-
-  steps.forEach((step, index) => {
-    step.addEventListener('click', () => {
-      touched = true;
-      stop();
-      activate(index);
+  function update() {
+    ticking = false;
+    const line = window.innerHeight * FOCUS_LINE;
+    let closest = 0;
+    let best = Infinity;
+    steps.forEach((step, index) => {
+      const rect = step.getBoundingClientRect();
+      const distance = Math.abs(rect.top + rect.height / 2 - line);
+      if (distance < best) {
+        best = distance;
+        closest = index;
+      }
     });
-  });
+    activate(closest);
+  }
 
-  section.addEventListener('pointerenter', () => {
-    paused = true;
-    stop();
-  });
+  function schedule() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
 
-  section.addEventListener('pointerleave', () => {
-    paused = false;
-    start();
-  });
-
-  whileVisible(section, (isVisible) => {
-    visible = isVisible;
-    if (isVisible) start();
-    else stop();
-  }, { threshold: 0.35 });
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  update();
 })();
