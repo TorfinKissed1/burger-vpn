@@ -13,6 +13,12 @@
   display: none;
 }
 
+/* Пока окно не открылось до конца, подложка не ловит клики: иначе второй клик двойного
+   нажатия по кнопке открытия попадает в неё и сразу закрывает окно */
+.modal:not(.modal_open) .modal__backdrop {
+  pointer-events: none;
+}
+
 .modal__backdrop {
   position: absolute;
   inset: 0;

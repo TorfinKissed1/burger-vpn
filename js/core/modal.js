@@ -8,6 +8,7 @@
 
   let active = null;
   let returnFocus = null;
+  let openFrame = 0;
 
   function focusables(modal) {
     return Array.from(modal.querySelectorAll(FOCUSABLE)).filter((element) => element.offsetParent !== null);
@@ -16,9 +17,11 @@
   function open(id, detail) {
     const modal = document.getElementById(id);
     if (!modal || modal === active) return;
+    // Окно поверх окна: фокус потом вернётся туда, откуда открыли первое
+    const origin = active ? returnFocus : document.activeElement;
     if (active) close({ restoreFocus: false });
 
-    returnFocus = document.activeElement;
+    returnFocus = origin;
     active = modal;
     modal.hidden = false;
     lockScroll();
@@ -28,15 +31,21 @@
     modal.dispatchEvent(new CustomEvent('modal:open', { detail }));
 
     // Два кадра: браузер должен отрисовать окно видимым до старта перехода
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      modal.classList.add('modal_open');
-      dialog.focus({ preventScroll: true });
-    }));
+    openFrame = requestAnimationFrame(() => {
+      openFrame = requestAnimationFrame(() => {
+        openFrame = 0;
+        modal.classList.add('modal_open');
+        dialog.focus({ preventScroll: true });
+      });
+    });
   }
 
   function close({ restoreFocus = true } = {}) {
     const modal = active;
     if (!modal) return;
+    // Закрыли раньше, чем окно успело открыться, — отменяем отложенное открытие
+    cancelAnimationFrame(openFrame);
+    openFrame = 0;
     active = null;
     modal.classList.remove('modal_open');
     unlockScroll();
@@ -71,7 +80,9 @@
     if (!items.length) return;
     const first = items[0];
     const last = items[items.length - 1];
-    if (event.shiftKey && (document.activeElement === first || !active.contains(document.activeElement))) {
+    // Сразу после открытия фокус стоит на самом диалоге — для Shift+Tab это тоже начало списка
+    const atStart = document.activeElement === first || document.activeElement === active.querySelector('.modal__dialog');
+    if (event.shiftKey && (atStart || !active.contains(document.activeElement))) {
       event.preventDefault();
       last.focus();
     } else if (!event.shiftKey && document.activeElement === last) {
