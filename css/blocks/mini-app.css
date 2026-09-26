@@ -132,8 +132,8 @@
 }
 
 .mini-app__button {
-  width: min(100%, 460px);
-  margin-top: clamp(4px, calc(10 * var(--u)), 16px);
+  width: min(calc(362 * var(--u)), 460px);
+  margin-top: clamp(10px, calc(19 * var(--u)), 25px);
 }
 
 .mini-app__note {

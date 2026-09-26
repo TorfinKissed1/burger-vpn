@@ -18,9 +18,12 @@
   const AUTO_INTERVAL = 4200;
   let autoTimer = 0;
   let touched = false;
+  let autoStep = false;
 
+  // Подпись объявляется скринридеру только после действия пользователя, а не при автолистании
   function show(spot) {
     Object.keys(CAPTIONS).forEach((key) => section.classList.toggle(`mini-app_spot_${key}`, key === spot));
+    caption.setAttribute('aria-live', autoStep ? 'off' : 'polite');
     caption.textContent = CAPTIONS[spot];
   }
 
@@ -42,7 +45,11 @@
   function startAuto() {
     stopAuto();
     if (touched || prefersReducedMotion()) return;
-    autoTimer = window.setInterval(() => step(1), AUTO_INTERVAL);
+    autoTimer = window.setInterval(() => {
+      autoStep = true;
+      step(1);
+      autoStep = false;
+    }, AUTO_INTERVAL);
   }
 
   function markTouched() {
@@ -51,8 +58,9 @@
   }
 
   tabs.addEventListener('tabs:change', (event) => show(event.detail.tab.dataset.spot));
-  tabs.addEventListener('pointerdown', markTouched);
-  tabs.addEventListener('keydown', markTouched);
+  // Любое касание или фокус внутри блока останавливает автолистание насовсем
+  section.addEventListener('pointerdown', markTouched);
+  section.addEventListener('focusin', markTouched);
 
   section.querySelector('[data-mini-app-prev]').addEventListener('click', () => {
     markTouched();
