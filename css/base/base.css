@@ -96,19 +96,21 @@ body.is-locked {
 }
 
 @media (min-width: 1024px) {
+  /* Пары плиток подобраны по высоте так, чтобы в растянутых плитках оставалось меньше
+     пустого места: устройства — рядом с сервисами и поддержкой, отзывы — с шагами и запуском */
   .page {
     width: min(100%, var(--page-max));
     grid-template-columns: repeat(12, minmax(0, 1fr));
     grid-template-areas:
       "hero hero hero hero hero hero hero hero hero hero hero hero"
       "features features features features features features features features features features features features"
-      "services services services services services services devices devices devices devices devices devices"
+      "devices devices devices devices devices devices devices services services services services services"
+      "devices devices devices devices devices devices devices support support support support support"
       "tariffs tariffs tariffs tariffs tariffs tariffs tariffs tariffs tariffs tariffs tariffs tariffs"
       "mini-app mini-app mini-app mini-app mini-app mini-app cashback cashback cashback cashback cashback cashback"
       "steps steps steps steps steps reviews reviews reviews reviews reviews reviews reviews"
       "launch launch launch launch launch reviews reviews reviews reviews reviews reviews reviews"
       "faq faq faq faq faq faq faq faq faq faq faq faq"
-      "support support support support support support support support support support support support"
       "footer footer footer footer footer footer footer footer footer footer footer footer";
   }
 
