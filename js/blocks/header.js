@@ -5,6 +5,7 @@
   const header = document.querySelector('[data-header]');
   const menu = document.querySelector('[data-menu]');
   const toggle = document.querySelector('[data-menu-toggle]');
+  const page = document.querySelector('main');
   if (!header || !menu || !toggle) return;
 
   const { lockScroll, unlockScroll } = window.Burger;
@@ -46,6 +47,8 @@
     header.classList.remove('header_hidden');
     header.classList.add('header_menu-open');
     toggle.setAttribute('aria-expanded', 'true');
+    // Tab не должен уходить на страницу под подложкой
+    if (page) page.inert = true;
     lockScroll();
     requestAnimationFrame(() => requestAnimationFrame(() => menu.classList.add('menu_open')));
     const firstLink = menu.querySelector('[data-menu-link]');
@@ -58,6 +61,7 @@
     menu.classList.remove('menu_open');
     header.classList.remove('header_menu-open');
     toggle.setAttribute('aria-expanded', 'false');
+    if (page) page.inert = false;
     unlockScroll();
     hideTimer = window.setTimeout(() => {
       if (!menuOpen) menu.hidden = true;
@@ -67,6 +71,16 @@
 
   toggle.addEventListener('click', () => (menuOpen ? closeMenu() : openMenu()));
 
+  // Пока открыто меню, прокрутка заблокирована: сначала закрываем, потом едем к разделу
+  function goTo(link) {
+    closeMenu({ restoreFocus: false });
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    const behavior = window.Burger.prefersReducedMotion() ? 'auto' : 'smooth';
+    requestAnimationFrame(() => target.scrollIntoView({ behavior, block: 'start' }));
+    history.replaceState(null, '', link.getAttribute('href'));
+  }
+
   menu.addEventListener('click', (event) => {
     if (event.target.closest('[data-menu-close]')) {
       closeMenu();
@@ -74,14 +88,20 @@
     }
     const link = event.target.closest('[data-menu-link]');
     if (!link) return;
-    // Пока открыто меню, прокрутка заблокирована: сначала закрываем, потом едем к разделу
     event.preventDefault();
-    closeMenu({ restoreFocus: false });
-    const target = document.querySelector(link.getAttribute('href'));
-    if (target) {
-      requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
-      history.replaceState(null, '', link.getAttribute('href'));
+    goTo(link);
+  });
+
+  // Ссылки в самой шапке («?», Telegram) при открытом меню тоже его закрывают
+  header.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link || !menuOpen) return;
+    if (link.getAttribute('href').startsWith('#')) {
+      event.preventDefault();
+      goTo(link);
+      return;
     }
+    closeMenu({ restoreFocus: false });
   });
 
   document.addEventListener('keydown', (event) => {

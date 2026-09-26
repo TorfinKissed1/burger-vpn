@@ -8,8 +8,6 @@
   position: absolute;
   inset: 0;
   background: rgb(0 0 0 / 0.3);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
   opacity: 0;
   transition: opacity var(--dur) ease;
 }
@@ -24,21 +22,25 @@
   flex-direction: column;
   align-items: stretch;
   width: min(100%, 480px);
-  margin-top: calc(var(--header-height) + 58px);
+  margin-top: calc(var(--header-height) + 82px);
   padding: 0 clamp(12px, 4vw, 20px) 24px;
 }
 
 .menu__list {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 3vw, 16px);
 }
 
+/* Стикеры лежат лесенкой с неровным шагом, как в макете: сдвиг и отступ над каждым заданы
+   в разметке. Поворот вокруг центра стикера, чтобы наклон не уводил его вверх или вниз.
+   Обрезка по высоте заглавных здесь не нужна — иначе пункты наезжают друг на друга */
 .menu__item {
-  padding-left: var(--menu-x, 0);
+  display: flex;
+  width: fit-content;
+  margin: var(--menu-gap, 0) 0 0 var(--menu-x, 0);
+  text-box: none;
   opacity: 0;
   transform: translateY(-18px) rotate(calc(var(--menu-tilt, 0deg) - 8deg)) scale(0.85);
-  transform-origin: 0 50%;
   transition:
     opacity 0.35s ease,
     transform 0.6s var(--ease-back);
@@ -56,6 +58,11 @@
 .menu_open .menu__item:nth-child(5) { transition-delay: 0.2s; }
 .menu_open .menu__item:nth-child(6) { transition-delay: 0.24s; }
 .menu_open .menu__item:nth-child(7) { transition-delay: 0.28s; }
+
+.menu__link,
+.menu__label {
+  text-box: none;
+}
 
 .menu__link {
   display: inline-flex;
@@ -92,16 +99,28 @@
   }
 }
 
+/* Видимая ручка 50 × 6, но нажимать можно на полосу 88 × 44 */
 .menu__handle {
+  position: relative;
   align-self: center;
+  width: 88px;
+  height: 44px;
+  margin-top: 70px;
+  opacity: 0;
+  transition: opacity var(--dur) ease 0.3s;
+}
+
+.menu__handle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 50px;
   height: 6px;
-  margin-top: 36px;
   border-radius: 10px;
   background: rgb(0 0 0 / 0.1);
   box-shadow: 0 4px 6px -3px rgb(0 0 0 / 0.35), inset 0 0 0 0.8px rgb(0 0 0 / 0.12);
-  opacity: 0;
-  transition: opacity var(--dur) ease 0.3s;
+  translate: -50% -50%;
 }
 
 .menu_open .menu__handle {
@@ -109,6 +128,13 @@
 }
 
 @media (min-width: 768px) {
+  /* В макете (телефон) страница под меню резкая. На широком экране под стикерами
+     оказывается крупный заголовок первого экрана — размываем, чтобы пункты читались */
+  .menu__backdrop {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
   .menu__panel {
     margin-left: max(var(--page-gutter), (100% - var(--page-max)) / 2 + var(--page-gutter));
   }
