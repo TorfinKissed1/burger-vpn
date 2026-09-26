@@ -879,7 +879,10 @@
         <span class="activation__burst" data-activation-burst></span>
       </div>
       <div class="activation__media">
-        <img class="activation__gif" src="img/activation/tony.webp" width="640" height="383" alt="" loading="lazy" data-activation-gif>
+        <picture>
+          <source srcset="img/activation/tony-static.webp" media="(prefers-reduced-motion: reduce)">
+          <img class="activation__gif" src="img/activation/tony.webp" width="640" height="345" alt="" loading="lazy" data-activation-gif>
+        </picture>
         <h2 class="activation__title" id="activation-title">Ура! Вы получили<br>VPN бесплатно!</h2>
       </div>
       <form class="activation__form" novalidate data-activation-form>

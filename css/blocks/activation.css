@@ -17,7 +17,7 @@
 
 .activation__counter-icon {
   width: 44px;
-  margin-bottom: -6px;
+  margin-bottom: 4px;
   opacity: 0.35;
 }
 
@@ -170,7 +170,10 @@
   transition: box-shadow var(--dur-fast);
 }
 
+/* Шрифт самого поля не меньше 16 px — иначе iOS увеличивает страницу при фокусе.
+   Мельчает только подсказка, чтобы «@username или e-mail» влезала на узких экранах */
 .activation__input::placeholder {
+  font-size: clamp(11px, 3.4vw, 16px);
   color: rgb(255 255 255 / 0.55);
 }
 
