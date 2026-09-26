@@ -1,4 +1,5 @@
-// Шаги подключения по очереди подсвечиваются, пока блок виден; клик выбирает шаг вручную
+// Шаги подключения по очереди подсвечиваются, пока блок виден; клик выбирает шаг и
+// останавливает автосмену, наведение мыши ставит её на паузу
 (function () {
   'use strict';
 
@@ -12,6 +13,7 @@
   let timer = 0;
   let visible = false;
   let paused = false;
+  let touched = false;
 
   function activate(index) {
     current = index;
@@ -25,14 +27,15 @@
 
   function start() {
     stop();
-    if (!visible || paused || prefersReducedMotion()) return;
+    if (!visible || paused || touched || prefersReducedMotion()) return;
     timer = window.setInterval(() => activate((current + 1) % steps.length), INTERVAL);
   }
 
   steps.forEach((step, index) => {
     step.addEventListener('click', () => {
+      touched = true;
+      stop();
       activate(index);
-      start();
     });
   });
 

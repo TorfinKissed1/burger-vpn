@@ -31,7 +31,6 @@
   padding: clamp(24px, calc(36 * var(--u)), 40px) clamp(14px, calc(20 * var(--u)), 28px) clamp(22px, calc(30 * var(--u)), 34px) clamp(22px, calc(30 * var(--u)), 36px);
   border-radius: clamp(34px, calc(46 * var(--u)), 52px);
   opacity: 0.3;
-  cursor: pointer;
   transition:
     opacity 0.6s ease,
     background-color 0.6s ease,
@@ -89,6 +88,11 @@
 .steps__icon img {
   width: 56%;
   height: auto;
+}
+
+/* Человечек в макете крупнее остальных значков: 36 px в круге 54 */
+.steps__icon_profile img {
+  width: 66%;
 }
 
 /* В макете галочка третьего шага развёрнута на 180° */
@@ -150,5 +154,12 @@
   .steps {
     justify-content: center;
     padding: 48px 32px;
+  }
+}
+
+/* Без автосмены подсветки неактивные шаги не должны оставаться бледными */
+@media (prefers-reduced-motion: reduce) {
+  .steps__item {
+    opacity: 1;
   }
 }
