@@ -149,3 +149,9 @@
     padding: 48px 0 40px;
   }
 }
+
+@media (min-width: 1024px) {
+  .faq__list {
+    max-width: 1100px;
+  }
+}

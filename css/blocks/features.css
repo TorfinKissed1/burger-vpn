@@ -136,19 +136,19 @@
   .features {
     padding: 56px 0;
   }
-}
 
-@media (min-width: 1024px) {
+  /* На планшете пункты идут сеткой 3 + 2, на ПК — одной строкой */
   .features__list {
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: space-between;
-    gap: 24px;
+    justify-content: center;
+    gap: 48px 24px;
     padding-inline: clamp(24px, 3vw, 48px);
   }
 
   .features__item {
-    flex: 1 1 0;
+    flex: 0 0 calc((100% - 2 * 24px) / 3);
     min-width: 0;
   }
 
@@ -173,5 +173,17 @@
 
   .features__text {
     font-size: clamp(13px, 1.05vw, 16px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .features__list {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .features__item {
+    flex: 1 1 0;
   }
 }

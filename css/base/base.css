@@ -86,13 +86,14 @@ body.is-locked {
     width: min(100%, var(--page-max));
     grid-template-columns: repeat(12, minmax(0, 1fr));
     grid-template-areas:
-      "hero hero hero hero hero hero hero services services services services services"
+      "hero hero hero hero hero hero hero hero hero hero hero hero"
       "features features features features features features features features features features features features"
-      "devices devices devices devices devices devices devices steps steps steps steps steps"
-      "devices devices devices devices devices devices devices launch launch launch launch launch"
+      "services services services services services services devices devices devices devices devices devices"
       "tariffs tariffs tariffs tariffs tariffs tariffs mini-app mini-app mini-app mini-app mini-app mini-app"
       "tariffs tariffs tariffs tariffs tariffs tariffs cashback cashback cashback cashback cashback cashback"
-      "reviews reviews reviews reviews reviews reviews reviews faq faq faq faq faq"
+      "steps steps steps steps steps reviews reviews reviews reviews reviews reviews reviews"
+      "launch launch launch launch launch reviews reviews reviews reviews reviews reviews reviews"
+      "faq faq faq faq faq faq faq faq faq faq faq faq"
       "support support support support support support support support support support support support"
       "footer footer footer footer footer footer footer footer footer footer footer footer";
   }

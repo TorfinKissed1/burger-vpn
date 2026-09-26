@@ -202,9 +202,9 @@
 @media (min-width: 1024px) {
   .footer {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
-      "logo logo"
+      "logo bottom"
       "nav bottom"
       "actions bottom";
     column-gap: 48px;
@@ -213,11 +213,20 @@
 
   .footer__logo {
     grid-area: logo;
-    font-size: min(15cqi, 220px);
+    justify-self: start;
+    font-size: min(11.5cqi, 180px);
   }
 
   .footer__nav {
     grid-area: nav;
+  }
+
+  .footer__list {
+    column-gap: 24px;
+  }
+
+  .footer__list-item {
+    font-size: clamp(19px, 2.2cqi, 30px);
   }
 
   .footer__actions {
@@ -235,6 +244,7 @@
     grid-area: bottom;
     align-self: end;
     width: 100%;
+    max-width: 640px;
     margin-top: 40px;
   }
 }

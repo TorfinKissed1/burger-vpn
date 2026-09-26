@@ -77,6 +77,7 @@
   line-height: 1;
   letter-spacing: -0.03em;
   text-align: center;
+  white-space: nowrap;
   color: var(--color-black);
   -webkit-text-stroke: 0.8em #ff6bbf;
   paint-order: stroke fill;
@@ -590,5 +591,12 @@
   .tariffs__arrow:disabled {
     opacity: 0.3;
     transform: none;
+  }
+}
+
+/* На ПК плитка тарифов тянется на высоту двух соседних — содержимое держим по центру */
+@media (min-width: 1024px) {
+  .tariffs__card {
+    justify-content: center;
   }
 }
