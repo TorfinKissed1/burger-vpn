@@ -1,7 +1,10 @@
 /* Окно прокручивается само, когда не помещается по высоте. Пока открыт лист итога или экран
-   успеха, прокрутка выключена: они прижаты к низу видимой части и прокручиваются внутри */
+   успеха, прокрутка выключена: они прижаты к низу видимой части и прокручиваются внутри.
+   Окно лежит вне сетки .page, поэтому оно само контейнер: иначе --u у кнопок внутри
+   считалась бы от ширины экрана, и на ПК «Создать профиль» не влезал в кнопку */
 .payment {
   position: relative;
+  container-type: inline-size;
   min-height: min(760px, calc(100dvh - 32px));
   overflow-x: hidden;
   overflow-y: auto;
@@ -92,11 +95,11 @@
     "name price"
     "devices price";
   align-items: center;
-  column-gap: 10px;
+  column-gap: 8px;
   row-gap: 10px;
   width: 100%;
   min-height: 86px;
-  padding: 16px 16px 16px clamp(18px, 7vw, 31px);
+  padding: 16px clamp(12px, 3.6vw, 16px) 16px clamp(16px, 6vw, 31px);
   border-radius: 25px;
   background: rgb(0 0 0 / 0.1);
   text-align: left;
@@ -133,7 +136,7 @@
   grid-area: name;
   align-self: end;
   font-family: var(--font-display);
-  font-size: clamp(16px, 4.6vw, 20px);
+  font-size: clamp(15px, 4.6vw, 20px);
   font-weight: 500;
   line-height: 0.9;
   color: var(--color-ink-30);
@@ -161,15 +164,18 @@
   color: rgb(255 255 255 / 0.5);
 }
 
+/* Сумма и «/ нед» стоят на одной базовой линии, а вся строка — по центру плашки: во flex
+   выравнивание по базовой линии прижимало текст к верху */
 .payment__plan-price {
   grid-area: price;
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  place-content: center;
   align-items: baseline;
-  justify-content: center;
   gap: 0.25em;
-  min-width: clamp(104px, 32vw, 144px);
+  min-width: clamp(96px, 30vw, 144px);
   height: 54px;
-  padding-inline: 10px;
+  padding-inline: 8px;
   border-radius: 14px;
   background: rgb(255 255 255 / 0.1);
   box-shadow: inset 2.5px 2.5px 16.5px -2.5px rgb(255 255 255 / 0.8), inset 0 0 0 1px rgb(164 184 255 / 0.25);
@@ -479,10 +485,12 @@
   width: 43px;
 }
 
+/* Поля кнопки уже, чем у button_size_m: иначе «Создать профиль» не влезает в карточку */
 .payment__confirm {
   flex: none;
   width: 100%;
   margin-top: 24px;
+  padding-inline: 12px;
 }
 
 .payment__success {
@@ -504,6 +512,7 @@
   position: absolute;
   inset: -12%;
   width: 124%;
+  max-width: none;
   animation: payment-star 0.9s var(--ease-back) both;
 }
 
